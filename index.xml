@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>德国粗茶淡饭</title>
+        <link>https://yunfeigi.github.io/</link>
+        <description>关于 LoveIt 主题</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 02 Feb 2021 20:07:40 &#43;0800</lastBuildDate>
+            <atom:link href="https://yunfeigi.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Mysql执行过程</title>
+    <link>https://yunfeigi.github.io/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</link>
+    <pubDate>Tue, 02 Feb 2021 20:07:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://yunfeigi.github.io/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</guid>
+    <description><![CDATA[Mysql 执行流程 大致流程描述: MySQL客户端通过协议将SQL语句发送给MySQL服务器。 服务器会先检查查询缓存中是否有执行过这条SQL，如果命中]]></description>
+</item></channel>
+</rss>
