@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Feb 2021 06:36:08 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Feb 2021 06:40:24 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Mongo副本集</title>
+    <link>https://www.mikel.pan/mongo%E5%89%AF%E6%9C%AC%E9%9B%86/</link>
+    <pubDate>Thu, 04 Feb 2021 06:40:24 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/mongo%E5%89%AF%E6%9C%AC%E9%9B%86/</guid>
+    <description><![CDATA[mongo 副本集搭建 MongoDB主备+仲裁的基本结构如下 主节点（Primary） 在复制集中，主节点是唯一能够接收写请求的节点。MongoDB在主节]]></description>
+</item><item>
     <title>Mongo安装</title>
     <link>https://www.mikel.pan/mongo%E5%AE%89%E8%A3%85/</link>
     <pubDate>Thu, 04 Feb 2021 06:36:08 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/</guid>
     <description><![CDATA[Mysql 事务说明 Mysql 事务特点 1、ACID Atomicity（原子性）：一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交]]></description>
-</item><item>
-    <title>Mysql二进制安装</title>
-    <link>https://www.mikel.pan/mysql%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/</link>
-    <pubDate>Tue, 02 Feb 2021 20:50:44 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/mysql%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/</guid>
-    <description><![CDATA[mysql linux环境下安装 一、创建mysql账户和数据目录 1 2 3 4 5 6 7 8 # 创建用户 groupadd mysql useradd -r -g mysql -s /bin/false mysql # 创建数据目录 mkdir -p /data/mysql3306/{mysql,binlog,slowlog,tmp,log,run} mkdir -p /usr/local/mysql chown -R mysql. /data/mysql3306 chown -R mysql. /usr/local/mysql]]></description>
 </item></channel>
 </rss>
