@@ -2,55 +2,55 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://yunfeigi.github.io/en/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/en/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/categories/"
+                        href="https://www.mikel.pan/categories/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://yunfeigi.github.io/fr/categories/"
+                        href="https://www.mikel.pan/fr/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://yunfeigi.github.io/en/categories/"
+                    href="https://www.mikel.pan/en/categories/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/en/categories/documentation/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/en/categories/documentation/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/categories/documentation/"
+                        href="https://www.mikel.pan/categories/documentation/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://yunfeigi.github.io/fr/categories/documentation/"
+                        href="https://www.mikel.pan/fr/categories/documentation/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://yunfeigi.github.io/en/categories/documentation/"
+                    href="https://www.mikel.pan/en/categories/documentation/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/en/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/en/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/tags/"
+                        href="https://www.mikel.pan/tags/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://yunfeigi.github.io/fr/tags/"
+                        href="https://www.mikel.pan/fr/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://yunfeigi.github.io/en/tags/"
+                    href="https://www.mikel.pan/en/tags/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/"
+                        href="https://www.mikel.pan/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://yunfeigi.github.io/fr/"
+                        href="https://www.mikel.pan/fr/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://yunfeigi.github.io/en/"
+                    href="https://www.mikel.pan/en/"
                     /></url></urlset>

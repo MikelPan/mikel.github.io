@@ -2,65 +2,65 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://yunfeigi.github.io/fr/about/</loc><lastmod>2019-08-02T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://yunfeigi.github.io/fr/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/fr/about/</loc><lastmod>2019-08-02T11:04:49&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://www.mikel.pan/fr/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://yunfeigi.github.io/en/categories/"
+                        href="https://www.mikel.pan/en/categories/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/categories/"
+                        href="https://www.mikel.pan/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://yunfeigi.github.io/fr/categories/"
+                    href="https://www.mikel.pan/fr/categories/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/fr/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/fr/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/tags/content/"
+                        href="https://www.mikel.pan/tags/content/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://yunfeigi.github.io/fr/tags/content/"
+                    href="https://www.mikel.pan/fr/tags/content/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/fr/categories/documentation/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/fr/categories/documentation/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://yunfeigi.github.io/en/categories/documentation/"
+                        href="https://www.mikel.pan/en/categories/documentation/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/categories/documentation/"
+                        href="https://www.mikel.pan/categories/documentation/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://yunfeigi.github.io/fr/categories/documentation/"
+                    href="https://www.mikel.pan/fr/categories/documentation/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/fr/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/fr/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://yunfeigi.github.io/en/tags/"
+                        href="https://www.mikel.pan/en/tags/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/tags/"
+                        href="https://www.mikel.pan/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://yunfeigi.github.io/fr/tags/"
+                    href="https://www.mikel.pan/fr/tags/"
                     /></url><url>
-            <loc>https://yunfeigi.github.io/fr/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://www.mikel.pan/fr/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://yunfeigi.github.io/en/"
+                        href="https://www.mikel.pan/en/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://yunfeigi.github.io/"
+                        href="https://www.mikel.pan/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://yunfeigi.github.io/fr/"
+                    href="https://www.mikel.pan/fr/"
                     /></url></urlset>

@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>德国粗茶淡饭</title>
-        <link>https://yunfeigi.github.io/en/</link>
+        <link>https://www.mikel.pan/en/</link>
         <description>About LoveIt Theme</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
             <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-            <atom:link href="https://yunfeigi.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="https://www.mikel.pan/en/index.xml" rel="self" type="application/rss+xml" />
         </channel>
 </rss>
