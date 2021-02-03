@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Systemd管理服务 - 德国粗茶淡饭</title><meta name="Description" content="System管理服务"><meta property="og:title" content="Systemd管理服务" />
+<meta property="og:description" content="System管理服务" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-04T06:28:13+08:00" />
+<meta property="article:modified_time" content="2021-02-04T06:28:13+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Systemd管理服务"/>
+<meta name="twitter:description" content="System管理服务"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" /><link rel="prev" href="https://www.mikel.pan/tidb%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Systemd管理服务",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux","wordcount":  7034 ,
+        "url": "https:\/\/www.mikel.pan\/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1\/","datePublished": "2021-02-04T06:28:13+08:00","dateModified": "2021-02-04T06:28:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "System管理服务"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Systemd管理服务</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>MikelPan</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-04">2021-02-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7034 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#systemd-服务管理">Systemd 服务管理</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#systemd-的-unit-文件">Systemd 的 Unit 文件</a>
+          <ul>
+            <li><a href="#systemd-目录">Systemd 目录</a></li>
+            <li><a href="#unit-和-target">Unit 和 Target</a></li>
+            <li><a href="#systemd-service-unit">Systemd Service Unit</a>
+              <ul>
+                <li><a href="#uint文件结构">Uint文件结构</a></li>
+                <li><a href="#unit-段">Unit 段</a></li>
+                <li><a href="#service-段">Service 段</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#systemd-的资源管理">Systemd 的资源管理</a>
+          <ul>
+            <li><a href="#systemctl-命令">Systemctl 命令</a></li>
+            <li><a href="#uint管理">Uint管理</a></li>
+            <li><a href="#服务的生命周期">服务的生命周期</a></li>
+            <li><a href="#target-管理">Target 管理</a></li>
+            <li><a href="#日志管理">日志管理</a></li>
+            <li><a href="#systemd-工具集">Systemd 工具集</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="systemd-服务管理">Systemd 服务管理</h2>
+<h3 id="简介">简介</h3>
+<p>Systemd 是一系列工具的集合，其作用也远远不仅是启动操作系统，它还接管了后台服务、结束、状态查询，以及日志归档、设备管理、电源管理、定时任务等许多职责，并支持通过特定事件（如插入特定 USB 设备）和特定端口数据触发的 On-demand（按需）任务。</p>
+<h3 id="systemd-的-unit-文件">Systemd 的 Unit 文件</h3>
+<p>Systemd 可以管理所有系统资源，不同的资源统称为 Unit（单位）。</p>
+<p>在 Systemd 的生态圈中，Unit 文件统一了过去各种不同系统资源配置格式，例如服务的启/停、定时任务、设备自动挂载、网络配置、虚拟内存配置等。而 Systemd 通过不同的文件后缀来区分这些配置文件。</p>
+<p>Systemd 支持的 12 种 Unit 文件类型</p>
+<ul>
+<li>automount：用于控制自动挂载文件系统，相当于 SysV-init 的 autofs 服务</li>
+<li>device：对于 /dev 目录下的设备，主要用于定义设备之间的依赖关系</li>
+<li>mount：定义系统结构层次中的一个挂载点，可以替代过去的 /etc/fstab 配置文件</li>
+<li>path：用于监控指定目录或文件的变化，并触发其它 Unit 运行</li>
+<li>scope：这种 Unit 文件不是用户创建的，而是 Systemd 运行时产生的，描述一些系统服务的分组信息</li>
+<li>service：封装守护进程的启动、停止、重启和重载操作，是最常见的一种 Unit 文件</li>
+<li>slice：用于表示一个 CGroup 的树，通常用户不会自己创建这样的 Unit 文件</li>
+<li>snapshot：用于表示一个由 systemctl snapshot 命令创建的 Systemd Units 运行状态快照</li>
+<li>socket：监控来自于系统或网络的数据消息，用于实现基于数据自动触发服务启动</li>
+<li>swap：定义一个用户做虚拟内存的交换分区</li>
+<li>target：用于对 Unit 文件进行逻辑分组，引导其它 Unit 的执行。它替代了 SysV-init 运行级别的作用，并提供更灵活的基于特定设备事件的启动方式</li>
+<li>timer：用于配置在特定时间触发的任务，替代了 Crontab 的功能</li>
+</ul>
+<h4 id="systemd-目录">Systemd 目录</h4>
+<p>Unit 文件按照 Systemd 约定，应该被放置指定的三个系统目录之一中。这三个目录是有优先级的，如下所示，越靠上的优先级越高。因此，在三个目录中有同名文件的时候，只有优先级最高的目录里的那个文件会被使用。</p>
+<ul>
+<li>/etc/systemd/system：系统或用户自定义的配置文件</li>
+<li>/run/systemd/system：软件运行时生成的配置文件</li>
+<li>/usr/lib/systemd/system：系统或第三方软件安装时添加的配置文件。</li>
+</ul>
+<p>Systemd 默认从目录 /etc/systemd/system/ 读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录 /usr/lib/systemd/system/，真正的配置文件存放在那个目录。</p>
+<h4 id="unit-和-target">Unit 和 Target</h4>
+<p>Unit 是 Systemd 管理系统资源的基本单元，可以认为每个系统资源就是一个 Unit，并使用一个 Unit 文件定义。在 Unit 文件中需要包含相应服务的描述、属性以及需要运行的命令。</p>
+<p>Target 是 Systemd 中用于指定系统资源启动组的方式，相当于 SysV-init 中的运行级别。</p>
+<p>简单说，Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。从这个意义上说，Target 这个概念类似于”状态点”，启动某个 Target 就好比启动到某种状态。</p>
+<h4 id="systemd-service-unit">Systemd Service Unit</h4>
+<h5 id="uint文件结构">Uint文件结构</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Hello World
+<span class="nv">After</span><span class="o">=</span>docker.service
+<span class="nv">Requires</span><span class="o">=</span>docker.service
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">TimeoutStartSec</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">ExecStartPre</span><span class="o">=</span>-/usr/bin/docker <span class="nb">kill</span> busybox1
+<span class="nv">ExecStartPre</span><span class="o">=</span>-/usr/bin/docker rm busybox1
+<span class="nv">ExecStartPre</span><span class="o">=</span>/usr/bin/docker pull busybox
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/docker run --name busybox1 busybox /bin/ sh -c <span class="s2">&#34;while true; do echo Hello World; sleep 1; done&#34;</span>
+<span class="nv">ExecStop</span><span class="o">=</span><span class="s2">&#34;/usr/bin/docker stop busybox1&#34;</span>
+<span class="nv">ExecStopPost</span><span class="o">=</span><span class="s2">&#34;/usr/bin/docker rm busybox1&#34;</span>
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></td></tr></table>
+</div>
+</div><p>如下所示，Systemd 服务的 Unit 文件可以分为三个配置区段：</p>
+<ul>
+<li>Unit 和 Install 段：所有 Unit 文件通用，用于配置服务（或其它系统资源）的描述、依赖和随系统启动的方式</li>
+<li>Service 段：服务（Service）类型的 Unit 文件（后缀为 .service）特有的，用于定义服务的具体管理和操作方法</li>
+</ul>
+<h5 id="unit-段">Unit 段</h5>
+<ul>
+<li>Description：描述这个 Unit 文件的信息</li>
+<li>Documentation：指定服务的文档，可以是一个或多个文档的 URL 路径</li>
+<li>Requires：依赖的其它 Unit 列表，列在其中的 Unit 模板会在这个服务启动时的同时被启动。并且，如果其中任意一个服务启动失败，这个服务也会被终止</li>
+<li>Wants：与 Requires 相似，但只是在被配置的这个 Unit 启动时，触发启动列出的每个 Unit 模块，而不去考虑这些模板启动是否成功</li>
+<li>After：与 Requires 相似，但是在后面列出的所有模块全部启动完成以后，才会启动当前的服务</li>
+<li>Before：与 After 相反，在启动指定的任务一个模块之间，都会首先确证当前服务已经运行</li>
+<li>Binds To：与 Requires 相似，失败时失败，成功时成功，但是在这些模板中有任意一个出现意外结束或重启时，这个服务也会跟着终止或重启</li>
+<li>Part Of：一个 Bind To 作用的子集，仅在列出的任务模块失败或重启时，终止或重启当前服务，而不会随列出模板的启动而启动</li>
+<li>OnFailure：当这个模板启动失败时，就会自动启动列出的每个模块</li>
+<li>Conflicts：与这个模块有冲突的模块，如果列出的模块中有已经在运行的，这个服务就不能启动，反之亦然</li>
+</ul>
+<h5 id="service-段">Service 段</h5>
+<p>用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段分为服务生命周期和服务上下文配置两个方面</p>
+<p><em>服务生命周期控制相关</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">Type：定义启动时的进程行为，它有以下几种值：
+<span class="nv">Type</span><span class="o">=</span>simple：默认值，执行ExecStart指定的命令，启动主进程
+<span class="nv">Type</span><span class="o">=</span>forking：以 fork 方式从父进程创建子进程，创建后父进程会立即退出
+<span class="nv">Type</span><span class="o">=</span>oneshot：一次性进程，Systemd 会等当前服务退出，再继续往下执行
+<span class="nv">Type</span><span class="o">=</span>dbus：当前服务通过D-Bus启动
+<span class="nv">Type</span><span class="o">=</span>notify：当前服务启动完毕，会通知Systemd，再继续往下执行
+<span class="nv">Type</span><span class="o">=</span>idle：若有其他任务执行完毕，当前服务才会运行
+RemainAfterExit：值为 <span class="nb">true</span> 或 false（默认）。当配置为 <span class="nb">true</span> 时，Systemd 只会负责启动服务进程，之后即便服务进程退出了，Systemd 也仍然会认为这个服务还在运行中。这个配置主要是提供给一些并非常驻内存，而是启动注册后立即退出，然后等待消息按需启动的特殊类型服务使用的。
+ExecStart：启动当前服务的命令
+ExecStartPre：启动当前服务之前执行的命令
+ExecStartPos：启动当前服务之后执行的命令
+ExecReload：重启当前服务时执行的命令
+ExecStop：停止当前服务时执行的命令
+ExecStopPost：停止当其服务之后执行的命令
+RestartSec：自动重启当前服务间隔的秒数
+Restart：定义何种情况 Systemd 会自动重启当前服务，可能的值包括 always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog
+TimeoutStartSec：启动服务时等待的秒数，这一配置对于使用 Docker 容器而言显得尤为重要，因其第一次运行时可能需要下载镜像，严重延时会容易被 Systemd 误判为启动失败杀死。通常，对于这种服务，将此值指定为 0，从而关闭超时检测
+TimeoutStopSec：停止服务时的等待秒数，如果超过这个时间仍然没有停止，Systemd 会使用 SIGKILL 信号强行杀死服务的进程
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="systemd-的资源管理">Systemd 的资源管理</h3>
+<h4 id="systemctl-命令">Systemctl 命令</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># systemctl --help</span>
+systemctl <span class="o">[</span>OPTIONS...<span class="o">]</span> <span class="o">{</span>COMMAND<span class="o">}</span> ...
+Query or send control commands to the systemd manager.
+  -h --help           Show this <span class="nb">help</span>
+     --version        Show package version
+     --system         Connect to system manager
+  -H --host<span class="o">=[</span>USER@<span class="o">]</span>HOST
+                      Operate on remote host
+  -M --machine<span class="o">=</span>CONTAINER
+                      Operate on <span class="nb">local</span> container
+  -t --type<span class="o">=</span>TYPE      List units of a particular <span class="nb">type</span>
+     --state<span class="o">=</span>STATE    List units with particular LOAD or SUB or ACTIVE state
+  -p --property<span class="o">=</span>NAME  Show only properties by this name
+  -a --all            Show all loaded units/properties, including dead/empty
+                      ones. To list all units installed on the system, use
+                      the <span class="s1">&#39;list-unit-files&#39;</span> <span class="nb">command</span> instead.
+  -l --full           Don<span class="s1">&#39;t ellipsize unit names on output
+</span><span class="s1">  -r --recursive      Show unit list of host and local containers
+</span><span class="s1">     --reverse        Show reverse dependencies with &#39;</span>list-dependencies<span class="s1">&#39;
+</span><span class="s1">     --job-mode=MODE  Specify how to deal with already queued jobs, when
+</span><span class="s1">                      queueing a new job
+</span><span class="s1">     --show-types     When showing sockets, explicitly show their type
+</span><span class="s1">  -i --ignore-inhibitors
+</span><span class="s1">                      When shutting down or sleeping, ignore inhibitors
+</span><span class="s1">     --kill-who=WHO   Who to send signal to
+</span><span class="s1">  -s --signal=SIGNAL  Which signal to send
+</span><span class="s1">     --now            Start or stop unit in addition to enabling or disabling it
+</span><span class="s1">  -q --quiet          Suppress output
+</span><span class="s1">     --no-block       Do not wait until operation finished
+</span><span class="s1">     --no-wall        Don&#39;</span>t send wall message before halt/power-off/reboot
+     --no-reload      Don<span class="s1">&#39;t reload daemon after en-/dis-abling unit files
+</span><span class="s1">     --no-legend      Do not print a legend (column headers and hints)
+</span><span class="s1">     --no-pager       Do not pipe output into a pager
+</span><span class="s1">     --no-ask-password
+</span><span class="s1">                      Do not ask for system passwords
+</span><span class="s1">     --global         Enable/disable unit files globally
+</span><span class="s1">     --runtime        Enable unit files only temporarily until next reboot
+</span><span class="s1">  -f --force          When enabling unit files, override existing symlinks
+</span><span class="s1">                      When shutting down, execute action immediately
+</span><span class="s1">     --preset-mode=   Apply only enable, only disable, or all presets
+</span><span class="s1">     --root=PATH      Enable unit files in the specified root directory
+</span><span class="s1">  -n --lines=INTEGER  Number of journal entries to show
+</span><span class="s1">  -o --output=STRING  Change journal output mode (short, short-iso,
+</span><span class="s1">                              short-precise, short-monotonic, verbose,
+</span><span class="s1">                              export, json, json-pretty, json-sse, cat)
+</span><span class="s1">     --plain          Print unit dependencies as a list instead of a tree
+</span><span class="s1">Unit Commands:
+</span><span class="s1">  list-units [PATTERN...]         List loaded units
+</span><span class="s1">  list-sockets [PATTERN...]       List loaded sockets ordered by address
+</span><span class="s1">  list-timers [PATTERN...]        List loaded timers ordered by next elapse
+</span><span class="s1">  start NAME...                   Start (activate) one or more units
+</span><span class="s1">  stop NAME...                    Stop (deactivate) one or more units
+</span><span class="s1">  reload NAME...                  Reload one or more units
+</span><span class="s1">  restart NAME...                 Start or restart one or more units
+</span><span class="s1">  try-restart NAME...             Restart one or more units if active
+</span><span class="s1">  reload-or-restart NAME...       Reload one or more units if possible,
+</span><span class="s1">                                  otherwise start or restart
+</span><span class="s1">  reload-or-try-restart NAME...   Reload one or more units if possible,
+</span><span class="s1">                                  otherwise restart if active
+</span><span class="s1">  isolate NAME                    Start one unit and stop all others
+</span><span class="s1">  kill NAME...                    Send signal to processes of a unit
+</span><span class="s1">  is-active PATTERN...            Check whether units are active
+</span><span class="s1">  is-failed PATTERN...            Check whether units are failed
+</span><span class="s1">  status [PATTERN...|PID...]      Show runtime status of one or more units
+</span><span class="s1">  show [PATTERN...|JOB...]        Show properties of one or more
+</span><span class="s1">                                  units/jobs or the manager
+</span><span class="s1">  cat PATTERN...                  Show files and drop-ins of one or more units
+</span><span class="s1">  set-property NAME ASSIGNMENT... Sets one or more properties of a unit
+</span><span class="s1">  help PATTERN...|PID...          Show manual for one or more units
+</span><span class="s1">  reset-failed [PATTERN...]       Reset failed state for all, one, or more
+</span><span class="s1">                                  units
+</span><span class="s1">  list-dependencies [NAME]        Recursively show units which are required
+</span><span class="s1">                                  or wanted by this unit or by which this
+</span><span class="s1">                                  unit is required or wanted
+</span><span class="s1">Unit File Commands:
+</span><span class="s1">  list-unit-files [PATTERN...]    List installed unit files
+</span><span class="s1">  enable NAME...                  Enable one or more unit files
+</span><span class="s1">  disable NAME...                 Disable one or more unit files
+</span><span class="s1">  reenable NAME...                Reenable one or more unit files
+</span><span class="s1">  preset NAME...                  Enable/disable one or more unit files
+</span><span class="s1">                                  based on preset configuration
+</span><span class="s1">  preset-all                      Enable/disable all unit files based on
+</span><span class="s1">                                  preset configuration
+</span><span class="s1">  is-enabled NAME...              Check whether unit files are enabled
+</span><span class="s1">  mask NAME...                    Mask one or more units
+</span><span class="s1">  unmask NAME...                  Unmask one or more units
+</span><span class="s1">  link PATH...                    Link one or more units files into
+</span><span class="s1">                                  the search path
+</span><span class="s1">  add-wants TARGET NAME...        Add &#39;</span>Wants<span class="s1">&#39; dependency for the target
+</span><span class="s1">                                  on specified one or more units
+</span><span class="s1">  add-requires TARGET NAME...     Add &#39;</span>Requires<span class="err">&#39;</span> dependency <span class="k">for</span> the target
+                                  on specified one or more units
+  edit NAME...                    Edit one or more unit files
+  get-default                     Get the name of the default target
+  set-default NAME                Set the default target
+Machine Commands:
+  list-machines <span class="o">[</span>PATTERN...<span class="o">]</span>      List <span class="nb">local</span> containers and host
+Job Commands:
+  list-jobs <span class="o">[</span>PATTERN...<span class="o">]</span>          List <span class="nb">jobs</span>
+  cancel <span class="o">[</span>JOB...<span class="o">]</span>                 Cancel all, one, or more <span class="nb">jobs</span>
+Snapshot Commands:
+  snapshot <span class="o">[</span>NAME<span class="o">]</span>                 Create a snapshot
+  delete NAME...                  Remove one or more snapshots
+Environment Commands:
+  show-environment                Dump environment
+  set-environment <span class="nv">NAME</span><span class="o">=</span>VALUE...   Set one or more environment variables
+  unset-environment NAME...       Unset one or more environment variables
+  import-environment <span class="o">[</span>NAME...<span class="o">]</span>    Import all or some environment variables
+Manager Lifecycle Commands:
+  daemon-reload                   Reload systemd manager configuration
+  daemon-reexec                   Reexecute systemd manager
+System Commands:
+  is-system-running               Check whether system is fully running
+  default                         Enter system default mode
+  rescue                          Enter system rescue mode
+  emergency                       Enter system emergency mode
+  halt                            Shut down and halt the system
+  poweroff                        Shut down and power-off the system
+  reboot <span class="o">[</span>ARG<span class="o">]</span>                    Shut down and reboot the system
+  kexec                           Shut down and reboot the system with kexec
+  <span class="nb">exit</span>                            Request user instance <span class="nb">exit</span>
+  switch-root ROOT <span class="o">[</span>INIT<span class="o">]</span>         Change to a different root file system
+  <span class="nb">suspend</span>                         Suspend the system
+  hibernate                       Hibernate the system
+  hybrid-sleep                    Hibernate and <span class="nb">suspend</span> the system
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="uint管理">Uint管理</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 列出正在运行的 Unit</span>
+$ systemctl list-units
+
+<span class="c1"># 列出所有Unit，包括没有找到配置文件的或者启动失败的</span>
+$ systemctl list-units --all
+
+<span class="c1"># 列出所有没有运行的 Unit</span>
+$ systemctl list-units --all --state<span class="o">=</span>inactive
+
+<span class="c1"># 列出所有加载失败的 Unit</span>
+$ systemctl list-units --failed
+
+<span class="c1"># 列出所有正在运行的、类型为 service 的 Unit</span>
+$ systemctl list-units --type<span class="o">=</span>service
+
+<span class="c1"># 查看 Unit 配置文件的内容</span>
+$ systemctl cat docker.service
+
+<span class="c1"># 显示系统状态</span>
+$ systemctl status
+
+<span class="c1"># 显示单个 Unit 的状态</span>
+$ ystemctl status bluetooth.service
+
+<span class="c1"># 显示远程主机的某个 Unit 的状态</span>
+$ systemctl -H root@rhel7.example.com status httpd.service
+
+<span class="c1"># 立即启动一个服务</span>
+$ sudo systemctl start apache.service
+
+<span class="c1"># 立即停止一个服务</span>
+$ sudo systemctl stop apache.service
+
+<span class="c1"># 重启一个服务</span>
+$ sudo systemctl restart apache.service
+
+<span class="c1"># 杀死一个服务的所有子进程</span>
+$ sudo systemctl <span class="nb">kill</span> apache.service
+
+<span class="c1"># 重新加载一个服务的配置文件</span>
+$ sudo systemctl reload apache.service
+
+<span class="c1"># 重载所有修改过的配置文件</span>
+$ sudo systemctl daemon-reload
+
+<span class="c1"># 显示某个 Unit 的所有底层参数</span>
+$ systemctl show httpd.service
+
+<span class="c1"># 显示某个 Unit 的指定属性的值</span>
+$ systemctl show -p CPUShares httpd.service
+
+<span class="c1"># 设置某个 Unit 的指定属性</span>
+$ sudo systemctl set-property httpd.service <span class="nv">CPUShares</span><span class="o">=</span><span class="m">500</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="服务的生命周期">服务的生命周期</h4>
+<p>当一个新的 Unit 文件被放入 /etc/systemd/system/ 或 /usr/lib/systemd/system/ 目录中时，它是不会被自识识别的。</p>
+<p>服务的激活</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">systemctl enable：在 /etc/systemd/system/ 建立服务的符号链接，指向 /usr/lib/systemd/system/ 中
+systemctl start：依次启动定义在 Unit 文件中的 ExecStartPre、ExecStart 和 ExecStartPost 命令
+</code></pre></td></tr></table>
+</div>
+</div><p>服务的启动和停止</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">systemctl start：依次启动定义在 Unit 文件中的 ExecStartPre、ExecStart 和 ExecStartPost 命令
+systemctl stop：依次停止定义在 Unit 文件中的 ExecStopPre、ExecStop 和 ExecStopPost 命令
+systemctl restart：重启服务
+systemctl kill：立即杀死服务
+</code></pre></td></tr></table>
+</div>
+</div><p>服务的开机启动和取消</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">systemctl enable：除了激活服务以外，也可以置服务为开机启动
+systemctl disable：取消服务的开机启动
+</code></pre></td></tr></table>
+</div>
+</div><p>服务的修改和移除</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">systemctl daemon-reload：Systemd 会将 Unit 文件的内容写到缓存中，因此当 Unit 文件被更新时，需要告诉 Systemd 重新读取所有的 Unit 文件
+systemctl reset-failed：移除标记为丢失的 Unit 文件。在删除 Unit 文件后，由于缓存的关系，即使通过 daemon-reload 更新了缓存，在 list-units 中依然会显示标记为 not-found 的 Unit。
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="target-管理">Target 管理</h4>
+<p>Target 就是一个 Unit 组，包含许多相关的 Unit 。启动某个 Target 的时候，Systemd 就会启动里面所有的 Unit。</p>
+<p>在传统的 SysV-init 启动模式里面，有 RunLevel 的概念，跟 Target 的作用很类似。不同的是，RunLevel 是互斥的，不可能多个 RunLevel 同时启动，但是多个 Target 可以同时启动。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看当前系统的所有 Target</span>
+$ systemctl list-unit-files --type<span class="o">=</span>target
+
+<span class="c1"># 查看一个 Target 包含的所有 Unit</span>
+$ systemctl list-dependencies multi-user.target
+
+<span class="c1"># 查看启动时的默认 Target</span>
+$ systemctl get-default
+
+<span class="c1"># 设置启动时的默认 Target</span>
+$ sudo systemctl set-default multi-user.target
+
+<span class="c1"># 切换 Target 时，默认不关闭前一个 Target 启动的进程，systemctl isolate 命令改变这种行为，关闭前一个 Target 里面所有不属于后一个 Target 的进程</span>
+$ sudo systemctl isolate multi-user.target
+</code></pre></td></tr></table>
+</div>
+</div><p>Target 与 SysV-init 进程的主要区别：</p>
+<ul>
+<li>默认的 RunLevel（在 /etc/inittab 文件设置）现在被默认的 Target 取代，位置是 /etc/systemd/system/default.target，通常符号链接到graphical.target（图形界面）或者multi-user.target（多用户命令行）。</li>
+<li>启动脚本的位置，以前是 /etc/init.d 目录，符号链接到不同的 RunLevel 目录 （比如 /etc/rc3.d、/etc/rc5.d 等），现在则存放在 /lib/systemd/system 和 /etc/systemd/system 目录。</li>
+<li>配置文件的位置，以前 init 进程的配置文件是 /etc/inittab，各种服务的配置文件存放在 /etc/sysconfig 目录。现在的配置文件主要存放在 /lib/systemd 目录，在 /etc/systemd 目录里面的修改可以覆盖原始设置。</li>
+</ul>
+<h4 id="日志管理">日志管理</h4>
+<p>Systemd 通过其标准日志服务 Journald 提供的配套程序 journalctl 将其管理的所有后台进程打印到 std:out（即控制台）的输出重定向到了日志文件。</p>
+<p>Systemd 的日志文件是二进制格式的，必须使用 Journald 提供的 journalctl 来查看，默认不带任何参数时会输出系统和所有后台进程的混合日志。</p>
+<p>默认日志最大限制为所在文件系统容量的 10%，可以修改 /etc/systemd/journald.conf 中的 SystemMaxUse 来指定该最大限制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看所有日志（默认情况下 ，只保存本次启动的日志）</span>
+$ sudo journalctl
+
+<span class="c1"># 查看内核日志（不显示应用日志）：--dmesg 或 -k</span>
+$ sudo journalctl -k
+
+<span class="c1"># 查看系统本次启动的日志（其中包括了内核日志和各类系统服务的控制台输出）：--system 或 -b</span>
+$ sudo journalctl -b
+$ sudo journalctl -b -0
+
+<span class="c1"># 查看上一次启动的日志（需更改设置）</span>
+$ sudo journalctl -b -1
+
+<span class="c1"># 查看指定服务的日志：--unit 或 -u</span>
+$ sudo journalctl -u docker.servcie
+
+<span class="c1"># 查看指定服务的日志</span>
+$ sudo journalctl /usr/lib/systemd/systemd
+
+<span class="c1"># 实时滚动显示最新日志</span>
+$ sudo journalctl -f
+
+<span class="c1"># 查看指定时间的日志</span>
+$ sudo journalctl --since<span class="o">=</span><span class="s2">&#34;2012-10-30 18:17:16&#34;</span>
+$ sudo journalctl --since <span class="s2">&#34;20 min ago&#34;</span>
+$ sudo journalctl --since yesterday
+$ sudo journalctl --since <span class="s2">&#34;2015-01-10&#34;</span> --until <span class="s2">&#34;2015-01-11 03:00&#34;</span>
+$ sudo journalctl --since 09:00 --until <span class="s2">&#34;1 hour ago&#34;</span>
+
+<span class="c1"># 显示尾部的最新 10 行日志：--lines 或 -n</span>
+$ sudo journalctl -n
+
+<span class="c1"># 显示尾部指定行数的日志</span>
+$ sudo journalctl -n <span class="m">20</span>
+
+<span class="c1"># 将最新的日志显示在前面</span>
+$ sudo journalctl -r -u docker.service
+
+<span class="c1"># 改变输出的格式：--output 或 -o</span>
+$ sudo journalctl -r -u docker.service -o json-pretty
+
+<span class="c1"># 查看指定进程的日志</span>
+$ sudo journalctl <span class="nv">_PID</span><span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># 查看某个路径的脚本的日志</span>
+$ sudo journalctl /usr/bin/bash
+
+<span class="c1"># 查看指定用户的日志</span>
+$ sudo journalctl <span class="nv">_UID</span><span class="o">=</span><span class="m">33</span> --since today
+
+<span class="c1"># 查看某个 Unit 的日志</span>
+$ sudo journalctl -u nginx.service
+$ sudo journalctl -u nginx.service --since today
+
+<span class="c1"># 实时滚动显示某个 Unit 的最新日志</span>
+$ sudo journalctl -u nginx.service -f
+
+<span class="c1"># 合并显示多个 Unit 的日志</span>
+$ journalctl -u nginx.service -u php-fpm.service --since today
+
+<span class="c1"># 查看指定优先级（及其以上级别）的日志，共有 8 级</span>
+<span class="c1"># 0: emerg</span>
+<span class="c1"># 1: alert</span>
+<span class="c1"># 2: crit</span>
+<span class="c1"># 3: err</span>
+<span class="c1"># 4: warning</span>
+<span class="c1"># 5: notice</span>
+<span class="c1"># 6: info</span>
+<span class="c1"># 7: debug</span>
+$ sudo journalctl -p err -b
+
+<span class="c1"># 日志默认分页输出，--no-pager 改为正常的标准输出</span>
+$ sudo journalctl --no-pager
+
+<span class="c1"># 以 JSON 格式（单行）输出</span>
+$ sudo journalctl -b -u nginx.service -o json
+
+<span class="c1"># 以 JSON 格式（多行）输出，可读性更好</span>
+$ sudo journalctl -b -u nginx.serviceqq
+ -o json-pretty
+
+<span class="c1"># 显示日志占据的硬盘空间</span>
+$ sudo journalctl --disk-usage
+
+<span class="c1"># 指定日志文件占据的最大空间</span>
+$ sudo journalctl --vacuum-size<span class="o">=</span>1G
+
+<span class="c1"># 指定日志文件保存多久</span>
+$ sudo journalctl --vacuum-time<span class="o">=</span>1years
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="systemd-工具集">Systemd 工具集</h4>
+<ul>
+<li>systemctl：用于检查和控制各种系统服务和资源的状态</li>
+<li>bootctl：用于查看和管理系统启动分区</li>
+<li>hostnamectl：用于查看和修改系统的主机名和主机信息</li>
+<li>journalctl：用于查看系统日志和各类应用服务日志</li>
+<li>localectl：用于查看和管理系统的地区信息</li>
+<li>loginctl：用于管理系统已登录用户和 Session 的信息</li>
+<li>machinectl：用于操作 Systemd 容器</li>
+<li>timedatectl：用于查看和管理系统的时间和时区信息</li>
+<li>systemd-analyze 显示此次系统启动时运行每个服务所消耗的时间，可以用于分析系统启动过程中的性能瓶颈</li>
+<li>systemd-ask-password：辅助性工具，用星号屏蔽用户的任意输入，然后返回实际输入的内容</li>
+<li>systemd-cat：用于将其他命令的输出重定向到系统日志</li>
+<li>systemd-cgls：递归地显示指定 CGroup 的继承链</li>
+<li>systemd-cgtop：显示系统当前最耗资源的 CGroup 单元</li>
+<li>systemd-escape：辅助性工具，用于去除指定字符串中不能作为 Unit 文件名的字符</li>
+<li>systemd-hwdb：Systemd 的内部工具，用于更新硬件数据库</li>
+<li>systemd-delta：对比当前系统配置与默认系统配置的差异</li>
+<li>systemd-detect-virt：显示主机的虚拟化类型</li>
+<li>systemd-inhibit：用于强制延迟或禁止系统的关闭、睡眠和待机事件</li>
+<li>systemd-machine-id-setup：Systemd 的内部工具，用于给 Systemd 容器生成 ID</li>
+<li>systemd-notify：Systemd 的内部工具，用于通知服务的状态变化</li>
+<li>systemd-nspawn：用于创建 Systemd 容器</li>
+<li>systemd-path：Systemd 的内部工具，用于显示系统上下文中的各种路径配置</li>
+<li>systemd-run：用于将任意指定的命令包装成一个临时的后台服务运行</li>
+<li>systemd-stdio- bridge：Systemd 的内部 工具，用于将程序的标准输入输出重定向到系统总线</li>
+<li>systemd-tmpfiles：Systemd 的内部工具，用于创建和管理临时文件目录</li>
+<li>systemd-tty-ask-password-agent：用于响应后台服务进程发出的输入密码请求</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 重启系统</span>
+$ sudo systemctl reboot
+
+<span class="c1"># 关闭系统，切断电源</span>
+$ sudo systemctl poweroff
+
+<span class="c1"># CPU停止工作</span>
+$ sudo systemctl halt
+
+<span class="c1"># 暂停系统</span>
+$ sudo systemctl <span class="nb">suspend</span>
+
+<span class="c1"># 让系统进入冬眠状态</span>
+$ sudo systemctl hibernate
+
+<span class="c1"># 让系统进入交互式休眠状态</span>
+$ sudo systemctl hybrid-sleep
+
+<span class="c1"># 启动进入救援状态（单用户状态）</span>
+$ sudo systemctl rescue
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看启动耗时</span>
+$ systemd-analyze
+
+<span class="c1"># 查看每个服务的启动耗时</span>
+$ systemd-analyze blame
+
+<span class="c1"># 显示瀑布状的启动过程流</span>
+$ systemd-analyze critical-chain
+
+<span class="c1"># 显示指定服务的启动流</span>
+$ systemd-analyze critical-chain atd.service
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 显示当前主机的信息</span>
+$ hostnamectl
+
+<span class="c1"># 设置主机名。</span>
+$ sudo hostnamectl set-hostname rhel7
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看当前时区设置</span>
+$ timedatectl
+
+<span class="c1"># 显示所有可用的时区</span>
+$ timedatectl list-timezones
+
+<span class="c1"># 设置当前时区</span>
+$ sudo timedatectl set-timezone America/New_York
+$ sudo timedatectl set-time YYYY-MM-DD
+$ sudo timedatectl set-time HH:MM:SS
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 列出当前 session</span>
+$ loginctl list-sessions
+
+<span class="c1"># 列出当前登录用户</span>
+$ loginctl list-users
+
+<span class="c1"># 列出显示指定用户的信息</span>
+$ loginctl show-user ruanyf
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" data-title="Systemd管理服务" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" data-title="Systemd管理服务" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" data-title="Systemd管理服务"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" data-title="Systemd管理服务"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/tidb%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="TIDB使用"><i class="fas fa-angle-left fa-fw"></i>TIDB使用</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
