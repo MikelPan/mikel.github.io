@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Shell编程基础02 - 德国粗茶淡饭</title><meta name="Description" content="Shell编程基础02"><meta property="og:title" content="Shell编程基础02" />
+<meta property="og:description" content="Shell编程基础02" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-03T23:29:38+08:00" />
+<meta property="article:modified_time" content="2021-02-03T23:29:38+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Shell编程基础02"/>
+<meta name="twitter:description" content="Shell编程基础02"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" /><link rel="prev" href="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Shell编程基础02",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux","wordcount":  3736 ,
+        "url": "https:\/\/www.mikel.pan\/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002\/","datePublished": "2021-02-03T23:29:38+08:00","dateModified": "2021-02-03T23:29:38+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Shell编程基础02"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Shell编程基础02</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>MikelPan</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-03">2021-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3736 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#条件表达式">条件表达式</a>
+      <ul>
+        <li><a href="#文件判断">文件判断</a></li>
+        <li><a href="#字符串判断">字符串判断</a></li>
+        <li><a href="#整数判断">整数判断</a></li>
+        <li><a href="#逻辑符号">逻辑符号</a></li>
+      </ul>
+    </li>
+    <li><a href="#if条件语句">if条件语句</a>
+      <ul>
+        <li><a href="#三种语法">三种语法</a></li>
+        <li><a href="#if条件语句小结">if条件语句小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#case条件结构语句">case条件结构语句</a>
+      <ul>
+        <li><a href="#case语法结构">case语法结构</a></li>
+        <li><a href="#case与if的对比">case与if的对比</a></li>
+        <li><a href="#case值的书写方式">case值的书写方式</a></li>
+        <li><a href="#case语句小结">case语句小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他补充说明">其他补充说明</a>
+      <ul>
+        <li><a href="#linux中产生随机数的方法">linux中产生随机数的方法</a></li>
+        <li><a href="#echo-命令输出带颜色字符">echo 命令输出带颜色字符</a></li>
+        <li><a href="#显示文本中的隐藏字符">显示文本中的隐藏字符</a></li>
+        <li><a href="#shell-脚本段注释方法">shell 脚本段注释方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="条件表达式">条件表达式</h2>
+<h3 id="文件判断">文件判断</h3>
+<p>常用文件测试操作符:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常用文件测试操作符</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-d文件，d的全拼为directory</td>
+<td style="text-align:left">文件存在且为目录则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">-f文件，f的全拼为file</td>
+<td style="text-align:left">文件存在且为普通文件则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">-e文件，e的全拼为exist</td>
+<td style="text-align:left">文件存在则为真，即测试表达式成立。注意区别于“-f”，-e不辨别是目录还是文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-r文件，r的全拼为read</td>
+<td style="text-align:left">文件存在且可读则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">-s文件，s的全拼为size</td>
+<td style="text-align:left">文件存在且文件大小不为0则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">-w文件，w的全拼为write</td>
+<td style="text-align:left">文件存在且可写则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">-x文件，x的全拼为executable</td>
+<td style="text-align:left">文件存在且可执行则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">-L文件，L的全拼为link</td>
+<td style="text-align:left">文件存在且为链接文件则为真，即测试表达式成立</td>
+</tr>
+<tr>
+<td style="text-align:left">fl -nt f2，nt 的全拼为 newer than</td>
+<td style="text-align:left">文件fl比文件f2新则为真，即测试表达式成立。根据文件的修改时间来计算</td>
+</tr>
+<tr>
+<td style="text-align:left">fl -ot f2，ot 的全拼为 older than</td>
+<td style="text-align:left">文件fl比文件f2旧则为真，即测试表达式成立。根据文件的修改时间来计算</td>
+</tr>
+</tbody>
+</table>
+<p><em>判断文件是否存在</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ -f /etc/hosts ]</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># echo $?</span>
+<span class="m">0</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ -f /etc/hosts1 ]</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># echo $?</span>
+<span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>判断文件是否存在,返回方式</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ -f /etc/hosts ] &amp;&amp; echo &#34;文件存在&#34; || echo &#34;文件不存在&#34; </span>
+文件存在
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ -f /etc/hosts1 ] &amp;&amp; echo &#34;文件存在&#34; || echo &#34;文件不存在&#34; </span>
+文件不存在
+</code></pre></td></tr></table>
+</div>
+</div><p><em>判断目录是否存在</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ -d /tmp ] &amp;&amp; echo &#34;目录存在&#34; || echo &#34;目录不存在&#34; </span>
+目录存在
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ -d /tmp1 ] &amp;&amp; echo &#34;目录存在&#34; || echo &#34;目录不存在&#34; </span>
+目录不存在
+</code></pre></td></tr></table>
+</div>
+</div><p><em>使用变量的方法进行判断</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">dir</span><span class="o">=</span>/etc1/<span class="p">;</span><span class="o">[</span> -d <span class="nv">$dir</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> tar zcf etc.tar.gz <span class="nv">$dir</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$dir目录不存在</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串判断">字符串判断</h3>
+<p><em>字符串测试操作符</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常用字符串测试操作符</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-n &ldquo;字符串&rdquo;</td>
+<td style="text-align:left">若字符串的长度不为0,则为真，即测试表达式成立，n可以理解为no zero</td>
+</tr>
+<tr>
+<td style="text-align:left">-Z &ldquo;字符串&rdquo;</td>
+<td style="text-align:left">若字符串的长度为0,则为真，即测试表达式成立，z可以理解为zero的缩写</td>
+</tr>
+<tr>
+<td style="text-align:left">&ldquo;串 1&rdquo;== &ldquo;串 2&rdquo;</td>
+<td style="text-align:left">若字符串1等于字符串2,则为真，即测试表达式成立，可使用&quot;==&ldquo;代替&rdquo;=&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">&ldquo;串 1&rdquo; ！= &ldquo;串 2&rdquo;</td>
+<td style="text-align:left">若字符串1不等于字符串2,则为真，即测试表达式成立，但不能用&quot;!==&ldquo;代替&rdquo;!=&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>1.对于字符串的测试，一定要将字符串加双引号之后再进行比较。</p>
+<p>2.空格非空</p>
+<p><em>-z 判断字符串长度</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># x=  ; [ -z &#34;$x&#34; ] &amp;&amp; echo &#34;输入为空&#34; || echo &#39;输入有内容&#39;</span>
+输入为空
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># x=12 ; [ -z &#34;$x&#34; ] &amp;&amp; echo &#34;输入为空&#34; || echo &#39;输入有内容&#39;</span>
+输入有内容
+</code></pre></td></tr></table>
+</div>
+</div><p><em>-n 判断字符串长度</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># x=12 ; [ -n &#34;$x&#34; ] &amp;&amp; echo &#34;输入有内容&#34; || echo &#39;输入为空&#39;</span>
+输入有内容
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># x= ; [ -n &#34;$x&#34; ] &amp;&amp; echo &#34;输入有内容&#34; || echo &#39;输入为空&#39;</span>
+输入为空
+</code></pre></td></tr></table>
+</div>
+</div><p><em>&ldquo;串 1&rdquo; == &quot; 串 2 &ldquo;</em>       使用定义变量的方式进行判断</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">cmd</span><span class="o">=</span><span class="nv">$1</span>
+<span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$cmd</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;start&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> start
+<span class="c1"># 测试</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># cmd=start;[ &#34;$cmd&#34; == &#34;start&#34; ] &amp;&amp; echo start</span>
+start
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="整数判断">整数判断</h3>
+<p><em>整数二元比较操作符参考</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">在[]以及test中使用的比较符号</th>
+<th style="text-align:left">在(())和[[]]中使用的比较符号</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-eq</td>
+<td style="text-align:left">==或=</td>
+<td style="text-align:left">相等，全拼为equal</td>
+</tr>
+<tr>
+<td style="text-align:left">-ne</td>
+<td style="text-align:left">！=</td>
+<td style="text-align:left">不相等，全拼为not equal</td>
+</tr>
+<tr>
+<td style="text-align:left">-gt</td>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">大于，全拼为greater than</td>
+</tr>
+<tr>
+<td style="text-align:left">-ge</td>
+<td style="text-align:left">&gt;=</td>
+<td style="text-align:left">大于等于，全拼为greater equal</td>
+</tr>
+<tr>
+<td style="text-align:left">-lt</td>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">小于，全拼为less than</td>
+</tr>
+<tr>
+<td style="text-align:left">-le</td>
+<td style="text-align:left">&lt;=</td>
+<td style="text-align:left">小于等于，全拼为less equal</td>
+</tr>
+</tbody>
+</table>
+<p><em>判断两数是否相等</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 1 -eq 1 ]</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># echo $?</span>
+<span class="m">0</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 1 -eq 2 ]</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># echo $?</span>
+<span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>大于等于</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 11 -ge 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>小于</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 11 -lt 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+不成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>大于</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 11 -gt 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>不等于</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 11 -ne 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+成立
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="逻辑符号">逻辑符号</h3>
+<p><em>常用逻辑操作符</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">在[]和test中使用的操作符</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">在[[]]和(())中使用的操作符</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-a</td>
+<td style="text-align:left">-a[ 条件A -a  条件B ]A与B都要成立，整个表达式才成立</td>
+<td style="text-align:left">　&amp;&amp;</td>
+<td style="text-align:left">and，与，两端都为真，则结果为真　</td>
+</tr>
+<tr>
+<td style="text-align:left">-o</td>
+<td style="text-align:left">[ 条件A -o  条件B] A与B都不成立，整个表达式才不成立</td>
+<td style="text-align:left">||</td>
+<td style="text-align:left">or，或，两端有一个为真，则结果为真</td>
+</tr>
+<tr>
+<td style="text-align:left">！</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">!</td>
+<td style="text-align:left">not，非，两端相反，则结果为真</td>
+</tr>
+</tbody>
+</table>
+<p><em>逻辑操作符与整数判断配合</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ 11 -ne 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>取反</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [ ! 11 -ne 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+不成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>两边都为真</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [  11 -ne 1 -a 1 -eq 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>至少有一边为真</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># [  11 -ne 1 -o 1 -eq 1 ] &amp;&amp; echo &#34;成立&#34; || echo &#34;不成立&#34;</span>
+成立
+</code></pre></td></tr></table>
+</div>
+</div><p><em>感叹号的特殊用法</em>
+使用历史命令,感叹号加上history中的序号,即可执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># !516</span>
+ ls
+anaconda-ks.cfg  bootime.avg  setup.sh  vim
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="if条件语句">if条件语句</h2>
+<h3 id="三种语法">三种语法</h3>
+<p><em>单分支语句</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -f /etc/hosts <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s1">&#39;文件存在&#39;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>双分支语句</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -f /etc/hosts <span class="o">]</span>  
+<span class="k">then</span>
+   <span class="nb">echo</span> <span class="s2">&#34;文件存在&#34;</span>
+<span class="k">else</span>
+<span class="nb">echo</span> <span class="s2">&#34;文件不存在&#34;</span>
+   <span class="nb">echo</span> <span class="s2">&#34;...&#34;</span> &gt;&gt;/tmp/test.log
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>多分支语句</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -f /etc/hosts <span class="o">]</span>  
+<span class="k">then</span>
+   <span class="nb">echo</span> <span class="s2">&#34; hosts文件存在&#34;</span>
+<span class="k">elif</span> <span class="o">[</span> -f /etc/host <span class="o">]</span>
+<span class="k">then</span>
+   <span class="nb">echo</span> <span class="s2">&#34; host文件存在&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="if条件语句小结">if条件语句小结</h3>
+<p>单分支：一个条件一个结果
+双分支：一个条件两个结果
+多分支：多个条件多个结果</p>
+<h2 id="case条件结构语句">case条件结构语句</h2>
+<h3 id="case语法结构">case语法结构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">case</span> <span class="s2">&#34;字符串变量&#34;</span> in 
+  值1<span class="o">)</span>
+     指令1
+     <span class="p">;;</span>
+  值2<span class="o">)</span>
+     指令2
+     <span class="p">;;</span>
+  值*<span class="o">)</span>
+     指令
+<span class="k">esac</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="case与if的对比">case与if的对比</h3>
+<p><em>case书写方式</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">case</span> <span class="nv">$name</span> in
+  值1<span class="o">)</span> 
+      指令1
+      <span class="p">;;</span>
+  值2<span class="o">)</span> 
+      指令2
+      <span class="p">;;</span>
+   *<span class="o">)</span> 
+      指令
+<span class="k">esac</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>if书写方式</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> <span class="nv">$name</span> <span class="o">==</span> <span class="s2">&#34;值1&#34;</span> <span class="o">]</span>
+  <span class="k">then</span> 
+    指令1
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$name</span> <span class="o">==</span> <span class="s2">&#34;值2&#34;</span> <span class="o">]</span>
+  <span class="k">then</span> 
+    指令2
+<span class="k">else</span>
+    指令    
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="case值的书写方式">case值的书写方式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">apple<span class="o">)</span>
+    <span class="nb">echo</span> -e <span class="s2">&#34;</span><span class="nv">$RED_COLOR</span><span class="s2"> apple </span><span class="nv">$RES</span><span class="s2">&#34;</span>
+      <span class="p">;;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以这样写，输入2种格式找同一个选项;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">apple<span class="p">|</span>APPLE<span class="o">)</span>
+    <span class="nb">echo</span> -e <span class="s2">&#34;</span><span class="nv">$RED_COLOR</span><span class="s2"> apple </span><span class="nv">$RES</span><span class="s2">&#34;</span>
+      <span class="p">;;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="case语句小结">case语句小结</h3>
+<ul>
+<li>case语句就相当于多分支的if语句。case语句的优势是更规范、易读。</li>
+<li>case语句适合变量的值少，且为固定的数字或字符串集合。(1,2,3)或(start,stop,restart)。</li>
+<li>系统服务启动脚本传参的判断多用case语句，多参考rpcbind/nfs/crond脚本；菜单脚本也可以使用case</li>
+</ul>
+<h2 id="其他补充说明">其他补充说明</h2>
+<h3 id="linux中产生随机数的方法">linux中产生随机数的方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 产生随机数方法一</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1">#  echo $RANDOM </span>
+<span class="m">29291</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1">#  echo $RANDOM </span>
+<span class="m">5560</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1">#  echo $RANDOM </span>
+<span class="m">2904</span>
+<span class="c1"># 产生随机数方法二</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1">#　openssl rand -base64 8</span>
+<span class="nv">5AKtA67bdjg</span><span class="o">=</span>
+<span class="c1"># 产生随机数方法三</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># yum install -y expect</span>
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># man mkpasswd</span>
+USAGE
+       With no arguments, mkpasswd returns a new password.
+
+            mkpasswd
+
+       With a user name, mkpasswd assigns a new password to the user.
+
+            mkpasswd don
+
+       The passwords are randomly generated according to the flags below.
+
+FLAGS
+       The -l flag defines the length of the password.  The default is 9.  The following example creates a <span class="m">20</span> character password.
+
+            mkpasswd -l <span class="m">20</span>
+
+       The -d flag defines the minimum number of digits that must be in the password.  The default is 2.  The following example creates a password with at least <span class="m">3</span> digits.
+
+            mkpasswd -d <span class="m">3</span>
+
+       The -c flag defines the minimum number of lowercase alphabetic characters that must be in the password.  The default is 2.
+
+       The -C flag defines the minimum number of uppercase alphabetic characters that must be in the password.  The default is 2.
+
+       The -s flag defines the minimum number of special characters that must be in the password.  The default is 1.
+
+       The -p flag names a program to <span class="nb">set</span> the password.  By default, /etc/yppasswd is used <span class="k">if</span> present, otherwise /bin/passwd is used.
+
+       The  -2  flag  causes  characters  to be chosen so that they alternate between right and left hands <span class="o">(</span>qwerty-style<span class="o">)</span>, making it harder <span class="k">for</span> anyone watching passwords being entered.
+       This can also make it easier <span class="k">for</span> a password-guessing program.
+
+       The -v flag causes the password-setting interaction to be visible.  By default, it is suppressed.
+<span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># mkpasswd -l 16 -d 2 -c 3 -C 3 -s 1 | md5sum |cut -c 2-18</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="echo-命令输出带颜色字符">echo 命令输出带颜色字符</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 彩色字体</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[30m 黑色字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[31m 红色字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[32m 绿色字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[33m 黄色字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[34m 蓝色字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[35m 紫色字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[36m 天蓝字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[37m 白色字 clsn \033[0m&#34;</span>
+<span class="c1"># 彩色底纹</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[40;37m 黑底白字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[41;37m 红底白字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[42;37m 绿底白字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[43;37m 黄底白字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[44;37m 蓝底白字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[45;37m 紫底白字 clsn \033[0m&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[46;37m 天蓝白字 clsn \033[0m&#34;</span>
+<span class="c1"># 特效字体</span>
+<span class="nb">echo</span> -e　<span class="s2">&#34;\033[0m 关闭所有属性&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[1m 设置高亮度&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[4m 下划线&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[5m 闪烁&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[7m 反显&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[8m 消隐&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[30m — \033[37m 设置前景色&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[40m — \033[47m 设置背景色&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[nA 光标上移 n 行&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[nB 光标下移 n 行&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[nC 光标右移 n 行&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[nD 光标左移 n 行&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[y;xH 设置光标位置&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[2J 清屏&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[K 清除从光标到行尾的内容&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[s 保存光标位置&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[u 恢复光标位置&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[?25l 隐藏光标&#34;</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[?25h 显示光标&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="显示文本中的隐藏字符">显示文本中的隐藏字符</h3>
+<p>使用cat命令查看文本中的隐藏字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># cat --help</span>
+Usage: cat <span class="o">[</span>OPTION<span class="o">]</span>... <span class="o">[</span>FILE<span class="o">]</span>...
+Concatenate FILE<span class="o">(</span>s<span class="o">)</span>, or standard input, to standard output.
+
+  -A, --show-all           equivalent to -vET
+  -b, --number-nonblank    number nonempty output lines, overrides -n
+  -e                       equivalent to -vE
+  -E, --show-ends          display $ at end of each line
+  -n, --number             number all output lines
+  -s, --squeeze-blank      suppress repeated empty output lines
+  -t                       equivalent to -vT
+  -T, --show-tabs          display TAB characters as ^I
+  -u                       <span class="o">(</span>ignored<span class="o">)</span>
+  -v, --show-nonprinting   use ^ and M- notation, except <span class="k">for</span> LFD and TAB
+      --help     display this <span class="nb">help</span> and <span class="nb">exit</span>
+      --version  output version information and <span class="nb">exit</span>
+
+With no FILE, or when FILE is -, <span class="nb">read</span> standard input.
+
+Examples:
+  cat f - g  Output f<span class="s1">&#39;s contents, then standard input, then g&#39;</span>s contents.
+  cat        Copy standard input to standard output.
+
+GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+For <span class="nb">complete</span> documentation, run: info coreutils <span class="err">&#39;</span>cat invocation
+</code></pre></td></tr></table>
+</div>
+</div><p>使用cat -A查看隐藏的字符:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@kube-master ~<span class="o">]</span><span class="c1"># cat -A /etc/hosts</span>
+::1^Ilocalhost^Ilocalhost.localdomain^Ilocalhost6^Ilocalhost6.localdomain6$
+127.0.0.1^Ilocalhost^Ilocalhost.localdomain^Ilocalhost4^Ilocalhost4.localdomain4$
+$
+172.18.77.102^IiZwz91ivbj51belpslwpogZ^IiZwz91ivbj51belpslwpogZ$
+$
+$
+$
+$
+<span class="c1"># hostname$</span>
+172.18.77.102 kube-master$
+49.235.236.38 kube-node$
+120.79.77.84 apiserver.cluster.local$
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="shell-脚本段注释方法">shell 脚本段注释方法</h3>
+<p>方法一：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="s">&lt;&lt;EOF
+</span><span class="s">  内容
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>方法二:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">一行注释方法 → : <span class="s1">&#39;内容&#39;</span>
+段注释方法 ↓
+:<span class="s1">&#39; 
+</span><span class="s1"> http://blog.znix.top
+</span><span class="s1">&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" data-title="Shell编程基础02" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" data-title="Shell编程基础02" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" data-title="Shell编程基础02"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8002/" data-title="Shell编程基础02"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/" class="prev" rel="prev" title="Shell编程基础01"><i class="fas fa-angle-left fa-fw"></i>Shell编程基础01</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
