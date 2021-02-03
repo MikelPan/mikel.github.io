@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mysql索引 - 德国粗茶淡饭</title><meta name="Description" content="Mysql事务详解"><meta property="og:title" content="Mysql索引" />
+<meta property="og:description" content="Mysql事务详解" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-03T23:00:14+08:00" />
+<meta property="article:modified_time" content="2021-02-03T23:00:14+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Mysql索引"/>
+<meta name="twitter:description" content="Mysql事务详解"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/" /><link rel="prev" href="https://www.mikel.pan/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql索引",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/mysql%E7%B4%A2%E5%BC%95\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Mysql","wordcount":  4337 ,
+        "url": "https:\/\/www.mikel.pan\/mysql%E7%B4%A2%E5%BC%95\/","datePublished": "2021-02-03T23:00:14+08:00","dateModified": "2021-02-03T23:00:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Mysql事务详解"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/mysql%E7%B4%A2%E5%BC%95/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/mysql%E7%B4%A2%E5%BC%95/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Mysql索引</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>MikelPan</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-03">2021-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4337 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#索引是什么">索引是什么?</a></li>
+    <li><a href="#索引实现原理">索引实现原理</a>
+      <ul>
+        <li><a href="#二叉搜索树">二叉搜索树</a></li>
+        <li><a href="#b-树">B-树</a></li>
+        <li><a href="#b树">B+树</a></li>
+      </ul>
+    </li>
+    <li><a href="#b-树实现数据库索引">B+ 树实现数据库索引</a>
+      <ul>
+        <li><a href="#磁盘存储原理">磁盘存储原理</a></li>
+        <li><a href="#b-b的查找性能">B-/B+的查找性能</a></li>
+      </ul>
+    </li>
+    <li><a href="#不同引擎的索引实现原理">不同引擎的索引实现原理</a>
+      <ul>
+        <li><a href="#myisam索引实现">MyISAM索引实现</a></li>
+        <li><a href="#innodb索引实现">Innodb索引实现</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="索引是什么">索引是什么?</h2>
+<p>索引是什么了，查阅了官方文档。官方文档写了索引的作用和没有索引会带来全表扫描，非常费时间。
+Indexes are used to find rows with specific column values quickly. Without an index, MySQL must begin with the first row and then read through the entire table to find the relevant rows.
+简单的说索引是提高查询速度。这个很好理解，就像是以前的英文词典，找单词如果没有前面目录的话，效率很低，得全文找一遍。</p>
+<h2 id="索引实现原理">索引实现原理</h2>
+<p>要搞清楚索引的实现原理，先看看索引的底层实现，MySQL索引大部分采用B-Tree实现，B-Tree又有B-树和B+树。还有一些使用Hash索引。本文主要介绍B-Tree(Balance Tree)。</p>
+<h3 id="二叉搜索树">二叉搜索树</h3>
+<p>再说B-Tree之前，先简单了解一下二叉搜索树（Binary Search Trees）。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a1e18479992f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a1e18479992f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a1e18479992f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a1e18479992f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a1e18479992f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a1e18479992f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>理解二叉搜索树，对于后面理解B-和B+树很有帮助，因为这2种有些特性跟二叉搜索树很像。二叉搜索树的特点是左孩子的值小于父亲节点的值，父亲节点的值小于右孩子的值，即按二叉树的中序遍历，刚好是一个按小到大排序的。二叉搜索树的查找就可以使用二分查找，如果要查找10，因为10比27小，所以往左孩子找，10&lt;14，还在左孩子找。最坏的情况下，查找的次数等于树的高度。</p>
+<h3 id="b-树">B-树</h3>
+<p>通常意义上说B-Tree，一般是指B-树，也可以叫平衡多路搜索树，平衡的意思可以区了解一下平衡二叉树(它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。)，多路的意思就是非叶子节点的孩子至少有2个。
+B-Tree的特征也是非常烧脑，查看了算法导论书籍，也是琢磨了很久。下图为算法导论书中一张图，浅阴影部分为查找字母R时检查过的结点。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a1f9c8ed263b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a1f9c8ed263b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a1f9c8ed263b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a1f9c8ed263b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a1f9c8ed263b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a1f9c8ed263b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>下面算法导论书中对B-树的特征：</p>
+<ul>
+<li>
+<p>每个结点x有如下属性：</p>
+<ul>
+<li>x.n。它表示储存在 x中的关键字的个数；</li>
+<li>x.key1,x.key2,&hellip;,x.keyn。它们表示x的n个关键字，以非降序存放，即x.key1≤x.key2≤&hellip;≤x.keyn；</li>
+<li>x.leaf。它是一个布尔值，如果x是叶结点，它为TRUE；否则为FALSE；</li>
+</ul>
+</li>
+<li>
+<p>x.c1,x.c2,&hellip;,x.cn+1。它们是指向自己孩子的指针。如果该结点是叶节点，则没有这些属性。</p>
+</li>
+<li>
+<p>关键字x.keyi对存储在各子树中的关键字范围进行分割，即满足：k1≤x.key1≤k2≤x.key2≤&hellip;≤x.keyn≤kn+1。其中，ki(i=1,2,&hellip;.,n+1)表示任意一个储存在以x.ci为根的子树中的关键字。</p>
+</li>
+<li>
+<p>每个叶结点具有相同的深度，即叶的高度h。</p>
+</li>
+<li>
+<p>每个结点所包含的关键的个数有上下界。用一个被称为最小度数的固定整数t(t≥2)来表示这些界：</p>
+<ul>
+<li>下界：除了根结点以外的每个结点必须至少有t−1个关键字。因此，除了根结点外的每个内部结点至少有t个孩子。</li>
+<li>上界：每个结点至多包含2t−1个关键字。因此，一个内部结点至多可能有2t个孩子。当一个结点恰好有2t−1个关键字时，称该结点为满的(full)。</li>
+</ul>
+</li>
+</ul>
+<p>第1点是说每一个节点包括的信息：n表示结点中存储关键字的个数，比如上图上M的左孩子就存了2个关键字，D和H；x.key，说的是具体的关键字的信息，比如D，D实际是有2个部分组成，可以理解为一个map，{key: data}，x.key广义上就是表示这个map，包括了具体的key和存储的数据data，通常说是一条记录；x.leaf是说整个结点是否是叶子结点。</p>
+<p>第2点表示如果不是叶子结点，每个结点还有一个属性，就是指向它n个孩子的指针，比如上图中的DH结点，有3个孩子，则有3个指针指向自己的孩子。</p>
+<p>第3点表示说每个结点的关键字按小到大的顺序依次排列，同时各个结点之间也满足上面提到的二叉搜索树的特点，左孩子的值&lt;父亲节点的值&lt;右孩子的值。</p>
+<p>第4点是说每个叶子结点高度一样，看图就可以明白，这也是平衡二字的由来。</p>
+<p>第5点说的每个结点关键字的数量的限制，不可能每个结点可以无限存储关键字。t是最小度数，需要理解这些，可以谷歌一下度数和阶数的定义，上图是4阶的B-Tree。上图中t=2，则每个内部结点可以允许有2、3、4个孩子。孩子数范围[t, 2t]，每个结点的关键字范围[t-1, 2t-1]。这个要区分。</p>
+<p>下面更加形象的给出4阶的B-Tree。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a2026c50ac77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a2026c50ac77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a2026c50ac77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a2026c50ac77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a2026c50ac77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a2026c50ac77?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>由于B-Tree的特性，在B-Tree中按key检索数据的算法非常高效：首先从根节点进行二分查找，如果找到则返回对应节点的data，否则对相应区间的指针指向的节点递归进行查找，直到找到节点或找到null指针，前者查找成功，后者查找失败.</p>
+<h3 id="b树">B+树</h3>
+<p>B+树其实是B-树变种。 与B-树最大的区别是内部结点不存储data，只存储key。如下图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a207508c922d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a207508c922d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a207508c922d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a207508c922d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a207508c922d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a207508c922d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>一般数据库系统中使用的B+树再上图经典的基础上再进行了优化，变成了带顺序访问指针的B+树， 如下图。这样就提高区间访问的性能，例如如果要查询key为从18到49的所有数据记录，当找到18后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a20c8de797c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a20c8de797c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a20c8de797c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a20c8de797c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a20c8de797c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a20c8de797c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<h2 id="b-树实现数据库索引">B+ 树实现数据库索引</h2>
+<h3 id="磁盘存储原理">磁盘存储原理</h3>
+<p>数据导论书中开头就是说： B树是为磁盘或其他直接存取的辅助存储设备而设计的一种平衡搜索树。上面提到了辅助存储设备，那我们就来看看其中原理，到底由来是什么？
+计算机系统有主存和基于磁盘的辅存，主存通常就是我们说的RAM，也就是内存，这里不展开说它。索引文件本身很大，一般不会存在内存里，因此索引往往是以文件的形式存储在磁盘里，所以索引检索需要磁盘I/O操作。下图为一个典型的磁盘驱动器。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a2110885fe40?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a2110885fe40?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a2110885fe40?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a2110885fe40?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a2110885fe40?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a2110885fe40?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>磁盘读取数据靠的是磁盘的机械运动。每次磁盘读取的时间有三部分：寻道时间、旋转延迟、传输时间。寻道时间指的是磁臂移动到指定磁道所需要的时间，主流磁盘一般在5ms以下；旋转延迟就是我们经常听说的磁盘转速，比如一个磁盘7200转，表示每分钟能转7200次，也就是说1秒钟能转120次，旋转延迟就是1/120/2 = 4.17ms；传输时间指的是从磁盘读出或将数据写入磁盘的时间，一般在零点几毫秒，相对于前两个时间可以忽略。那么访问一次磁盘读取数据的时间，即一次磁盘I/O操作的时间约9ms左右，这相对于主存存储时间50ns高出5个数量级。看着还不错的，但是一台500 -MIPS的机器每秒可以执行5亿条指令，因为指令依靠的是电的性质，换句话说执行一次IO的时间可以执行40万条指令，数据库动辄十万百万乃至千万级数据，每次9毫秒的时间，显然是个灾难。
+为了缩短磁盘读取的时间，计算机做了一些优化：磁盘预读。磁盘预读是基于局部性原理：当一个数据被用到时，其附近的数据也通常会马上被使用。所以磁盘I/O操作时不光把当前磁盘地址的数据，而是把相邻的数据也都读取到内存缓冲区内，因为局部性原理告诉我们，当计算机访问一个地址的数据的时候，与其相邻的数据也会很快被访问到。
+预读的长度一般为页（page）的整倍数。页是计算机管理存储器的逻辑块，硬件及操作系统往往将主存和磁盘存储区分割为连续的大小相等的块，每个存储块称为一页（在许多操作系统中，页得大小通常为4k），主存和磁盘以页为单位交换数据。</p>
+<ul>
+<li>文件很大，不可能全部存储在内存中，故要存储到磁盘上。</li>
+<li>索引的结构组织要尽量减少查找过程中磁盘I/O的存取次数，因为每次磁盘I/O消耗时间都是非常多的。</li>
+<li>局部性原理与磁盘预读，预读的长度一般为页（page）的整倍数。</li>
+</ul>
+<h3 id="b-b的查找性能">B-/B+的查找性能</h3>
+<p>数据库系统巧妙利用了磁盘预读原理，将一个节点的大小设为等于一个页，这样每个节点只需要一次I/O就可以完全载入。B-树也利用这一点，每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一次磁盘I/O就读取了一页的数据。下面是B-树的示例图</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a21c6c61cad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a21c6c61cad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a21c6c61cad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a21c6c61cad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a21c6c61cad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a21c6c61cad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>根据B-Tree的定义，可知检索一次最多需要访问h个节点（h个树的高度）。B-Tree中一次检索最多需要h-1次I/O（根节点常驻内存），渐进复杂度为O(h)=O(logdN)。一般实际应用中，出度d是非常大的数字，通常超过100，因此h非常小（通常不超过3）。所以B-Tree作为索引效率是非常高，相比平衡二叉树、红黑树要高很多，因为这些树的h一般都比较深。</p>
+<p>下面附一张B+树的直观图:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a22057527ba3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a22057527ba3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a22057527ba3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a22057527ba3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a22057527ba3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a22057527ba3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>B+树比B-树更加适合作为磁盘的索引数据结构，原因是B+树的内部结点不存储data，内部结点的出度d越大，那么渐进复杂度越小。出度d的上限取决于节点内key和data的大小：
+dmax=floor(pagesize/(keysize+datasize+pointsize))
+一般3层B+树可以存储上百万的数据，也就是读取上百万的数据，只需要3次磁盘I/O，可见这效率，大大提升了。如果没有索引，那每次查询一次数据项，都需要一次I/O，几百万次，可怕。</p>
+<h2 id="不同引擎的索引实现原理">不同引擎的索引实现原理</h2>
+<h3 id="myisam索引实现">MyISAM索引实现</h3>
+<p>MyISAM的索引采用B+树实现，MyISAM的索引和数据时分开的，叶子节点data存取的是数据的地址。如下主键索引的示例图：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a229c3bd0d9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a229c3bd0d9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a229c3bd0d9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a229c3bd0d9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a229c3bd0d9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a229c3bd0d9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>由图可以看出，要根据索引找到数据，先根据索引找到叶子节点，再根据叶子节点找到数据的地址，然后再根据数据地址取出数据。</p>
+<p>MyIASM的辅助索引的实现与主键索引没有区别，如下图：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a22ea3146c11?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a22ea3146c11?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a22ea3146c11?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a22ea3146c11?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a22ea3146c11?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a22ea3146c11?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<h3 id="innodb索引实现">Innodb索引实现</h3>
+<p>InnoDB，在实际项目接触是非常多的，索引的实现也是使用B+树，但是实现原理跟MyISAM不同。
+第一个区别是InnoDB的数据文件本身就是索引文件。MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。而在InnoDB中，表数据文件本身就是按B+Tree组织的一个索引结构，这棵树的叶节点data域保存了完整的数据记录。这个索引的key是数据表的主键，因此InnoDB表数据文件本身就是主索引。如下图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a26b453fd44f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a26b453fd44f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a26b453fd44f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a26b453fd44f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a26b453fd44f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a26b453fd44f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>这种索引叫做聚集索引。因为InnoDB的数据文件本身要按主键聚集，所以InnoDB要求表必须有主键（MyISAM可以没有），如果没有显式指定，则MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则MySQL自动为InnoDB表生成一个隐含字段作为主键，这个字段长度为6个字节，类型为长整形。
+第二个区别就是InnoDB的辅助索引data域存储相应记录主键的值而不是地址。换句话说，InnoDB的所有辅助索引都引用主键作为data域。如下图所示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/26/1692a26f803490c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/26/1692a26f803490c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/26/1692a26f803490c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/26/1692a26f803490c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/26/1692a26f803490c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/26/1692a26f803490c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<ul>
+<li>InnoDB辅助索引搜索需要检索两遍索引：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录，从而能够明白为什么不建议使用过长的字段作为主键，因为所有辅助索引都引用主索引，过长的主索引会令辅助索引变得过大。</li>
+<li>不建议用非单调的字段作为InnoDB的主键，因为InnoDB数据文件本身是一颗B+Tree，非单调的主键会造成在插入新记录时，数据文件为了维持B+Tree的特性而频繁的分裂调整，十分低效，所以一般使用自增字段作为主键。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/mysql%E7%B4%A2%E5%BC%95/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/" data-title="Mysql索引" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/" data-title="Mysql索引" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/" data-title="Mysql索引"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/" data-title="Mysql索引"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">Mysql</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/" class="prev" rel="prev" title="Mysql事务详解"><i class="fas fa-angle-left fa-fw"></i>Mysql事务详解</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
