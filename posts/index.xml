@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Feb 2021 23:00:14 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Feb 2021 23:06:43 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Mysql主从复制</title>
+    <link>https://www.mikel.pan/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</link>
+    <pubDate>Wed, 03 Feb 2021 23:06:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</guid>
+    <description><![CDATA[一、mysql主从同步原理 Mysql主从复制也可以称为Mysql主从同步，它是构建数据库高可用集群架构的基础。它通过将一台主机的数据复制到其]]></description>
+</item><item>
     <title>Mysql索引</title>
     <link>https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/</link>
     <pubDate>Wed, 03 Feb 2021 23:00:14 &#43;0800</pubDate>
