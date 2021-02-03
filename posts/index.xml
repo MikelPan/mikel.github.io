@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Feb 2021 23:11:53 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Feb 2021 23:21:58 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Shell编程基础01</title>
+    <link>https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/</link>
+    <pubDate>Wed, 03 Feb 2021 23:21:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/</guid>
+    <description><![CDATA[前言 为什么学Shell Shell脚本语言是实现Linux/UNIX系统管理及自动化运维所必备的重要工具， Linux/UNIX系统的底层及基础]]></description>
+</item><item>
     <title>Mysql检测工具使用</title>
     <link>https://www.mikel.pan/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
     <pubDate>Wed, 03 Feb 2021 23:11:53 &#43;0800</pubDate>
