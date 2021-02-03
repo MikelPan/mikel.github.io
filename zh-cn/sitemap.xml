@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://www.mikel.pan/categories/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/categories/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/categories/"
@@ -15,11 +15,10 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/categories/"
                     /></url><url>
-            <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/posts/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/tags/mongo/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/mongo%E5%AE%89%E8%A3%85/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/posts/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/tags/"
@@ -32,7 +31,7 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/tags/"
                     /></url><url>
-            <loc>https://www.mikel.pan/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/"
@@ -45,6 +44,10 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/"
                     /></url><url>
+            <loc>https://www.mikel.pan/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc><lastmod>2021-02-04T06:36:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/</loc><lastmod>2021-02-04T06:28:13&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/ddbs/</loc><lastmod>2021-02-04T06:14:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tidb%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-04T06:14:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</loc><lastmod>2021-02-04T06:14:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -52,7 +55,6 @@
             <loc>https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/</loc><lastmod>2021-02-03T23:21:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/mysql/</loc><lastmod>2021-02-03T23:11:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-03T23:11:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc><lastmod>2021-02-03T23:11:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</loc><lastmod>2021-02-03T23:06:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/</loc><lastmod>2021-02-03T23:00:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/</loc><lastmod>2021-02-03T22:25:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
