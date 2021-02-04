@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Feb 2021 12:59:06 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Feb 2021 13:04:32 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Promethues监控k8s集群组件</title>
+    <link>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/</link>
+    <pubDate>Thu, 04 Feb 2021 13:04:32 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/</guid>
+    <description><![CDATA[容器监控 cAdvisor已经内置在了 kubelet 组件之中，所以不需要单独去安装，cAdvisor的数据路径为/api/v1/nodes//proxy/]]></description>
+</item><item>
     <title>Promethues监控k8s集群节点</title>
     <link>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9/</link>
     <pubDate>Thu, 04 Feb 2021 12:59:06 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/</guid>
     <description><![CDATA[前言 为什么学Shell Shell脚本语言是实现Linux/UNIX系统管理及自动化运维所必备的重要工具， Linux/UNIX系统的底层及基础]]></description>
-</item><item>
-    <title>Mysql检测工具使用</title>
-    <link>https://www.mikel.pan/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
-    <pubDate>Wed, 03 Feb 2021 23:11:53 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
-    <description><![CDATA[一、mysqldumpslow工具使用 1.1、修改配置文件开启慢查询 mysql 开启慢查询 1 2 3 4 5 6 7 systemctl stop mysqld echo -e &#34;# 开启慢查询\nslow_query]]></description>
 </item></channel>
 </rss>
