@@ -96,10 +96,10 @@ EOF
 kubectl create -f prome-node-exporter.yaml
 kubectl get pods -n monitoring -o wide
 NAME                          READY   STATUS    RESTARTS   AGE   IP              NODE                              NOMINATED NODE   READINESS GATES
-node-exporter-q7xnc           1/1     Running   0          40s   172.18.12.19    dadi-saas-pre-master-dist-sz-01   <none>           <none>
-node-exporter-rbfrz           1/1     Running   0          40s   172.18.12.20    dadi-saas-pre-node-dist-sz-01     <none>           <none>
-node-exporter-zvlmz           1/1     Running   0          40s   172.18.143.48   dadi-saas-pre-node-dist-sz-02     <none>           <none>
-prometheus-7cb9f4dc8d-g9x75   1/1     Running   0          25m   10.0.2.134      dadi-saas-pre-node-dist-sz-02     <none>           <none>
+node-exporter-q7xnc           1/1     Running   0          40s   172.18.12.19    saas-pre-master-dist-sz-01   <none>           <none>
+node-exporter-rbfrz           1/1     Running   0          40s   172.18.12.20    saas-pre-node-dist-sz-01     <none>           <none>
+node-exporter-zvlmz           1/1     Running   0          40s   172.18.143.48   saas-pre-node-dist-sz-02     <none>           <none>
+prometheus-7cb9f4dc8d-g9x75   1/1     Running   0          25m   10.0.2.134      saas-pre-node-dist-sz-02     <none>           <none>
 
 ```
 部署完成后，可以看到在3个节点上都运行了一个 Pod，应该怎样去获取/metrics数据呢？上面是不是指定了hostNetwork=true，所以在每个节点上就会绑定一个端口 9100，可以通过这个端口去获取到监控指标数据：
@@ -122,9 +122,9 @@ go_gc_duration_seconds_count 5
 ```bash
 # kubectl get nodes
 NAME                              STATUS   ROLES    AGE   VERSION
-dadi-saas-pre-master-dist-sz-01   Ready    master   91d   v1.15.3
-dadi-saas-pre-node-dist-sz-01     Ready    <none>   91d   v1.15.3
-dadi-saas-pre-node-dist-sz-02     Ready    <none>   14d   v1.15.3
+saas-pre-master-dist-sz-01   Ready    master   91d   v1.15.3
+saas-pre-node-dist-sz-01     Ready    <none>   91d   v1.15.3
+saas-pre-node-dist-sz-02     Ready    <none>   14d   v1.15.3
 ```
 但是要让 Prometheus 也能够获取到当前集群中的所有节点信息的话，就需要利用 Node 的服务发现模式，同样的，在 prometheus.yml 文件中配置如下的 job 任务即可：
 ```yaml
@@ -156,7 +156,7 @@ kubectl delete -f prometheus-cm.yaml;kubectl create -f prometheus-cm.yaml
 # 执行下面的　reload
 # kubectl get svc -A | grep prometheus
 monitoring             prometheus                                                     NodePort    10.97.135.241    <none>        9090:32501/TCP                      37m
-curl -X POST "http://10.97.135.241:9090/-/reload"
+curl -X POST "http://10.0.999.8888:9090/-/reload"
 ```
 配置生效后，再去 prometheus 的 dashboard 中查看 Targets 是否能够正常抓取数据，访问任意节点IP:32501：
 ![20191126224048.png](https://i.loli.net/2019/11/26/3uEahrZ97stpPnS.png)

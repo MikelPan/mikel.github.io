@@ -312,10 +312,10 @@
 <pre class="chroma"><code class="language-bash" data-lang="bash">kubectl create -f prome-node-exporter.yaml
 kubectl get pods -n monitoring -o wide
 NAME                          READY   STATUS    RESTARTS   AGE   IP              NODE                              NOMINATED NODE   READINESS GATES
-node-exporter-q7xnc           1/1     Running   <span class="m">0</span>          40s   172.18.12.19    dadi-saas-pre-master-dist-sz-01   &lt;none&gt;           &lt;none&gt;
-node-exporter-rbfrz           1/1     Running   <span class="m">0</span>          40s   172.18.12.20    dadi-saas-pre-node-dist-sz-01     &lt;none&gt;           &lt;none&gt;
-node-exporter-zvlmz           1/1     Running   <span class="m">0</span>          40s   172.18.143.48   dadi-saas-pre-node-dist-sz-02     &lt;none&gt;           &lt;none&gt;
-prometheus-7cb9f4dc8d-g9x75   1/1     Running   <span class="m">0</span>          25m   10.0.2.134      dadi-saas-pre-node-dist-sz-02     &lt;none&gt;           &lt;none&gt;
+node-exporter-q7xnc           1/1     Running   <span class="m">0</span>          40s   172.18.12.19    saas-pre-master-dist-sz-01   &lt;none&gt;           &lt;none&gt;
+node-exporter-rbfrz           1/1     Running   <span class="m">0</span>          40s   172.18.12.20    saas-pre-node-dist-sz-01     &lt;none&gt;           &lt;none&gt;
+node-exporter-zvlmz           1/1     Running   <span class="m">0</span>          40s   172.18.143.48   saas-pre-node-dist-sz-02     &lt;none&gt;           &lt;none&gt;
+prometheus-7cb9f4dc8d-g9x75   1/1     Running   <span class="m">0</span>          25m   10.0.2.134      saas-pre-node-dist-sz-02     &lt;none&gt;           &lt;none&gt;
 
 </code></pre></td></tr></table>
 </div>
@@ -358,9 +358,9 @@ go_gc_duration_seconds_count <span class="m">5</span>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># kubectl get nodes</span>
 NAME                              STATUS   ROLES    AGE   VERSION
-dadi-saas-pre-master-dist-sz-01   Ready    master   91d   v1.15.3
-dadi-saas-pre-node-dist-sz-01     Ready    &lt;none&gt;   91d   v1.15.3
-dadi-saas-pre-node-dist-sz-02     Ready    &lt;none&gt;   14d   v1.15.3
+saas-pre-master-dist-sz-01   Ready    master   91d   v1.15.3
+saas-pre-node-dist-sz-01     Ready    &lt;none&gt;   91d   v1.15.3
+saas-pre-node-dist-sz-02     Ready    &lt;none&gt;   14d   v1.15.3
 </code></pre></td></tr></table>
 </div>
 </div><p>但是要让 Prometheus 也能够获取到当前集群中的所有节点信息的话，就需要利用 Node 的服务发现模式，同样的，在 prometheus.yml 文件中配置如下的 job 任务即可：</p>
@@ -423,7 +423,7 @@ dadi-saas-pre-node-dist-sz-02     Ready    &lt;none&gt;   14d   v1.15.3
 <span class="c1"># 执行下面的　reload</span>
 <span class="c1"># kubectl get svc -A | grep prometheus</span>
 monitoring             prometheus                                                     NodePort    10.97.135.241    &lt;none&gt;        9090:32501/TCP                      37m
-curl -X POST <span class="s2">&#34;http://10.97.135.241:9090/-/reload&#34;</span>
+curl -X POST <span class="s2">&#34;http://10.0.999.8888:9090/-/reload&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>配置生效后，再去 prometheus 的 dashboard 中查看 Targets 是否能够正常抓取数据，访问任意节点IP:32501：
