@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Promethues_operator使用 - 德国粗茶淡饭</title><meta name="Description" content="Prometheus_operator使用"><meta property="og:title" content="Promethues_operator使用" />
+<meta property="og:description" content="Prometheus_operator使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-04T13:12:11+08:00" />
+<meta property="article:modified_time" content="2021-02-04T13:12:11+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Promethues_operator使用"/>
+<meta name="twitter:description" content="Prometheus_operator使用"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/" /><link rel="prev" href="https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Promethues_operator使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/promethues_operator%E4%BD%BF%E7%94%A8\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Promethues","wordcount":  2712 ,
+        "url": "https:\/\/www.mikel.pan\/promethues_operator%E4%BD%BF%E7%94%A8\/","datePublished": "2021-02-04T13:12:11+08:00","dateModified": "2021-02-04T13:12:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Prometheus_operator使用"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/promethues_operator%E4%BD%BF%E7%94%A8/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/promethues_operator%E4%BD%BF%E7%94%A8/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Promethues_operator使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>MikelPan</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%9B%91%E6%8E%A7/"><i class="far fa-folder fa-fw"></i>监控</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-04">2021-02-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2712 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#prometheus-operator-使用">Prometheus Operator 使用</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装">安装</a></li>
+            <li><a href="#告警配置">告警配置</a></li>
+            <li><a href="#监控kube-controller-manager">监控kube-controller-manager</a></li>
+            <li><a href="#监控-kube-scheduler">监控 kube-scheduler</a></li>
+            <li><a href="#监控etcd">监控etcd</a></li>
+            <li><a href="#黑盒监控">黑盒监控</a></li>
+            <li><a href="#blackbox-eporter-监控k8s-网络性能">blackbox-eporter 监控k8s 网络性能</a></li>
+            <li><a href="#配置集群联邦">配置集群联邦</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="prometheus-operator-使用">Prometheus Operator 使用</h2>
+<h4 id="安装">安装</h4>
+<p>最新的版本官方将资源https://github.com/coreos/prometheus-operator/tree/master/contrib/kube-prometheus迁移到了独立的 git 仓库中：https://github.com/coreos/kube-prometheus.git
+克隆最新的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/coreos/kube-prometheus.git
+</code></pre></td></tr></table>
+</div>
+</div><p>进入到 manifests 目录下面，这个目录下面包含所有的资源清单文件，需要对其中的文件 prometheus-serviceMonitorKubelet.yaml 进行简单的修改：
+将https-metrics改为http-metrics</p>
+<p>创建对应的资源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f maifests/* 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="告警配置">告警配置</h4>
+<p>删除掉官方的告警secreet,配置对应的告警secret,yaml文件如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; alertmanager.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">global</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">resolve_timeout</span><span class="p">:</span><span class="w"> </span><span class="l">5m</span><span class="w">
+</span><span class="w">  </span><span class="nt">smtp_smarthost</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;xxxxxx&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">smtp_from</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;xxxxxxxx&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">smtp_auth_username</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;xxxxxxx&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">smtp_auth_password</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;xxxxxxx&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">smtp_hello</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;xxxxx&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">smtp_require_tls</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w"></span><span class="nt">route</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">group_by</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;job&#39;</span><span class="p">,</span><span class="s1">&#39;alertname&#39;</span><span class="p">,</span><span class="s1">&#39;severity&#39;</span><span class="p">]</span><span class="w">
+</span><span class="w">  </span><span class="nt">group_wait</span><span class="p">:</span><span class="w"> </span><span class="l">30s</span><span class="w">
+</span><span class="w">  </span><span class="nt">group_interval</span><span class="p">:</span><span class="w"> </span><span class="l">5m</span><span class="w">
+</span><span class="w">  </span><span class="nt">repeat_interval</span><span class="p">:</span><span class="w"> </span><span class="l">5h</span><span class="w">
+</span><span class="w">  </span><span class="nt">receiver</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w">  </span><span class="nt">routes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">match</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">alertname</span><span class="p">:</span><span class="w"> </span><span class="l">CPUThrottlingHigh</span><span class="w">
+</span><span class="w">      </span><span class="nt">receiver</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w">    </span><span class="nt">match_re</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">alertname</span><span class="p">:</span><span class="w"> </span><span class="l">^(severity|warring)$</span><span class="w">
+</span><span class="w">      </span><span class="nt">receiver</span><span class="p">:</span><span class="w"> </span><span class="l">webhook</span><span class="w">
+</span><span class="w"></span><span class="nt">receivers</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;default&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">email_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;xxxxxxx&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">send_resolved</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;webhook&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">webhook_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;https://oapi.dingtalk.com/robot/send?access_token=8512095dcbf2777d5521f556668a1f0c3df62737f6e244c868197f5bexxxxx&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">send_resolved</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w"></span><span class="l">EOF </span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>生成新的告警文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; reset_alertmanager_config.sh <span class="s">&lt;&lt;EOF
+</span><span class="s">kubectl delete secret alertmanager-main -n monitoring
+</span><span class="s">kubectl create secret generic alertmanager-main --from-file=alertmanager.yaml -n monitoring
+</span><span class="s">kubectl delete -f alertmanager-alertmanager.yaml;kubectl create -f alertmanager-alertmanager.yaml
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于默认没有生成对应的kube-controller-manager和kube-scheduler的service,所以需要手动添加service</p>
+<h4 id="监控kube-controller-manager">监控kube-controller-manager</h4>
+<p>添加kube-controller-manager的监控service文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-kubeControllerManagerService.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kube-controller-manager</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">kube-controller-manager</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l">kube-controller-manager</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http-metrics</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">10251</span><span class="w">
+</span><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">10251</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="监控-kube-scheduler">监控 kube-scheduler</h4>
+<p>添加监控kube-scheduler的监控yaml文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-kubeSchedulerService.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kube-scheduler</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">kube-scheduler</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l">kube-scheduler</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http-metrics</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">10251</span><span class="w">
+</span><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">10251</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="监控etcd">监控etcd</h4>
+<p>由于etcd 使用的证书都对应在节点的 /etc/kubernetes/pki/etcd 这个路径下面，所以首先我们将需要使用到的证书通过 secret 对象保存到集群中去：(在 etcd 运行的节点)</p>
+<p>创建etcd secret</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl -n monitoring create secret generic etcd-certs --from-file<span class="o">=</span>/etc/kubernetes/pki/etcd/healthcheck-client.crt --from-file<span class="o">=</span>/etc/kubernetes/pki/etcd/healthcheck-client.key --from-file<span class="o">=</span>/etc/kubernetes/pki/etcd/ca.crt
+</code></pre></td></tr></table>
+</div>
+</div><p>然后将上面创建的 etcd-certs 对象配置到 prometheus 资源对象中，直接更新 prometheus 资源对象即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">nodeSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">kubernetes.io/os</span><span class="p">:</span><span class="w"> </span><span class="l">linux</span><span class="w">
+</span><span class="w">  </span><span class="nt">podMonitorSelector</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="nt">secrets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">etcd-certs</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><em>创建 ServiceMonitor</em>
+现在 Prometheus 访问 etcd 集群的证书已经准备好了，接下来创建 ServiceMonitor 对象即可（prometheus-serviceMonitorEtcd.yaml）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-serviceMonitorEtcd.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring.coreos.com/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceMonitor</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">jobLabel</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">port</span><span class="w">
+</span><span class="w">    </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l">30s</span><span class="w">
+</span><span class="w">    </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">https</span><span class="w">
+</span><span class="w">    </span><span class="nt">tlsConfig</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">caFile</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/prometheus/secrets/etcd-certs/ca.crt</span><span class="w">
+</span><span class="w">      </span><span class="nt">certFile</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/prometheus/secrets/etcd-certs/healthcheck-client.crt</span><span class="w">
+</span><span class="w">      </span><span class="nt">keyFile</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/prometheus/secrets/etcd-certs/healthcheck-client.key</span><span class="w">
+</span><span class="w">      </span><span class="nt">insecureSkipVerify</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespaceSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchNames</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">kube-system</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><em>创建Service</em></p>
+<p>ServiceMonitor 创建完成了，但是现在还没有关联的对应的 Service 对象，所以需要我们去手动创建一个 Service 对象（prometheus-etcdService.yaml）
+etcd 部署到k8s 集群中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-etcdService.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIP</span><span class="w">
+</span><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">port</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">2379</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>etcd 部署到外部集群</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-etcdService.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIP</span><span class="w">
+</span><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">port</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">2379</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Endpoints</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span><span class="w"></span><span class="nt">subsets</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">addresses</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="m">172.18.12.14</span><span class="w">
+</span><span class="w">    </span><span class="nt">nodeName</span><span class="p">:</span><span class="w"> </span><span class="l">pre-etcd-master</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">port</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">2379</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>数据采集到后，可以在 grafana 中导入编号为3070的 dashboard，获取到 etcd 的监控图表</p>
+<h4 id="黑盒监控">黑盒监控</h4>
+<h4 id="blackbox-eporter-监控k8s-网络性能">blackbox-eporter 监控k8s 网络性能</h4>
+<p>创建blackbox-exporter cm</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-blackbox-exporter-cm.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">blackbox.yml</span><span class="p">:</span><span class="w"> </span><span class="p">|-</span><span class="sd">
+</span><span class="sd">    modules:
+</span><span class="sd">      http_2xx:
+</span><span class="sd">        prober: https
+</span><span class="sd">        timeout: 10s
+</span><span class="sd">        http:
+</span><span class="sd">          valid_http_versions: [&#34;HTTP/1.1&#34;, &#34;HTTP/2&#34;]</span><span class="w">    
+</span><span class="w">　　　　　　</span><span class="c"># 这里最好作一个返回状态码，在grafana作图时，有明示---陈刚注释。</span><span class="w">
+</span><span class="w">          </span><span class="nt">valid_status_codes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="m">200</span><span class="p">]</span><span class="w">
+</span><span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l">GET</span><span class="w">
+</span><span class="w">          </span><span class="nt">preferred_ip_protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip4&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">http_post_2xx</span><span class="p">:</span><span class="w"> </span><span class="c"># http post 监测模块</span><span class="w">
+</span><span class="w">        </span><span class="nt">prober</span><span class="p">:</span><span class="w"> </span><span class="l">https</span><span class="w">
+</span><span class="w">        </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l">10s</span><span class="w">
+</span><span class="w">        </span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">valid_http_versions</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;HTTP/1.1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;HTTP/2&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l">POST</span><span class="w">
+</span><span class="w">          </span><span class="nt">preferred_ip_protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip4&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">tcp_connect</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">prober</span><span class="p">:</span><span class="w"> </span><span class="l">tcp</span><span class="w">
+</span><span class="w">        </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l">10s</span><span class="w">
+</span><span class="w">      </span><span class="nt">icmp</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">prober</span><span class="p">:</span><span class="w"> </span><span class="l">icmp</span><span class="w">
+</span><span class="w">        </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l">10s</span><span class="w">
+</span><span class="w">        </span><span class="nt">icmp</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">preferred_ip_protocol</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip4&#34;</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>创建blackbox_exporter 启动文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-blackbox-exporter-deploy.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">extensions/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Always</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">prom/blackbox-exporter:v0.16.0</span><span class="w">
+</span><span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">IfNotPresent</span><span class="w">
+</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">blackbox-port</span><span class="w">
+</span><span class="w">          </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">9115</span><span class="w">
+</span><span class="w">        </span><span class="nt">readinessProbe</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">tcpSocket</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9115</span><span class="w">
+</span><span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">          </span><span class="nt">timeoutSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w">        </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">50Mi</span><span class="w">
+</span><span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">100m</span><span class="w">
+</span><span class="w">          </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">60Mi</span><span class="w">
+</span><span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">200m</span><span class="w">
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config</span><span class="w">
+</span><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/blackbox_exporter</span><span class="w">
+</span><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- --<span class="l">config.file=/etc/blackbox_exporter/blackbox.yml</span><span class="w">
+</span><span class="w">        </span>- --<span class="l">log.level=debug</span><span class="w">
+</span><span class="w">        </span>- --<span class="l">web.listen-address=:9115</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config</span><span class="w">
+</span><span class="w">        </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">node-role.kubernetes.io/master</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">tolerations</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;node-role.kubernetes.io/master&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;NoSchedule&#34;</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>创建blackbox_exporter service 文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-blackbox-exporter-svc.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">prometheus.io/scrape</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c">#type: NodePort</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">blackbox-port</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9115</span><span class="w">
+</span><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">9115</span><span class="w">
+</span><span class="w">    </span><span class="c">#nodePort: 30009</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>创建对应的资源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f prometheus-blackbox-exporter-cm.yaml
+kubectl apply -f prometheus-blackbox-exporter-deploy.yaml
+kubectl apply -f prometheus-blackbox-exporter-svc.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>创建监控网络插件的serverMonitorer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-serviceMonitorBlackboxExporter.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring.coreos.com/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceMonitor</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l">30s</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">blackbox-port</span><span class="w">
+</span><span class="w">  </span><span class="nt">jobLabel</span><span class="p">:</span><span class="w"> </span><span class="l">app</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespaceSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchNames</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">monitoring</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="l">cat &gt; prometheus-serviceMonitorBlackboxExporter.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring.coreos.com/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceMonitor</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l">30s</span><span class="w">
+</span><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/probe</span><span class="w">
+</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">moudle</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">http_2xx]</span><span class="w">
+</span><span class="w">    </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span><span class="w">    </span><span class="nt">kubernetes_sd_config</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">service</span><span class="w">
+</span><span class="w">    </span><span class="nt">tlsConfig</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">caFile</span><span class="p">:</span><span class="w"> </span><span class="l">/var/run/secrets/kubernetes.io/serviceaccount/ca.crt</span><span class="w">
+</span><span class="w">    </span><span class="nt">bearerTokenFile</span><span class="p">:</span><span class="w"> </span><span class="l">/var/run/secrets/kubernetes.io/serviceaccount/token</span><span class="w">
+</span><span class="w">    </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">service</span><span class="w">
+</span><span class="w">    </span><span class="nt">relabelings</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="c"># - action: keep</span><span class="w">
+</span><span class="w">    </span><span class="c">#   sourceLabels:</span><span class="w">
+</span><span class="w">    </span><span class="c">#   - __meta_kubernetes_service_annotation_prometheus_io_scrape</span><span class="w">
+</span><span class="w">    </span><span class="c">#   - __meta_kubernetes_service_annotation_prometheus_io_http_probe</span><span class="w">
+</span><span class="w">    </span><span class="c">#   regex: true;</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">sourceLabels</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="l">__address__</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetLabel</span><span class="p">:</span><span class="w"> </span><span class="l">__param_target</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">targetLabel</span><span class="p">:</span><span class="w"> </span><span class="l">__address__</span><span class="w">
+</span><span class="w">      </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter:9115</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">sourceLabels</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="l">__param_target</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetLabel</span><span class="p">:</span><span class="w"> </span><span class="l">instance</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">labelmap</span><span class="w">
+</span><span class="w">      </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l">__meta_kubernetes_service_label_(.+)</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">sourceLabels</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="l">__meta_kubernetes_namespace</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetLabel</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_namespace</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">sourceLabels</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="l">__meta_kubernetes_service_name</span><span class="w">
+</span><span class="w">      </span><span class="nt">targetLabel</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_name</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">blackbox-port</span><span class="w">
+</span><span class="w">  </span><span class="nt">jobLabel</span><span class="p">:</span><span class="w"> </span><span class="l">app</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespaceSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="c">#any: true</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchNames</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">monitoring</span><span class="w">
+</span><span class="w">    </span>- <span class="l">kube-system</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="配置集群联邦">配置集群联邦</h4>
+<p>将Prometheus Operator做为中心节点集群node节点的数据,组成联邦。配置yaml文件如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-additional.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;dist-sz-pre-monitoring/kube-state-metrics&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l">15s</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">honor_labels</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;/federate&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">&#39;match[]&#39;</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kube-state-metrics&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubelet&#34;}&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">targets</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;39.108.192.100:32501&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;sz-pre&#39;</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>由于prometheus 提供自动发现服务机制,所以只需要将联邦的配置放到自动发现配置中即可, 配置自动发现集群中的 Service，就需要在 Service 的annotation区域添加prometheus.io/scrape=true的声明，将上面文件直接保存为 prometheus-additional.yaml，然后通过这个文件创建一个对应的 Secret 对象：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; reset_additional_secret.sh <span class="s">&lt;&lt;EOF
+</span><span class="s">kubectl delete secret additional-configs -n monitoring
+</span><span class="s">kubectl create secret generic additional-configs --from-file=prometheus-additional.yaml -n monitoring
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>修改prometheus-prometheus.yaml,添加自动发现配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-prometheus.yaml &lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring.coreos.com/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Prometheus</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">prometheus</span><span class="p">:</span><span class="w"> </span><span class="l">k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">alerting</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">alertmanagers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">alertmanager-main</span><span class="w">
+</span><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span><span class="w">  </span><span class="nt">baseImage</span><span class="p">:</span><span class="w"> </span><span class="l">quay.io/prometheus/prometheus</span><span class="w">
+</span><span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">kubernetes.io/os</span><span class="p">:</span><span class="w"> </span><span class="l">linux</span><span class="w">
+</span><span class="w">  </span><span class="nt">podMonitorSelector</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">400Mi</span><span class="w">
+</span><span class="w">  </span><span class="nt">ruleSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">prometheus</span><span class="p">:</span><span class="w"> </span><span class="l">k8s</span><span class="w">
+</span><span class="w">      </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">alert-rules</span><span class="w">
+</span><span class="w">  </span><span class="nt">securityContext</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">fsGroup</span><span class="p">:</span><span class="w"> </span><span class="m">2000</span><span class="w">
+</span><span class="w">    </span><span class="nt">runAsNonRoot</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">    </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w"> </span><span class="m">1000</span><span class="w">
+</span><span class="w">  </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-k8s</span><span class="w">
+</span><span class="w">  </span><span class="nt">serviceMonitorNamespaceSelector</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w">  </span><span class="nt">serviceMonitorSelector</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l">v2.11.0</span><span class="w">
+</span><span class="w">  </span><span class="nt">additionalScrapeConfigs</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">additional-configs</span><span class="w">
+</span><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-additional.yaml</span><span class="w">
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>重新应用启用配置文件,更新自动发现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sh reset_additional_secret.sh
+kubectl delete -f prometheus-prometheus.yaml
+kubectl apply -f prometheus-prometheus.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以将prometheus配置文件加入到addtional文件中,使prometheus-operator像prometheus配置一致,例如配置黑盒监控,配置文件如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;pre-monitoring/kube-state-metrics&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l">15s</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">honor_labels</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;/federate&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">&#39;match[]&#39;</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kube-state-metrics&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubelet&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;apiserver&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;node-exporter&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kube-scheduler&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kube-controller-manager&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;etcd-k8s&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;traefik-ingress&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubernetes-services&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubernetes-Business-redis&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubernetes-Business-mongodb&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubernetes-Business-psql&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubernetes-Business-amqp&#34;}&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;{job=&#34;kubernetes-Physical-node&#34;}&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">targets</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="s1">&#39;39.108.192.100:32501&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;dist-sz-pre&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-Business-services&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l">/probe</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">http_2xx]</span><span class="w">
+</span><span class="w">  </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">service</span><span class="w">
+</span><span class="w">  </span><span class="nt">relabel_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c">#- source_labels: [__meta_kubernetes_service_annotation_prometheus_io_probe]</span><span class="w">
+</span><span class="w">  </span><span class="c">#  action: keep</span><span class="w">
+</span><span class="w">  </span><span class="c">#  regex: true</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__address__]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__param_target</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__address__</span><span class="w">
+</span><span class="w">    </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter:9115</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__param_target]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">instance</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">labelmap</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l">__meta_kubernetes_service_label_(.+)</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_namespace]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_namespace</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_service_name]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_service</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">instance]</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;.*22.*&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">drop</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_namespace]</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;dadi-saas-member-pre&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">keep</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-services&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l">/probe</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">http_2xx] </span><span class="w"> </span><span class="c"># 使用定义的http模块</span><span class="w">
+</span><span class="w">  </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">service </span><span class="w"> </span><span class="c"># service 类型的服务发现</span><span class="w">
+</span><span class="w">  </span><span class="nt">relabel_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c">#只有service的annotation中配置了 prometheus.io/http_probe=true 的才进行发现</span><span class="w">
+</span><span class="w">  </span><span class="c">#- source_labels: [__meta_kubernetes_service_annotation_prometheus_io_http_probe]</span><span class="w">
+</span><span class="w">  </span><span class="c">#  action: keep</span><span class="w">
+</span><span class="w">  </span><span class="c">#  regex: true</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__address__]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__param_target</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__address__</span><span class="w">
+</span><span class="w">    </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter:9115</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__param_target]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">instance</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">labelmap</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l">__meta_kubernetes_service_label_(.+)</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_namespace]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_namespace</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_service_name]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_name</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_service_port_name]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_port_name</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_namespace]</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;dadi-saas-member-pre&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">drop</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;kubernetes-service-dns&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l">/probe</span><span class="w"> </span><span class="c"># 不是 metrics，是 probe</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">dns]</span><span class="w"> </span><span class="c"># 使用 DNS 模块</span><span class="w">
+</span><span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">targets</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">kube-dns.kube-system:53 </span><span class="w"> </span><span class="c"># 不要省略端口号</span><span class="w">
+</span><span class="w">  </span><span class="nt">relabel_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__address__]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__param_target</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__param_target]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">instance</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__address__</span><span class="w">
+</span><span class="w">    </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter:9115 </span><span class="w"> </span><span class="c"># 服务地址，和上面的 Service 定义保持一致</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-ingresses&#39;</span><span class="w">
+</span><span class="w">  </span><span class="nt">metrics_path</span><span class="p">:</span><span class="w"> </span><span class="l">/probe</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">http_2xx] </span><span class="w"> </span><span class="c"># 使用定义的http模块</span><span class="w">
+</span><span class="w">  </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">ingress </span><span class="w"> </span><span class="c"># ingress 类型的服务发现</span><span class="w">
+</span><span class="w">  </span><span class="nt">relabel_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># 只有ingress的annotation中配置了 prometheus.io/http_probe=true的才进行发现</span><span class="w">
+</span><span class="w">  </span><span class="c">#- source_labels: [__meta_kubernetes_ingress_annotation_prometheus_io_http_probe]</span><span class="w">
+</span><span class="w">  </span><span class="c">#  action: keep</span><span class="w">
+</span><span class="w">  </span><span class="c">#  regex: true</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_ingress_scheme,__address__,__meta_kubernetes_ingress_path]</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l">(.+);(.+);(.+)</span><span class="w">
+</span><span class="w">    </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="l">${1}://${2}${3}</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__param_target</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">__address__</span><span class="w">
+</span><span class="w">    </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-blackbox-exporter:9115</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__param_target]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">instance</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">labelmap</span><span class="w">
+</span><span class="w">    </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l">__meta_kubernetes_ingress_label_(.+)</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_namespace]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_namespace</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_ingress_name]</span><span class="w">
+</span><span class="w">    </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes_name</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/promethues_operator%E4%BD%BF%E7%94%A8/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/" data-title="Promethues_operator使用" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/" data-title="Promethues_operator使用" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/" data-title="Promethues_operator使用"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/" data-title="Promethues_operator使用"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/promethues/">Promethues</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/" class="prev" rel="prev" title="Promethues监控k8s集群组件"><i class="fas fa-angle-left fa-fw"></i>Promethues监控k8s集群组件</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
