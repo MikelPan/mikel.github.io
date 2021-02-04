@@ -4,9 +4,16 @@
         <link>https://www.mikel.pan/</link>
         <description>关于 LoveIt 主题</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Feb 2021 06:40:24 &#43;0800</lastBuildDate>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Feb 2021 12:51:58 &#43;0800</lastBuildDate>
             <atom:link href="https://www.mikel.pan/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Promethues介绍</title>
+    <link>https://www.mikel.pan/promethues%E4%BB%8B%E7%BB%8D/</link>
+    <pubDate>Thu, 04 Feb 2021 12:51:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/promethues%E4%BB%8B%E7%BB%8D/</guid>
+    <description><![CDATA[Prometheus 简介 Prometheus 最初是 SoundCloud 构建的开源系统监控和报警工具，是一个独立的开源项目，于2016年加入了 CNCF 基金会，作为继 Kubernetes 之后的第二个托管项目。 特征 Prometheus 相比于其]]></description>
+</item><item>
     <title>Mongo副本集</title>
     <link>https://www.mikel.pan/mongo%E5%89%AF%E6%9C%AC%E9%9B%86/</link>
     <pubDate>Thu, 04 Feb 2021 06:40:24 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/mysql%E7%B4%A2%E5%BC%95/</guid>
     <description><![CDATA[索引是什么? 索引是什么了，查阅了官方文档。官方文档写了索引的作用和没有索引会带来全表扫描，非常费时间。 Indexes are used to find rows with specific column values quickly. Without an index, MySQL must begin with the]]></description>
-</item><item>
-    <title>Mysql事务详解</title>
-    <link>https://www.mikel.pan/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/</link>
-    <pubDate>Wed, 03 Feb 2021 22:25:57 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/</guid>
-    <description><![CDATA[Mysql 事务说明 Mysql 事务特点 1、ACID Atomicity（原子性）：一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交]]></description>
 </item></channel>
 </rss>
