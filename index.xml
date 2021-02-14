@@ -4,9 +4,16 @@
         <link>https://www.mikel.pan/</link>
         <description>关于 LoveIt 主题</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 05:44:20 &#43;0800</lastBuildDate>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 05:50:19 &#43;0800</lastBuildDate>
             <atom:link href="https://www.mikel.pan/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Mysql基础命令01</title>
+    <link>https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/</link>
+    <pubDate>Mon, 15 Feb 2021 05:50:19 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/</guid>
+    <description><![CDATA[一.Mysql简介 MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理]]></description>
+</item><item>
     <title>Mysql备份与恢复</title>
     <link>https://www.mikel.pan/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
     <pubDate>Mon, 15 Feb 2021 05:44:20 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9/</guid>
     <description><![CDATA[监控k8s 集群节点 对于集群的监控一般我们需要考虑以下几个方面： Kubernetes 节点的监控：比如节点的 cpu、load、disk、memory 等指标 内部系统]]></description>
-</item><item>
-    <title>Promethues搭建使用</title>
-    <link>https://www.mikel.pan/promethues%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/</link>
-    <pubDate>Thu, 04 Feb 2021 12:55:06 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/promethues%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/</guid>
-    <description><![CDATA[Prometheus Server 使用 目前环境中使用的架构 安装prometheus 其中 prometheus.yml 文件的基本配置如下： 1 2 3 4 5 6 7 8 9 10 11 12 global:scrape_interval:15sevaluation_interval:15srule_files:# - &#34;first.rules&#34;# - &#34;second.rules&#34;scrape_configs:- job_name:prometheusstatic_configs:- targets:[&#39;localhost:9090&#39;] 上面这个配置文件中包含了]]></description>
 </item></channel>
 </rss>
