@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mysql基础命令02 - 德国粗茶淡饭</title><meta name="Description" content="Mysql基础命令02"><meta property="og:title" content="Mysql基础命令02" />
+<meta property="og:description" content="Mysql基础命令02" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-15T05:55:08+08:00" />
+<meta property="article:modified_time" content="2021-02-15T05:55:08+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Mysql基础命令02"/>
+<meta name="twitter:description" content="Mysql基础命令02"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" /><link rel="prev" href="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql基础命令02",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Mysql","wordcount":  4338 ,
+        "url": "https:\/\/www.mikel.pan\/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402\/","datePublished": "2021-02-15T05:55:08+08:00","dateModified": "2021-02-15T05:55:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Mysql基础命令02"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Mysql基础命令02</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>MikelPan</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-15">2021-02-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4338 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一msql数据类型">一、Msql数据类型</a>
+      <ul>
+        <li><a href="#1整型">1、整型</a></li>
+        <li><a href="#2浮点型">2、浮点型</a></li>
+        <li><a href="#3字符型">3、字符型</a></li>
+      </ul>
+    </li>
+    <li><a href="#二mysql数据运算">二、Mysql数据运算</a>
+      <ul>
+        <li><a href="#1逻辑运算-and-or-not">1、逻辑运算 and or not</a></li>
+        <li><a href="#2in-运算符">2、in 运算符</a></li>
+        <li><a href="#3算术运算符------">3、算术运算符  &gt;= | &lt;=| &lt;&gt; |=</a></li>
+        <li><a href="#4模糊查询--like-">4、模糊查询  like &lsquo;%&hellip;%&rsquo;</a></li>
+        <li><a href="#5范围运算-not-between-and">5、范围运算 [not] between &hellip;&hellip;.and</a></li>
+        <li><a href="#6mysql-子查询">6、Mysql 子查询</a></li>
+        <li><a href="#7limit-限定显示的条目">7、limit 限定显示的条目</a></li>
+        <li><a href="#8连接查询">8、连接查询</a></li>
+      </ul>
+    </li>
+    <li><a href="#三聚合函数"><strong>三、聚合函数</strong></a>
+      <ul>
+        <li><a href="#1sam-求和">1、sam() 求和</a></li>
+        <li><a href="#2avg-求平均值">2、avg() 求平均值</a></li>
+        <li><a href="#3max-最大值">3、max() 最大值</a></li>
+        <li><a href="#4min-最小值">4、min() 最小值</a></li>
+        <li><a href="#5substrstringstartlen-截取">5、substr（string，start，len） 截取</a></li>
+        <li><a href="#6count-统计计数-记录字段数据条数">6、count() 统计计数 记录字段数据条数</a></li>
+        <li><a href="#7upper-大写">7、upper() 大写</a></li>
+        <li><a href="#8lower-小写">8、lower() 小写</a></li>
+      </ul>
+    </li>
+    <li><a href="#四索引">四、索引</a>
+      <ul>
+        <li><a href="#1索引类型"><strong>1、索引类型</strong></a></li>
+        <li><a href="#2创建索引"><strong>2、创建索引</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#五外键约束"><strong>五、外键约束</strong></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1创建外键约束"><strong>1、创建外键约束</strong></a></li>
+            <li><a href="#2视图"><strong>2、视图</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#六存储过程"><strong>六、存储过程</strong></a>
+      <ul>
+        <li><a href="#1定义存储过程"><strong>1、定义存储过程</strong></a></li>
+        <li><a href="#2调用存储过程">2、调用存储过程</a></li>
+        <li><a href="#3存储过程参数传递"><strong>3、存储过程参数传递</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#七触发器">七、触发器</a></li>
+    <li><a href="#八事务">八、事务</a></li>
+    <li><a href="#九mysql数据结构"><strong>九、mysql数据结构</strong></a>
+      <ul>
+        <li><a href="#十常见的存储引擎介绍"><strong>十.常见的存储引擎介绍</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="一msql数据类型">一、Msql数据类型</h2>
+<h3 id="1整型">1、整型</h3>
+<p>tinyint,  占 1字节 ,有符号： -128~127,无符号位 :0~255</p>
+<p>smallint, 占 2字节 ,有符号： -32768~32767无符号位 :0~65535</p>
+<p>mediumint 占 3字节 ,有符号： -8388608~8388607,无符号位:0~16777215:</p>
+<p>int, 占 4字节 ,有符号： -2147483648~2147483647,无符号位 无符号位 :0~4 284967295</p>
+<p>bigint, bigint,bigint, 占 8字节</p>
+<p>bool  等价于 tinyint</p>
+<h3 id="2浮点型">2、浮点型</h3>
+<p>float([m[,d]])  占 4字节 ,1.17E-38~3.4E+3838~3.4E</p>
+<p>double([m[,d]])  占 8字节</p>
+<p>decimal([m[,d]])  以字符串形式表示的浮点数</p>
+<h3 id="3字符型">3、字符型</h3>
+<p>char([m]): :定长的字符 ,占用 m字节</p>
+<p>varchar[(m)]: :变长的字符 ,占用 m+1m+1 字节，大于 255 个字符：占用 m+2m+2</p>
+<p>tinytext,255 个字符 (2 的 8次方 )</p>
+<p>text,65535 个字符 (2 的 16 次方 )</p>
+<p>mediumtext,16777215字符 (2 的 24 次方 )</p>
+<p>longtext (2的 32 次方 )</p>
+<p>enum(value,value,&hellip;)占 1/2个字节 最多可以有 65535 个成员 个成员</p>
+<p>set(value,value,&hellip;) 占 1/2/3/4/8个字节，最多可以 有 64个成员</p>
+<h2 id="二mysql数据运算">二、Mysql数据运算</h2>
+<h3 id="1逻辑运算-and-or-not">1、逻辑运算 and or not</h3>
+<p>for example：</p>
+<p>选择出 书籍价格 为（30,60,40，50）的记录</p>
+<blockquote>
+<p>sql&gt; select bName,publishing,price from books where price=30 or price=40 or price=50 or price=60;</p>
+</blockquote>
+<h3 id="2in-运算符">2、in 运算符</h3>
+<p>in 运算符用于 WHERE 表达式，以列表的形式支持多个选择，语法如下</p>
+<p>where colunmm in （value1，value2，&hellip;&hellip;.）</p>
+<p>where colunmm not in (value1,value2,&hellip;&hellip;&hellip;.)</p>
+<p>当in前面加上not时，表示与in相反，既不在结果中</p>
+<blockquote>
+<p>sql&gt; select bName,publishing,price from books where  price in （30，40，50，60）order by price asc；</p>
+</blockquote>
+<h3 id="3算术运算符------">3、算术运算符  &gt;= | &lt;=| &lt;&gt; |=</h3>
+<p>for example</p>
+<p>找出价格小于70的记录</p>
+<blockquote>
+<p>mysql&gt; select bName,price from books where price &lt;= 70;</p>
+</blockquote>
+<h3 id="4模糊查询--like-">4、模糊查询  like &lsquo;%&hellip;%&rsquo;</h3>
+<p>字段名 [not] like  &lsquo;%&hellip;&hellip;%&rsquo;   通配符  任意多个字符</p>
+<p>查询书中包含程序字样的记录</p>
+<blockquote>
+<p>mysql&gt; select bName,price from books where bName like &lsquo;%程序%&rsquo;</p>
+</blockquote>
+<h3 id="5范围运算-not-between-and">5、范围运算 [not] between &hellip;&hellip;.and</h3>
+<p>查找价格不在30和60之间的书名和价格</p>
+<p>mysql&gt; select bName,price from books where price not between 30 and 60  order by price desc;</p>
+<h3 id="6mysql-子查询">6、Mysql 子查询</h3>
+<p>select where条件中又出现select</p>
+<p>查询类型为网络技术的图书</p>
+<blockquote>
+<p>mysql&gt; select bName,bTypeId from books where bTypeId=(select bTypeId from category where bTypeName=&lsquo;网络技术&rsquo;);</p>
+</blockquote>
+<h3 id="7limit-限定显示的条目">7、limit 限定显示的条目</h3>
+<p>LIMIT子句可以被用于强制 SELECT语句返回指定的记录数。 LIMIT 接受一个或两数字参。必 须是一个整数常量。如果给定两 个数，第一指定返 回记录行的偏移量，第二个参数返回记录行的最大数目。初始偏移量是 0( 而不是 1)。</p>
+<p>语法 ： select * from limit m，n</p>
+<p>其中 m是指记录开始的 index indexindex，从 0开始，表示第一条记录，n是指从第 m+1 条开始，取 n。</p>
+<p>查询books表中第2条到六行的记录</p>
+<p>mysql&gt;select * from books limit 1,6;</p>
+<h3 id="8连接查询">8、连接查询</h3>
+<p>以一个共同的字段，求两张表当中符合条件并集。 通过 共同字段把这两张表的共同字段把这两张表连 接起来。</p>
+<p>常用的连接：</p>
+<p>内连接：根据表中的共同字段进行匹配</p>
+<p>外连接：现实某数据表的 全部记录和另外数据表中符合连接条件的记录。</p>
+<p>外连接：左连接、右连接</p>
+<p><strong>内连接：for exmaple</strong></p>
+<blockquote>
+<p>create table student（sit int(4) primary key auto_increment,name varchar(40)）;</p>
+<p>insert into student values(1,‘张三’），（2，‘李四’），（3，‘王五’），（4，‘mikel’）;</p>
+<p>create table teachers（sit int(4)，id int(4) primary key auto_increment,score varchar(40)）;</p>
+<p>insert into teachers values(1,1,‘1234’)，（1,2,‘2345’），（3,3,‘2467’），（4,4，‘2134’）；</p>
+<p>select s.* ,t.* from student as s,teachers as t where s.sid=t.sid;</p>
+</blockquote>
+<p><strong>左连接</strong>： select 语句 a表 left[outer] join b 表  on 连接条件 ，a表是主，都显示。</p>
+<p>b表是从，主表内容全都有，主表多出来的字段，从表没有的就显示 null，从表多出主表的字段不显示。</p>
+<p><strong>select * from student as s left join teachers as t on  s.sit=t.sit;</strong></p>
+<p><strong>右连接</strong>：select 语句 a表 right[outer] join b 表  on 连接条件 ，b表是主，都显示。</p>
+<p>a表是从，主表内容全都有，主表多出来的字段，从表没有的就显示 null，从表多出主表的字段不显示。</p>
+<p><strong>select * from student as sright join teachers as t on  s.sit=t.sit;</strong></p>
+<h2 id="三聚合函数"><strong>三、聚合函数</strong></h2>
+<h3 id="1sam-求和">1、sam() 求和</h3>
+<p><strong>select sum (id+score) as g from teachers;</strong></p>
+<h3 id="2avg-求平均值">2、avg() 求平均值</h3>
+<p><strong>select avg (id+score) as g from teachers;</strong></p>
+<h3 id="3max-最大值">3、max() 最大值</h3>
+<p><strong>select max (id) as g from teachers;</strong></p>
+<h3 id="4min-最小值">4、min() 最小值</h3>
+<p><strong>select min(id) as g from teachers;</strong></p>
+<h3 id="5substrstringstartlen-截取">5、substr（string，start，len） 截取</h3>
+<p><strong>select substr(soucr,1,2) as g from teachers;</strong></p>
+<p>从start开始，截取len长度，start从1开始</p>
+<p>concat（str1,str2,str3&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.）字符串拼接，将多个字符串拼接在一起</p>
+<p><strong>select concat(id,score,sit) as g from teachers;</strong></p>
+<h3 id="6count-统计计数-记录字段数据条数">6、count() 统计计数 记录字段数据条数</h3>
+<p><strong>select count(id) as g from teachers;</strong></p>
+<h3 id="7upper-大写">7、upper() 大写</h3>
+<p><strong>select upper(name) as g from student;</strong>  #将字段name中英文全部变为大写，但不改变原值</p>
+<h3 id="8lower-小写">8、lower() 小写</h3>
+<p>**select lower(name) as g from student; ** #将字段name中英文全部变为小写，但不改变原值</p>
+<h2 id="四索引">四、索引</h2>
+<p>mysql中索引是以文件形式存放的，对表进行增删改，会同步到索引，索引和表保持一致，常用在where 后字段查询就加索引。</p>
+<p><strong>优点：加快查询速度，减少查询时间</strong></p>
+<p><strong>缺点：索引占据一定磁盘空间，会影响insert，delete，update执行时间</strong></p>
+<h3 id="1索引类型"><strong>1、索引类型</strong></h3>
+<p><strong>普通索引：最基本索引，不具备唯一性</strong></p>
+<p><strong>唯一索引：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一</strong></p>
+<p><strong>主键索引：记录值唯一，主键字段很少被改动，不能为空，不能修改，可用于一个字段或者多个字段</strong></p>
+<p><strong>全文索引：检索文本信息的, 针对较大的数据，生成全文索引查询速度快，但也很浪费时间和空间</strong></p>
+<p><strong>组合索引：一个索引包含多个列</strong></p>
+<h3 id="2创建索引"><strong>2、创建索引</strong></h3>
+<p><strong>普通索引：</strong></p>
+<p><strong># 创建普通索引</strong></p>
+<p><strong>create table demo(id int(4),uName varchar(20),uPwd varchar(20),index (uPwd));</strong></p>
+<p><strong># 查看建表过程</strong></p>
+<p><strong>show create table demo；</strong></p>
+<p>demo | CREATE TABLE <code>demo</code> (</p>
+<p><code>id</code> int(4) DEFAULT NULL,</p>
+<p><code>uName</code> varchar(20) DEFAULT NULL,</p>
+<p><code>uPwd</code> varchar(20) DEFAULT NULL,</p>
+<p>KEY <code>uPwd</code> (<code>uPwd</code>)</p>
+<p>) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</p>
+<p><strong>唯一索引：字段值只允许出现一次，可以有空值</strong></p>
+<p><strong># 创建唯一索引</strong></p>
+<p><strong>create table demo1（id int(4),uName varchar(20),uPwd varchar(20),unique index (uName)）;</strong></p>
+<p><strong># 查看建表过程</strong></p>
+<p><strong>show create table demo1;</strong></p>
+<p>demo1 | CREATE TABLE <code>demo1</code> (</p>
+<p><code>id</code> int(4) DEFAULT NULL,</p>
+<p><code>uName</code> varchar(20) DEFAULT NULL,</p>
+<p><code>uPwd</code> varchar(20) DEFAULT NULL,</p>
+<p>UNIQUE KEY <code>uName</code> (<code>uName</code>)</p>
+<p>) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</p>
+<p><strong>主键索引：字段记录值唯一，字段很少被修改，一般主键约束为auto_increment或者not null unique，不能为空，不能重复。</strong></p>
+<p><strong># 创建主键索引</strong></p>
+<p><strong>create table demo2(id int(4) auto_increment primary key,uName varchar(20),uPwd varchar(20));</strong></p>
+<p><strong># 查看建表语句</strong></p>
+<p>demo2 | CREATE TABLE <code>demo2</code> (</p>
+<p><code>id</code> int(4) NOT NULL AUTO_INCREMENT,</p>
+<p><code>uName</code> varchar(20) DEFAULT NULL,</p>
+<p><code>uPwd</code> varchar(20) DEFAULT NULL,</p>
+<p>PRIMARY KEY (<code>id</code>)</p>
+<p>) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</p>
+<p><strong>全文索引：提高全文检索效率，解决模糊查询</strong></p>
+<p><strong># 创建全文索引</strong></p>
+<p><strong>create table demo3(id int(4),uName varchar(20),uPwd varchar(20),fulltext(uName,uPwd));</strong></p>
+<p><strong># 查看建表语句</strong></p>
+<p>| demo3 | CREATE TABLE <code>demo3</code> (</p>
+<p><code>id</code> int(4) DEFAULT NULL,</p>
+<p><code>uName</code> varchar(20) DEFAULT NULL,</p>
+<p><code>uPwd</code> varchar(20) DEFAULT NULL,</p>
+<p>FULLTEXT KEY <code>uName</code> (<code>uName</code>,<code>uPwd</code>)</p>
+<p>) ENGINE=InnoDB DEFAULT CHARSET=utf8 |</p>
+<h2 id="五外键约束"><strong>五、外键约束</strong></h2>
+<p><strong>外键约束：foreign key 表与表之间的一种约定关系，由于这种关系存在，让表与表之间的数据更加具有完整性，更加具有关联性。</strong></p>
+<h4 id="1创建外键约束"><strong>1、创建外键约束</strong></h4>
+<p><strong>创建user主表</strong></p>
+<p><strong>create table user1(id int(11)auto_increment primary key,name varchar(50),sex int(1));</strong></p>
+<p><strong>插入数据</strong></p>
+<p><strong>insert into user1(name,sex)values(&ldquo;mikel&rdquo;,4),(&ldquo;plyx&rdquo;,6);</strong></p>
+<p><strong>创建order外键表</strong></p>
+<p><strong>create table <code>order</code>(order_id int(11)auto_increment primary key,u_id int(11),username varchar(50),monery int(11),foreign key(u_id) references user1(id)  on delete cascade on update cascade )engine=innodb);</strong></p>
+<p><strong>插入数据</strong></p>
+<p><strong>INSERT INTO <code>order</code> (order_id,u_id,username,monery)values(1,1,&lsquo;mikel&rsquo;,2345),(2,2,&lsquo;plyx&rsquo;,3456)</strong></p>
+<p><strong>在order表中插入一条u_id为6的记录</strong></p>
+<p><strong>insert into <code>orser</code> (u_id)values(6);</strong></p>
+<p><strong>Cannot add or update a child row: a foreign key constraint fails (<code>school</code>.<code>order</code>, CONSTRAINT <code>order_ibfk_1</code> FOREIGN KEY (<code>u_id</code>) REFERENCES <code>user1</code> (<code>id</code>) ON DELETE CASCADE ON UPDATE CASCADE)</strong></p>
+<p><strong>user1中不存在id为6的记录，现在添加一条id为6的记录</strong></p>
+<p><strong>insert into user1(id)values(6);</strong></p>
+<h4 id="2视图"><strong>2、视图</strong></h4>
+<p><strong>是一张虚拟表，由 select select select语句指定的数据结构和数据，不生成真实文件</strong></p>
+<p><strong>create view mikel as select * from school.books;</strong></p>
+<p><strong>select  * from mikel;</strong></p>
+<h2 id="六存储过程"><strong>六、存储过程</strong></h2>
+<p><strong>存储过程用来封装mysql代码，相当于函数，一次编译，生成二进制文件，永久有效，提高效率。</strong></p>
+<h3 id="1定义存储过程"><strong>1、定义存储过程</strong></h3>
+<p><strong>create procedure 过程名（参数1，参数2，&hellip;&hellip;&hellip;&hellip;.）</strong></p>
+<p><strong>begin</strong></p>
+<p>​	sql语句</p>
+<p><strong>end</strong></p>
+<h3 id="2调用存储过程">2、调用存储过程</h3>
+<p><strong>call 过程名（参数1，参数2，&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.）</strong></p>
+<p><strong>example:定义一个存储过程查看books表中所有数据</strong></p>
+<p>​    <strong>1. 修改sql默认执行符号</strong></p>
+<p>​    delimiter //</p>
+<p>create  procedure seebooks();</p>
+<p>begin</p>
+<p>​         <strong>select * from sctudent.books;</strong></p>
+<p>​    <strong>end //</strong></p>
+<p>call seebooks() //</p>
+<h3 id="3存储过程参数传递"><strong>3、存储过程参数传递</strong></h3>
+<p><strong>in 传入参数 int 赋值</strong></p>
+<p>IN输入参数：表示调用者向过程传入值（传入值可以是字面量或变量）</p>
+<p>OUT输出参数：表示过程向调用者传出值(可以返回多个值)（传出值只能是变量）</p>
+<p>INOUT输入输出参数：既表示调用者向过程传入值，又表示过程向调用者传出值（值只能是变量）</p>
+<p>create procedure seebook(in b int)</p>
+<p>begin</p>
+<p>select * from school.books where bId=b;</p>
+<p>end //</p>
+<p>call seebook(4)</p>
+<p>16</p>
+<p><strong>out &mdash;&mdash;&mdash;&mdash;&ndash;传出参数</strong></p>
+<p>select into 在过程中赋值传给变量，并查看变量值</p>
+<p>create procedure seebook2(out b varchar(100))</p>
+<p>begin</p>
+<p>select bName into b  from school.books where bId=4;</p>
+<p>end //</p>
+<p>17</p>
+<p><strong>过程内的变量使用方法</strong></p>
+<p><strong>声明变量名称，类型，declare 过程内的变量没有@</strong></p>
+<p><strong>赋值 set 变量名=（select 语句）</strong></p>
+<p>create procedure seebook3()</p>
+<p>begin</p>
+<p>​        declare str varchar(100);****</p>
+<p>​        set str=(select bName from school.books where bId=20);</p>
+<p>​        select str;</p>
+<p>end//</p>
+<p>call seebook3() //</p>
+<p>18</p>
+<h2 id="七触发器">七、触发器</h2>
+<p><strong>与数据表有关，当表出现（增，删，改，查）时，自动执行其特定的操作</strong></p>
+<p><strong>语法：create trigger 触发器名称 触发器时机 触发器动作 on 表名 for each row</strong></p>
+<p><strong>触发器名称：自定义</strong></p>
+<p><strong>触发器时机：after/before   之后/之前</strong></p>
+<p><strong>触发器动作：insert  update  delete</strong></p>
+<p><strong>创建触发器：</strong></p>
+<p>create trigger delstudent after delete on grade for each now</p>
+<p><strong>delete from student where sid=&lsquo;4&rsquo;;</strong></p>
+<p>delete from grade where sid=4;</p>
+<p>mysql&gt; select sid from student where sid=4;</p>
+<p>Empty set</p>
+<p>查看是否还有sid=4的值，可以发现已经被删除</p>
+<h2 id="八事务">八、事务</h2>
+<p><strong>单个逻辑单元执行的一系列操作，通过将一组操作组成一个，执行的时要么全部成功，要么全部失败，使程序更可靠，简化错误恢复。</strong></p>
+<p><strong>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</strong></p>
+<p>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</p>
+<p>事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。事务用来管理 insert,update,delete 语句。</p>
+<p>MYSQL 事务处理主要有两种方法：</p>
+<p>1、用 BEGIN, ROLLBACK, COMMIT来实现</p>
+<p><strong>BEGIN</strong> 开始一个事务</p>
+<p><strong>ROLLBACK</strong> 事务回滚</p>
+<p><strong>COMMIT</strong> 事务确认</p>
+<p>2、直接用 SET 来改变 MySQL 的自动提交模式:</p>
+<p><strong>SET AUTOCOMMIT=0</strong> 禁止自动提交</p>
+<p><strong>SET AUTOCOMMIT=1</strong> 开启自动提交</p>
+<p>创建事务</p>
+<p>begin;</p>
+<p>update books set bName=&ldquo;plyx&rdquo; where bId=1；</p>
+<p>update books set bName=&ldquo;plyx&rdquo; where bId=2；</p>
+<p>commit//</p>
+<p>查看记录，已经修改了</p>
+<p>select * from books;</p>
+<h2 id="九mysql数据结构"><strong>九、mysql数据结构</strong></h2>
+<p><strong>主配置文件  my.cnf</strong></p>
+<p><strong>数据目录：/var/lib/mysql</strong></p>
+<p><strong>进程通信sock文件 ：/var/lib/mysql/mysql.sock</strong></p>
+<p><strong>错误日志文件</strong></p>
+<p>[<strong>mysqld_safe]</strong></p>
+<p><strong>log-error=/var/log/mysqld.log</strong></p>
+<p><strong>进程PID文件：pid-file=/var/run/mysqld/mysqld.pid</strong></p>
+<p><strong>二进制文件：log-bin=mysql-bin.log</strong></p>
+<h3 id="十常见的存储引擎介绍"><strong>十.常见的存储引擎介绍</strong></h3>
+<p><strong>myisam :</strong></p>
+<p>特性：
+1、不支持事务，不支持外键，宕机时会破坏表</p>
+<p>2、使用较小的内存和磁盘空间，访问速度快</p>
+<p>3、基于表的锁，表级锁</p>
+<p>4、mysql 只缓存index索引， 数据由OS缓存</p>
+<p><strong>适用场景：日志系统，门户网站，低并发。</strong></p>
+<p><strong>Innodb：</strong></p>
+<p>特性：
+1、具有提交，回滚，崩溃恢复能力的事务安全存储引擎</p>
+<p>2、支持自动增长列，支持外键约束</p>
+<p>3、占用更多的磁盘空间以保留数据和索引</p>
+<p>4、不支持全文索引</p>
+<p><strong>适用场景：需要事务应用，高并发，自动恢复，轻快基于主键操作</strong></p>
+<p><strong>MEMORY：</strong></p>
+<p>特性：
+1、Memory存储引擎使用存在于内存中的内容来创建表。</p>
+<p>2、每个memory表只实际对应一个磁盘文件，格式是.frm。memory类型的表访问非常的快，因为它的数据是放在内存中的，并且默认使用HASH索引，但是一旦服务关闭，表中的数据就会丢失掉。</p>
+<p>​3、MEMORY存储引擎的表可以选择使用BTREE索引或者HASH索引。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" data-title="Mysql基础命令02" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" data-title="Mysql基础命令02" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" data-title="Mysql基础命令02"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/baidu.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/" data-title="Mysql基础命令02"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">Mysql</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/" class="prev" rel="prev" title="Mysql基础命令01"><i class="fas fa-angle-left fa-fw"></i>Mysql基础命令01</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

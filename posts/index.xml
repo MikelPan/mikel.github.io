@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 05:50:19 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 05:55:08 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Mysql基础命令02</title>
+    <link>https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/</link>
+    <pubDate>Mon, 15 Feb 2021 05:55:08 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/</guid>
+    <description><![CDATA[一、Msql数据类型 1、整型 tinyint, 占 1字节 ,有符号： -128~127,无符号位 :0~255 smallint, 占 2字节 ,有符号： -32768~32767无符号位 :0~65535 mediumint 占 3字节]]></description>
+</item><item>
     <title>Mysql基础命令01</title>
     <link>https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/</link>
     <pubDate>Mon, 15 Feb 2021 05:50:19 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/</guid>
     <description><![CDATA[容器监控 cAdvisor已经内置在了 kubelet 组件之中，所以不需要单独去安装，cAdvisor的数据路径为/api/v1/nodes//proxy/]]></description>
-</item><item>
-    <title>Promethues监控k8s集群节点</title>
-    <link>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9/</link>
-    <pubDate>Thu, 04 Feb 2021 12:59:06 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/promethues%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9/</guid>
-    <description><![CDATA[监控k8s 集群节点 对于集群的监控一般我们需要考虑以下几个方面： Kubernetes 节点的监控：比如节点的 cpu、load、disk、memory 等指标 内部系统]]></description>
 </item></channel>
 </rss>
