@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 05:34:54 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 05:44:20 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Mysql备份与恢复</title>
+    <link>https://www.mikel.pan/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+    <pubDate>Mon, 15 Feb 2021 05:44:20 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+    <description><![CDATA[一、mysql冷备及恢复 1.1、冷备 1 2 3 4 5 # 停止mysql mysqladmin -uroot -proot123 shutdown # 拷贝数据文件 scp -r /data/mysql root@back ip:/root cp -r /data/mysql /本地新目录 1.2、恢复 将已经备份的数据]]></description>
+</item><item>
     <title>Shell编程基础03</title>
     <link>https://www.mikel.pan/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8003/</link>
     <pubDate>Mon, 15 Feb 2021 05:34:54 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/promethues%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8/</guid>
     <description><![CDATA[Prometheus Server 使用 目前环境中使用的架构 安装prometheus 其中 prometheus.yml 文件的基本配置如下： 1 2 3 4 5 6 7 8 9 10 11 12 global:scrape_interval:15sevaluation_interval:15srule_files:# - &#34;first.rules&#34;# - &#34;second.rules&#34;scrape_configs:- job_name:prometheusstatic_configs:- targets:[&#39;localhost:9090&#39;] 上面这个配置文件中包含了]]></description>
-</item><item>
-    <title>Promethues介绍</title>
-    <link>https://www.mikel.pan/promethues%E4%BB%8B%E7%BB%8D/</link>
-    <pubDate>Thu, 04 Feb 2021 12:51:58 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/promethues%E4%BB%8B%E7%BB%8D/</guid>
-    <description><![CDATA[Prometheus 简介 Prometheus 最初是 SoundCloud 构建的开源系统监控和报警工具，是一个独立的开源项目，于2016年加入了 CNCF 基金会，作为继 Kubernetes 之后的第二个托管项目。 特征 Prometheus 相比于其]]></description>
 </item></channel>
 </rss>
