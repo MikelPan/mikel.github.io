@@ -4,7 +4,14 @@
         <link>https://www.mikel.pan/posts/</link>
         <description>所有文章 | 德国粗茶淡饭</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 15:20:30 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 15:37:47 &#43;0800</lastBuildDate><atom:link href="https://www.mikel.pan/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker_registry安装使用</title>
+    <link>https://www.mikel.pan/docker_registry%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Mon, 15 Feb 2021 15:37:47 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/docker_registry%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[一、harbor安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 # 安装docker-compose curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose chmod +x /usr/local/bin/docker-compose # 下载harb]]></description>
+</item><item>
     <title>Git使用</title>
     <link>https://www.mikel.pan/git%E4%BD%BF%E7%94%A8/</link>
     <pubDate>Mon, 15 Feb 2021 15:20:30 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/nacos%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</guid>
     <description><![CDATA[什么是Nacos Nacos 概览 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务]]></description>
-</item><item>
-    <title>Jenkins安装</title>
-    <link>https://www.mikel.pan/jenkins%E5%AE%89%E8%A3%85/</link>
-    <pubDate>Thu, 04 Feb 2021 17:37:22 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/jenkins%E5%AE%89%E8%A3%85/</guid>
-    <description><![CDATA[jenkins简介 Jenkins是一个自包含的开源自动化服务器，可用于自动化与构建，测试以及交付或部署软件有关的各种任务。 Jenkins可以]]></description>
 </item></channel>
 </rss>

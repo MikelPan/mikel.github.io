@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://www.mikel.pan/categories/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/categories/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/categories/"
@@ -15,11 +15,11 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/categories/"
                     /></url><url>
-            <loc>https://www.mikel.pan/git%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/posts/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/tags/docker/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/categories/docker/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/docker_registry%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/posts/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/tags/"
@@ -32,7 +32,7 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/tags/"
                     /></url><url>
-            <loc>https://www.mikel.pan/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/"
@@ -45,6 +45,9 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/"
                     /></url><url>
+            <loc>https://www.mikel.pan/git%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-15T15:20:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/ssl%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE/</loc><lastmod>2021-02-15T06:08:09&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/mysql/</loc><lastmod>2021-02-15T05:55:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/</loc><lastmod>2021-02-15T05:55:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
