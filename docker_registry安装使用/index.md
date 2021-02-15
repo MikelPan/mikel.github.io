@@ -1,4 +1,4 @@
-# Docker_registry安装使用
+# Docker-registry安装使用
 
 
 #### 一、harbor安装
