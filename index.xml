@@ -4,9 +4,16 @@
         <link>https://www.mikel.pan/</link>
         <description>关于 LoveIt 主题</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
-            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 06:08:09 &#43;0800</lastBuildDate>
+            <webMaster>plyx_46204@126.com (mikel pan)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Feb 2021 15:20:30 &#43;0800</lastBuildDate>
             <atom:link href="https://www.mikel.pan/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Git使用</title>
+    <link>https://www.mikel.pan/git%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Mon, 15 Feb 2021 15:20:30 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://www.mikel.pan/git%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[git 介绍 git 安装 1 yum install -y git git 参数配置 1 2 3 4 5 6 7 8 9 10 # 配置全局参数 ## 配置用户名 git config --global http.postBuffer 1048576000 git config --global user.name &#34;&#34; git config --global user.email &#34;&#34; # 配置仓库参数 ## 配置用户名 git config --local]]></description>
+</item><item>
     <title>Ssl证书自动续签</title>
     <link>https://www.mikel.pan/ssl%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE/</link>
     <pubDate>Mon, 15 Feb 2021 06:08:09 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://www.mikel.pan/jenkins%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[jenkins简介 Jenkins是一个自包含的开源自动化服务器，可用于自动化与构建，测试以及交付或部署软件有关的各种任务。 Jenkins可以]]></description>
-</item><item>
-    <title>Promethues_operator使用</title>
-    <link>https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/</link>
-    <pubDate>Thu, 04 Feb 2021 13:12:11 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://www.mikel.pan/promethues_operator%E4%BD%BF%E7%94%A8/</guid>
-    <description><![CDATA[Prometheus Operator 使用 安装 最新的版本官方将资源https://github.com/coreos/prometheus-operator/tree/mas]]></description>
 </item></channel>
 </rss>
