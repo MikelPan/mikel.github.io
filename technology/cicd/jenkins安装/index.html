@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Jenkins安装 - 德国粗茶淡饭</title><meta name="Description" content="Jenkins安装"><meta property="og:title" content="Jenkins安装" />
+<meta property="og:description" content="Jenkins安装" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/technology/cicd/jenkins%E5%AE%89%E8%A3%85/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-16T20:09:59+08:00" />
+<meta property="article:modified_time" content="2021-02-16T20:09:59+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Jenkins安装"/>
+<meta name="twitter:description" content="Jenkins安装"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/technology/cicd/jenkins%E5%AE%89%E8%A3%85/" /><link rel="prev" href="https://www.mikel.pan/technology/ddbs/tidb%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Jenkins安装",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/technology\/cicd\/jenkins%E5%AE%89%E8%A3%85\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "technology","keywords": "jenkins","wordcount":  1191 ,
+        "url": "https:\/\/www.mikel.pan\/technology\/cicd\/jenkins%E5%AE%89%E8%A3%85\/","datePublished": "2021-02-16T20:09:59+08:00","dateModified": "2021-02-16T20:09:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Jenkins安装"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 生活 </a><a class="menu-item" href="/technology/"> 技术 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/technology/cicd/jenkins%E5%AE%89%E8%A3%85/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">生活</a><a class="menu-item" href="/technology/" title="">技术</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/technology/cicd/jenkins%E5%AE%89%E8%A3%85/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Jenkins安装</h1><div class="content" id="content"><h3 id="jenkins简介">jenkins简介</h3>
+<p>Jenkins是一个自包含的开源自动化服务器，可用于自动化与构建，测试以及交付或部署软件有关的各种任务。
+Jenkins可以通过本机系统软件包Docker安装，甚至可以由安装了Java Runtime Environment（JRE）的任何计算机独立运行。</p>
+<h3 id="jenkins安装">jenkins安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 物理机安装</span>
+<span class="c1">## 安装java环境</span>
+wget https://download.oracle.com/otn/java/jdk/8u261-b12/a4634525489241b9a9e1aa73d9e118e6/jdk-8u261-linux-x64.tar.gz?AuthParam<span class="o">=</span>1597552691_67429c142927b21fadba4cd7de9df6e5
+mv jdk-8u261-linux-x64.tar.gz?AuthParam<span class="o">=</span>1597552691_67429c142927b21fadba4cd7de9df6e5 jdk-8u261-linux-x64.tar.gz
+tar zxvf jdk-8u261-linux-x64.tar.gz -C /usr/local
+tee &gt; /etc/profile.d/jdk.sh <span class="s">&lt;&lt;- &#39;EOF&#39;
+</span><span class="s">export JAVA_HOME=/usr/local/jdk1.8.0_261
+</span><span class="s">export JRE_HOME=${JAVA_HOME}/jre
+</span><span class="s">export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+</span><span class="s">export PATH=${JAVA_HOME}/bin:$PATH
+</span><span class="s">EOF</span>
+<span class="nb">source</span> /etc/profile
+<span class="c1">## 安装jenkins</span>
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum clean all
+yum makecache
+yum install jenkins -y
+<span class="c1">### 无法拉取官方源</span>
+yum install -y https://mirrors.tuna.tsinghua.edu.cn/jenkins/redhat-stable/jenkins-2.235.4-1.1.noarch.rpm
+<span class="c1">### 修改配置</span>
+sed -i <span class="s1">&#39;s/^JENKINS_USER/#JENKINS_USER/&#39;</span> /etc/sysconfig/jenkins
+sed -i <span class="s1">&#39;s/^JENKINS_HOME/#JENKINS_HOME/&#39;</span> /etc/sysconfig/jenkins
+sed -i <span class="s1">&#39;s/^JENKINS_PORT/#JENKINS_PORT/&#39;</span> /etc/sysconfig/jenkins
+tee &gt;&gt; /etc/sysconfig/jenkins <span class="s">&lt;&lt;- &#39;EOF&#39;
+</span><span class="s"># jenkins configurage
+</span><span class="s">JENKINS_JAVA_OPTIONS=&#34;-Djava.awt.headless=true -Dorg.jenkinsci.plugins.gitclient.Git.timeOut=60&#34;
+</span><span class="s">JENKINS_USER=&#34;root&#34;
+</span><span class="s">JENKINS_HOME=&#34;/data/jenkins&#34;
+</span><span class="s">JENKINS_PORT=&#34;8080&#34;
+</span><span class="s">EOF</span>
+sed -i <span class="s1">&#39;/candidates/a\/usr/local/jdk1.8.0_221/bin/java&#39;</span> /etc/init.d/jenkins
+systemctl <span class="nb">enable</span> jenkins
+mkdir -pv /data/jenkins
+systemctl start jenkins
+<span class="c1">### 修改默认镜像源</span>
+cp /data/jenkins/hudson.model.UpdateCenter.xml /data/jenkins/hudson.model.UpdateCenter.xml.bak
+tee &gt; /data/jenkins/hudson.model.UpdateCenter.xml <span class="s">&lt;&lt;- &#39;EOF&#39;
+</span><span class="s">&lt;?xml version=&#39;1.1&#39; encoding=&#39;UTF-8&#39;?&gt;
+</span><span class="s">&lt;sites&gt;
+</span><span class="s">  &lt;site&gt;
+</span><span class="s">    &lt;id&gt;default&lt;/id&gt;
+</span><span class="s">    &lt;url&gt;https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json&lt;/url&gt;
+</span><span class="s">  &lt;/site&gt;
+</span><span class="s">&lt;/sites&gt;
+</span><span class="s">EOF</span>
+<span class="c1">## 访问</span>
+cat /data/jenkins/secrets/initialAdminPassword
+curl -v http://localhost:8080
+<span class="c1"># docker 安装</span>
+<span class="c1">## 制作镜像</span>
+tee &gt; Dockerfile <span class="s">&lt;&lt;- &#39;EOF&#39;
+</span><span class="s">FROM jenkins/jenkins
+</span><span class="s">ARG dockerGid=999
+</span><span class="s">ENV JENKINS_HOME=/data/jenkins
+</span><span class="s">USER root
+</span><span class="s">#清除了基础镜像设置的源，切换成腾讯云的阿里云源
+</span><span class="s">RUN echo &#39;&#39; &gt; /etc/apt/sources.list.d/jessie-backports.list \
+</span><span class="s">  &amp;&amp; echo &#34;deb http://mirrors.aliyun.com/debian jessie main contrib non-free&#34; &gt; /etc/apt/sources.list \
+</span><span class="s">  &amp;&amp; echo &#34;deb http://mirrors.aliyun.com/debian jessie-updates main contrib non-free&#34; &gt;&gt; /etc/apt/sources.list \
+</span><span class="s">  &amp;&amp; echo &#34;deb http://mirrors.aliyun.com/debian-security jessie/updates main contrib non-free&#34; &gt;&gt; /etc/apt/sources.list \
+</span><span class="s">  &amp;&amp; apt-get update &amp;&amp; apt-get install -y libltdl7 &amp;&amp; apt-get update \
+</span><span class="s">  &amp;&amp; echo &#34;docker❌${dockerGid}:jenkins&#34; &gt;&gt; /etc/group \
+</span><span class="s">  &amp;&amp; curl -L https://github.com/docker/compose/releases/download/1.26.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
+</span><span class="s">  &amp;&amp; chmod +x /usr/local/bin/docker-compose
+</span><span class="s">EOF</span>
+<span class="c1">## 启动jenkins</span>
+chown -R <span class="m">1000</span> /data/jenkins
+docker run --name jenkins <span class="se">\
+</span><span class="se"></span>    -p 8080:8080 <span class="se">\
+</span><span class="se"></span>    -p 50000:50000 <span class="se">\
+</span><span class="se"></span>    -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>    -v <span class="k">$(</span>which docker<span class="k">)</span>:/bin/docker <span class="se">\
+</span><span class="se"></span>    -v /data/jenkins:/data/jenkins <span class="se">\
+</span><span class="se"></span>    -v /etc/localtime:/etc/localtime <span class="se">\
+</span><span class="se"></span>    -d auto-jenkins
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="常用插件安装">常用插件安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">Build Monitor View
+Workspace Cleanup
+Disk Usage
+Multijob plugin
+Build Pipeline Plugin：灰度发布
+Mask Passwords Plugin：密码加密
+Configuration Slicing Plugin：批量修改JOB的配置
+BlueOcean
+Locale
+Zentimestamp plugin
+multibranch-scan-webhook-trigger
+Structs	
+Pipeline: Step API	
+Token Macro	
+Build Timeout	
+Credentials	
+Plain Credentials	
+SSH Credentials	
+Credentials Binding	
+SCM API	
+Pipeline: API	
+Timestamper	
+Pipeline: Supporting APIs	
+Pipeline: Nodes and Processes	
+Snakeyaml API	
+Jackson <span class="m">2</span> API	
+ECharts API	
+JUnit	
+Matrix Project	
+Workspace Cleanup	
+Ant	
+Pipeline: SCM Step	
+Pipeline: Groovy	
+Pipeline: Job	
+Pipeline: Basic Steps	
+Gradle	
+Pipeline: Milestone Step	
+Pipeline: Input Step	
+Pipeline: Stage Step	
+Pipeline Graph Analysis	
+Pipeline: REST API	
+Pipeline: Stage View	
+Pipeline: Build Step	
+Pipeline: Model API	
+Pipeline: Declarative Extension Points API	
+JSch dependency	
+Git client	
+GIT server	
+Pipeline: Shared Groovy Libraries	
+Branch API	
+Pipeline: Multibranch	
+Pipeline: Stage Tags Metadata	
+Pipeline: Declarative	
+Lockable Resources	
+Pipeline	
+GitHub API	
+GitHub Branch Source	
+Pipeline: GitHub Groovy Libraries	
+Pipeline: Stage View	
+Git	
+SSH Build Agents	
+Email Extension	
+ECharts API	
+JUnit	
+Matrix Project	
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="jenkinsfile脱离代码仓库">jenkinsfile脱离代码仓库</h3>
+<h4 id="安装插件">安装插件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">1、Config File Provider Plugin
+2、Pipeline: Multibranch with defaults
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="配置jenkins">配置jenkins</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="c1">// 添加default jenkinsfile
+</span><span class="c1"></span><span class="err">#</span><span class="o">!</span><span class="s">/usr/</span><span class="n">bin</span><span class="s">/env groovy
+</span><span class="s">import groovy.transform.Field
+</span><span class="s">
+</span><span class="s">@Field def job_name=&#34;&#34;
+</span><span class="s">
+</span><span class="s">node() {
+</span><span class="s">
+</span><span class="s">    environment {
+</span><span class="s">       PATH = &#34;/</span><span class="n">usr</span><span class="s">/local/</span><span class="n">git</span><span class="s">/bin:$PATH&#34; 
+</span><span class="s">    }
+</span><span class="s">
+</span><span class="s">    job_name=&#34;${env.JOB_NAME}&#34;.replace(&#39;%2F&#39;,&#39;/</span><span class="s1">&#39;).split(&#39;</span><span class="s">/&#39;)
+</span><span class="s">    job_name=job_name[0]
+</span><span class="s">
+</span><span class="s">    workspace=&#34;/</span><span class="n">data</span><span class="s">/jenkins/</span><span class="n">workspace</span><span class="s">/CICD&#34;
+</span><span class="s">
+</span><span class="s">    ws(&#34;$workspace&#34;)
+</span><span class="s">    {
+</span><span class="s">      dir(&#39;Cnblog&#39;)
+</span><span class="s">      {
+</span><span class="s">        git url: &#39;https://github.com/</span><span class="n">MikelPan</span><span class="s">/Cnblog.git&#39;
+</span><span class="s">        def check_groovy_file=&#34;kubernetes/</span><span class="n">CICD</span><span class="s">/Jenkinsfile/</span><span class="n">$</span><span class="o">{</span><span class="n">job_name</span><span class="o">}</span><span class="s">/${env.BRANCH_NAME}/</span><span class="n">Jenkinsfile</span><span class="o">.</span><span class="na">groovy</span><span class="s2">&#34;
+</span><span class="s2">        load &#34;</span><span class="n">$</span><span class="o">{</span><span class="n">check_groovy_file</span><span class="o">}</span><span class="err">&#34;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//  在项目根目录中实现如下结构
+</span><span class="c1"></span><span class="o">---</span><span class="n">Cnblog</span>
+  <span class="o">---</span><span class="n">master</span>
+    <span class="o">---</span><span class="n">Jenkinsfile</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="jenkins-忘记管理员密码">jenkins 忘记管理员密码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除jenkins目录中的config.xml中的下面部分</span>
+&lt;useSecurity&gt;true&lt;/useSecurity&gt;  
+&lt;authorizationStrategy <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;hudson.security.FullControlOnceLoggedInAuthorizationStrategy&#34;</span>&gt;  
+  &lt;denyAnonymousReadAccess&gt;true&lt;/denyAnonymousReadAccess&gt;  
+&lt;/authorizationStrategy&gt;  
+&lt;securityRealm <span class="nv">class</span><span class="o">=</span><span class="s2">&#34;hudson.security.HudsonPrivateSecurityRealm&#34;</span>&gt;  
+  &lt;disableSignup&gt;true&lt;/disableSignup&gt;  
+  &lt;enableCaptcha&gt;false&lt;/enableCaptcha&gt;  
+&lt;/securityRealm&gt;
+<span class="c1"># 重启Jenkins服务；</span>
+<span class="c1"># 进入首页&gt;“系统管理”&gt;“Configure Global Security”；</span>
+<span class="c1"># 勾选“启用安全”；</span>
+<span class="c1"># 点选“Jenkins专有用户数据库”，并点击“保存”；</span>
+<span class="c1"># 重新点击首页&gt;“系统管理”,发现此时出现“管理用户”；</span>
+<span class="c1"># 点击进入展示“用户列表”；</span>
+<span class="c1"># 点击右侧进入修改密码页面，修改后即可重新登录</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
