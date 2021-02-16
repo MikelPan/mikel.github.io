@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Prometheus监控k8s集群组件 - 德国粗茶淡饭</title><meta name="Description" content="Prometheus监控k8s集群组件"><meta property="og:title" content="Prometheus监控k8s集群组件" />
+<meta property="og:description" content="Prometheus监控k8s集群组件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/technology/prometheus/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-16T19:21:45+08:00" />
+<meta property="article:modified_time" content="2021-02-16T19:21:45+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Prometheus监控k8s集群组件"/>
+<meta name="twitter:description" content="Prometheus监控k8s集群组件"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/technology/prometheus/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/" /><link rel="prev" href="https://www.mikel.pan/technology/prometheus/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9/" /><link rel="next" href="https://www.mikel.pan/technology/prometheus/prometheus%E7%9B%91%E6%8E%A7%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Prometheus监控k8s集群组件",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/technology\/prometheus\/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "technology","keywords": "Promethues","wordcount":  3373 ,
+        "url": "https:\/\/www.mikel.pan\/technology\/prometheus\/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6\/","datePublished": "2021-02-16T19:21:45+08:00","dateModified": "2021-02-16T19:21:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Prometheus监控k8s集群组件"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 生活 </a><a class="menu-item" href="/technology/"> 技术 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/technology/prometheus/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">生活</a><a class="menu-item" href="/technology/" title="">技术</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/technology/prometheus/prometheus%E7%9B%91%E6%8E%A7k8s%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Prometheus监控k8s集群组件</h1><div class="content" id="content"><h4 id="容器监控">容器监控</h4>
+<p>cAdvisor已经内置在了 kubelet 组件之中，所以不需要单独去安装，cAdvisor的数据路径为/api/v1/nodes/<node>/proxy/metrics，同样这里使用 node 的服务发现模式，因为每一个节点下面都有 kubelet，自然都有cAdvisor采集到的数据指标，配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-cm.yaml&lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">prometheus.yml</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">    global:
+</span><span class="sd">      scrape_interval: 15s
+</span><span class="sd">      scrape_timeout: 15s
+</span><span class="sd">    scrape_configs:
+</span><span class="sd">    - job_name: &#39;prometheus&#39;
+</span><span class="sd">      static_configs:
+</span><span class="sd">      - targets: [&#39;localhost:9090&#39;]
+</span><span class="sd">    - job_name: &#39;kubernetes-nodes&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__address__]
+</span><span class="sd">        regex: &#39;(.*):10250&#39;
+</span><span class="sd">        replacement: &#39;${1}:9100&#39;
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        action: replace
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubelet&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">        insecure_skip_verify: true
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-cadvisor&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">      - target_label: __address__
+</span><span class="sd">        replacement: kubernetes.default.svc:443
+</span><span class="sd">      - source_labels: [__meta_kubernetes_node_name]
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor</span><span class="w">    
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>上面的配置和之前配置 node-exporter 的时候几乎是一样的，区别是这里使用了 https 的协议，另外需要注意的是配置了 ca.cart 和 token 这两个文件，这两个文件是 Pod 启动后自动注入进来的，通过这两个文件可以在 Pod 中访问 apiserver，比如这里的__address__不在是 nodeip 了，而是 kubernetes 在集群中的服务地址，然后加上__metrics_path__的访问路径：/api/v1/nodes/${1}/proxy/metrics/cadvisor，现在同样更新下配置，然后查看 Targets 路径：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2019/11/28/Zm8IgBpaJhebX42.png"
+        data-srcset="https://i.loli.net/2019/11/28/Zm8IgBpaJhebX42.png, https://i.loli.net/2019/11/28/Zm8IgBpaJhebX42.png 1.5x, https://i.loli.net/2019/11/28/Zm8IgBpaJhebX42.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2019/11/28/Zm8IgBpaJhebX42.png"
+        title="20191128114505.png" /></p>
+<h4 id="apiserver监控">apiserver监控</h4>
+<p>apiserver 作为 Kubernetes 最核心的组件，当然他的监控也是非常有必要的，对于 apiserver 的监控我们可以直接通过 kubernetes 的 Service 来获取：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># kubectl get svc -n default</span>
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
+kubernetes   ClusterIP   10.96.0.1    &lt;none&gt;        443/TCP   92d
+</code></pre></td></tr></table>
+</div>
+</div><p>上面这个 Service 就是集群的 apiserver 在集群内部的 Service 地址，要自动发现 Service 类型的服务，就需要用到 role 为 Endpoints 的 kubernetes_sd_configs，可以在 ConfigMap 对象中添加上一个 Endpoints 类型的服务的监控任务,需要过滤的服务是 default 这个 namespace 下面，服务名为 kubernetes 的元数据，所以这里我们就可以根据对应的__meta_kubernetes_namespace和__meta_kubernetes_service_name这两个元数据来 relabel,另外由于 kubernetes 这个服务对应的端口是443，需要使用 https 协议，所以这里我们需要使用 https 的协议，对应的就需要将对应的 ca 证书配置上，如下：</p>
+<p>查看配置的job:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-apiservers&#39;</span><span class="w">
+</span><span class="w">      </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">endpoints</span><span class="w">
+</span><span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">https</span><span class="w">
+</span><span class="w">      </span><span class="nt">tls_config</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">ca_file</span><span class="p">:</span><span class="w"> </span><span class="l">/var/run/secrets/kubernetes.io/serviceaccount/ca.crt</span><span class="w">
+</span><span class="w">      </span><span class="nt">bearer_token_file</span><span class="p">:</span><span class="w"> </span><span class="l">/var/run/secrets/kubernetes.io/serviceaccount/token</span><span class="w">
+</span><span class="w">      </span><span class="nt">relabel_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]</span><span class="w">
+</span><span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">keep</span><span class="w">
+</span><span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l">default;kubernetes;https</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>现在重新更新配置文件、重新加载 Prometheus，切换到 Prometheus 的 Targets 路径下查看：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2019/11/28/notY4p82ISKQDkB.png"
+        data-srcset="https://i.loli.net/2019/11/28/notY4p82ISKQDkB.png, https://i.loli.net/2019/11/28/notY4p82ISKQDkB.png 1.5x, https://i.loli.net/2019/11/28/notY4p82ISKQDkB.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2019/11/28/notY4p82ISKQDkB.png"
+        title="20191128114536.png" /></p>
+<h4 id="kube-contraller监控">kube-contraller监控</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-schedule&#39;</span><span class="w">          </span><span class="c">#任务名</span><span class="w">
+</span><span class="w">      </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l">5s                  </span><span class="w"> </span><span class="c">#本任务的抓取间隔，覆盖全局配置</span><span class="w">
+</span><span class="w">      </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;xxxxx:10251&#39;</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="kube-schedule监控">kube-schedule监控</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    
+</span><span class="w">    </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-control-manager&#39;</span><span class="w">
+</span><span class="w">      </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l">5s</span><span class="w">
+</span><span class="w">      </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;xxxxx:10252&#39;</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="endpoints监控">endpoints监控</h4>
+<p>查看配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">cat &gt; prometheus-cm.yaml&lt;&lt;EOF</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">prometheus.yml</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">    global:
+</span><span class="sd">      scrape_interval: 15s
+</span><span class="sd">      scrape_timeout: 15s
+</span><span class="sd">    scrape_configs:
+</span><span class="sd">    - job_name: &#39;prometheus&#39;
+</span><span class="sd">      static_configs:
+</span><span class="sd">      - targets: [&#39;localhost:9090&#39;]
+</span><span class="sd">    - job_name: &#39;kubernetes-nodes&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__address__]
+</span><span class="sd">        regex: &#39;(.*):10250&#39;
+</span><span class="sd">        replacement: &#39;${1}:9100&#39;
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        action: replace
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-kubelet&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">        insecure_skip_verify: true
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-cadvisor&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">      - target_label: __address__
+</span><span class="sd">        replacement: kubernetes.default.svc:443
+</span><span class="sd">      - source_labels: [__meta_kubernetes_node_name]
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-apiservers&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: endpoints
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+</span><span class="sd">        action: keep
+</span><span class="sd">        regex: default;kubernetes;https
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-service-endpoints&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: endpoints
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+</span><span class="sd">        action: keep
+</span><span class="sd">        regex: true
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __scheme__
+</span><span class="sd">        regex: (https?)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">      - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        regex: ([^:]+)(?::\d+)?;(\d+)
+</span><span class="sd">        replacement: $1:$2
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_service_label_(.+)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_namespace]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_namespace
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_name]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_name</span><span class="w">    
+</span><span class="w"></span><span class="l">EOF</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>注意这里在relabel_configs区域做了大量的配置，特别是第一个保留__meta_kubernetes_service_annotation_prometheus_io_scrape为true的才保留下来，这就是说要想自动发现集群中的 Service，就需要在 Service 的annotation区域添加prometheus.io/scrape=true的声明，现在先将上面的配置更新，查看下效果：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2019/11/28/6egrNzv4GlptnsZ.png"
+        data-srcset="https://i.loli.net/2019/11/28/6egrNzv4GlptnsZ.png, https://i.loli.net/2019/11/28/6egrNzv4GlptnsZ.png 1.5x, https://i.loli.net/2019/11/28/6egrNzv4GlptnsZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2019/11/28/6egrNzv4GlptnsZ.png"
+        title="20191128115619.png" /></p>
+<h4 id="k8s集群中的资源类型监控">k8s集群中的资源类型监控</h4>
+<p>上面配置了自动发现 Service（Pod也是一样的）的监控，但是这些监控数据都是应用内部的监控，需要应用本身提供一个/metrics接口，或者对应的 exporter 来暴露对应的指标数据，但是在 Kubernetes 集群上 Pod、DaemonSet、Deployment、Job、CronJob 等各种资源对象的状态也需要监控，这也反映了使用这些资源部署的应用的状态。但通过查看前面从集群中拉取的指标(这些指标主要来自 apiserver 和 kubelet 中集成的 cAdvisor)，并没有具体的各种资源对象的状态指标。对于 Prometheus 来说，当然是需要引入新的 exporter 来暴露这些指标，Kubernetes 提供了一个kube-state-metrics就是我们需要的。</p>
+<p>kube-state-metrics 已经给出了在 Kubernetes 部署的 manifest 定义文件，我们直接将代码 Clone 到集群中(能用 kubectl 工具操作就行):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/kubernetes/kube-state-metrics.git
+kubectl create -f kube-state-metrics/examples/standard/
+</code></pre></td></tr></table>
+</div>
+</div><p>创建监控配置文件如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">prometheus.yml</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">    global:
+</span><span class="sd">      scrape_interval: 15s
+</span><span class="sd">      scrape_timeout: 15s
+</span><span class="sd">    scrape_configs:
+</span><span class="sd">    - job_name: &#39;prometheus&#39;
+</span><span class="sd">      static_configs:
+</span><span class="sd">      - targets: [&#39;localhost:9090&#39;]
+</span><span class="sd">    - job_name: &#39;kubernetes-nodes&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__address__]
+</span><span class="sd">        regex: &#39;(.*):10250&#39;
+</span><span class="sd">        replacement: &#39;${1}:9100&#39;
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        action: replace
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kube-state-metrics&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: endpoints
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+</span><span class="sd">        action: keep
+</span><span class="sd">        regex: true
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __scheme__
+</span><span class="sd">        regex: (https?)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">      - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        regex: ([^:]+)(?::\d+)?;(\d+)
+</span><span class="sd">        replacement: $1:$2
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_service_label_(.+)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_namespace]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_namespace
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_name]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_name</span><span class="w">    
+</span></code></pre></td></tr></table>
+</div>
+</div><p>查看完整的监控配置文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">prometheus.yml</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">    global:
+</span><span class="sd">      scrape_interval: 15s
+</span><span class="sd">      scrape_timeout: 15s
+</span><span class="sd">    scrape_configs:
+</span><span class="sd">    - job_name: &#39;prometheus&#39;
+</span><span class="sd">      static_configs:
+</span><span class="sd">      - targets: [&#39;localhost:9090&#39;]
+</span><span class="sd">    - job_name: &#39;kubernetes-nodes&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__address__]
+</span><span class="sd">        regex: &#39;(.*):10250&#39;
+</span><span class="sd">        replacement: &#39;${1}:9100&#39;
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        action: replace
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubelet&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">        insecure_skip_verify: true
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-cadvisor&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: node
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_node_label_(.+)
+</span><span class="sd">      - target_label: __address__
+</span><span class="sd">        replacement: kubernetes.default.svc:443
+</span><span class="sd">      - source_labels: [__meta_kubernetes_node_name]
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kubernetes-apiservers&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: endpoints
+</span><span class="sd">      scheme: https
+</span><span class="sd">      tls_config:
+</span><span class="sd">        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+</span><span class="sd">      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+</span><span class="sd">        action: keep
+</span><span class="sd">        regex: default;kubernetes;https
+</span><span class="sd">
+</span><span class="sd">    - job_name: &#39;kube-state-metrics&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: endpoints
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+</span><span class="sd">        action: keep
+</span><span class="sd">        regex: true
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __scheme__
+</span><span class="sd">        regex: (https?)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">      - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">        regex: ([^:]+)(?::\d+)?;(\d+)
+</span><span class="sd">        replacement: $1:$2
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_service_label_(.+)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_namespace]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_namespace
+</span><span class="sd">      - source_labels: [__meta_kubernetes_service_name]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_name</span><span class="w">    
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="metrics-server安装使用">metrics-server安装使用</h4>
+<p>kubernetes 集群资源监控之前可以通过 heapster 来获取数据，在 1.11 开始开始逐渐废弃 heapster 了，采用 metrics-server 来代替，metrics-server 是集群的核心监控数据的聚合器，它从 kubelet 公开的 Summary API 中采集指标信息，metrics-server 是扩展的 APIServer，依赖于kube-aggregator，因为我们需要在 APIServer 中开启相关参数。</p>
+<p>将 kube-state-metrics 部署到 Kubernetes 上之后，就会发现 Kubernetes 集群中的 Prometheus 会在kubernetes-service-endpoints 这个 job 下自动服务发现 kube-state-metrics，并开始拉取 metrics，这是因为部署 kube-state-metrics 的 manifest 定义文件 kube-state-metrics-service.yaml 对 Service 的定义包含prometheus.io/scrape: &lsquo;true&rsquo;这样的一个annotation，因此 kube-state-metrics 的 endpoint 可以被 Prometheus 自动服务发现。</p>
+<p>查看 APIServer 参数配置，确保你的 APIServer 启动参数中包含下的一些参数配置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">...</span><span class="w">
+</span><span class="w"></span>- --<span class="l">requestheader-client-ca-file=/etc/kubernetes/certs/proxy-ca.crt</span><span class="w">
+</span><span class="w"></span>- --<span class="l">proxy-client-cert-file=/etc/kubernetes/certs/proxy.crt</span><span class="w">
+</span><span class="w"></span>- --<span class="l">proxy-client-key-file=/etc/kubernetes/certs/proxy.key</span><span class="w">
+</span><span class="w"></span>- --<span class="l">requestheader-allowed-names=aggregator</span><span class="w">
+</span><span class="w"></span>- --<span class="l">requestheader-extra-headers-prefix=X-Remote-Extra-</span><span class="w">
+</span><span class="w"></span>- --<span class="l">requestheader-group-headers=X-Remote-Group</span><span class="w">
+</span><span class="w"></span>- --<span class="l">requestheader-username-headers=X-Remote-User</span><span class="w">
+</span><span class="w"></span>- --<span class="l">enable-aggregator-routing=true</span><span class="w">
+</span><span class="w"></span><span class="nn">...</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>如果未在 master 节点上运行 kube-proxy，则必须确保 kube-apiserver 启动参数中包含&ndash;enable-aggregator-routing=true</p>
+<p>可以直接使用 metrics-server 官方提供的资源清单文件直接安装，地址：https://github.com/kubernetes-incubator/metrics-server/tree/master/deploy,修改镜像为阿里云镜像　registry.aliyuncs.com/google_containers/metrics-server-amd64:v0.3.6</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl create -f 1.8+/
+</code></pre></td></tr></table>
+</div>
+</div><p>在 metrics-server 的启动参数中修改kubelet-preferred-address-types参数，因为部署集群的时候，CA 证书并没有把各个节点的 IP 签上去，所以这里 metrics-server 通过 IP 去请求时，提示签的证书没有对应的 IP（错误：x509: cannot validate certificate for 192.168.33.11 because it doesn’t contain any IP SANs），可以添加一个&ndash;kubelet-insecure-tls参数跳过证书校验：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">args</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- --<span class="l">kubelet-insecure-tls</span><span class="w">
+</span><span class="w"></span>- --<span class="l">kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>查看节点资源使用率：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">NAME                              CPU<span class="o">(</span>cores<span class="o">)</span>   CPU%   MEMORY<span class="o">(</span>bytes<span class="o">)</span>   MEMORY%   
+saas-pre-master-dist-sz-01   260m         13%    2330Mi          63%       
+saas-pre-node-dist-sz-01     536m         13%    5032Mi          65%       
+saas-pre-node-dist-sz-02     548m         13%    4267Mi          55% 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="etcd监控">etcd监控</h4>
+<p>创建etcd secret</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl -n monitoring create secret generic etcd-certs --from-file<span class="o">=</span>/etc/kubernetes/pki/etcd/healthcheck-client.crt --from-file<span class="o">=</span>/etc/kubernetes/pki/etcd/healthcheck-client.key --from-file<span class="o">=</span>/etc/kubernetes/pki/etcd/ca.crt
+</code></pre></td></tr></table>
+</div>
+</div><p>重新配置prometheus-deploy.yaml添加etcd-cert</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-secret</span><span class="w">
+</span><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/etc/prometheus/secrets/etcd-certs&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-secret</span><span class="w">
+</span><span class="w">        </span><span class="nt">secret</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">etcd-certs</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>查看配置的job</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kubernetes-etcd&#39;</span><span class="w">
+</span><span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">https</span><span class="w">
+</span><span class="w">      </span><span class="nt">tls_config</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">ca_file</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/prometheus/secrets/etcd-certs/ca.crt</span><span class="w">
+</span><span class="w">        </span><span class="nt">cert_file</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/prometheus/secrets/etcd-certs/healthcheck-client.crt</span><span class="w">
+</span><span class="w">        </span><span class="nt">key_file</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/prometheus/secrets/etcd-certs/healthcheck-client.key</span><span class="w">
+</span><span class="w">        </span><span class="nt">insecureSkipVerify</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">      </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l">5s</span><span class="w">
+</span><span class="w">      </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;172.18.12.10:2379&#39;</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="监控pod">监控Pod</h4>
+<p>创建配置文件,加入到prometheus即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-config</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">prometheus.yml</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">    global:
+</span><span class="sd">      scrape_interval: 15s
+</span><span class="sd">      scrape_timeout: 15s
+</span><span class="sd">    scrape_configs:
+</span><span class="sd">    - job_name: &#39;prometheus&#39;
+</span><span class="sd">      static_configs:
+</span><span class="sd">      - targets: [&#39;localhost:9090&#39;]
+</span><span class="sd">      
+</span><span class="sd">    - job_name: &#39;kubernetes-pods&#39;
+</span><span class="sd">      kubernetes_sd_configs:
+</span><span class="sd">      - role: pod
+</span><span class="sd">      relabel_configs:
+</span><span class="sd">      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+</span><span class="sd">        action: keep
+</span><span class="sd">        regex: true
+</span><span class="sd">      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: __metrics_path__
+</span><span class="sd">        regex: (.+)
+</span><span class="sd">      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+</span><span class="sd">        action: replace
+</span><span class="sd">        regex: ([^:]+)(?::\d+)?;(\d+)
+</span><span class="sd">        replacement: $1:$2
+</span><span class="sd">        target_label: __address__
+</span><span class="sd">      - action: labelmap
+</span><span class="sd">        regex: __meta_kubernetes_pod_label_(.+)
+</span><span class="sd">      - source_labels: [__meta_kubernetes_namespace]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_namespace
+</span><span class="sd">      - source_labels: [__meta_kubernetes_pod_name]
+</span><span class="sd">        action: replace
+</span><span class="sd">        target_label: kubernetes_pod_name</span><span class="w">    
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div id="comments"></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
