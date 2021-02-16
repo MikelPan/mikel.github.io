@@ -9,7 +9,88 @@
     <managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
     <webMaster>plyx_46204@126.com (mikel pan)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 16 Feb 2021 19:22:17 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Feb 2021 19:39:09 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql索引</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E7%B4%A2%E5%BC%95/</link>
+      <pubDate>Tue, 16 Feb 2021 19:39:09 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E7%B4%A2%E5%BC%95/</guid>
+      <description>索引是什么? 索引是什么了，查阅了官方文档。官方文档写了索引的作用和没有索引会带来全表扫描，非常费时间。 Indexes are used to find rows with specific column values quickly. Without an index, MySQL must begin with the</description>
+    </item>
+    
+    <item>
+      <title>Mysql检测工具使用</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 16 Feb 2021 19:39:00 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+      <description>一、mysqldumpslow工具使用 1.1、修改配置文件开启慢查询 mysql 开启慢查询 1 2 3 4 5 6 7 systemctl stop mysqld echo -e &amp;#34;# 开启慢查询\nslow_query</description>
+    </item>
+    
+    <item>
+      <title>Mysql执行过程</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Tue, 16 Feb 2021 19:38:47 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/</guid>
+      <description>Mysql 执行流程 大致流程描述: MySQL客户端通过协议将SQL语句发送给MySQL服务器。 服务器会先检查查询缓存中是否有执行过这条SQL，如果命中</description>
+    </item>
+    
+    <item>
+      <title>Mysql备份与恢复</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+      <pubDate>Tue, 16 Feb 2021 19:38:37 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+      <description>一、mysql冷备及恢复 1.1、冷备 1 2 3 4 5 # 停止mysql mysqladmin -uroot -proot123 shutdown # 拷贝数据文件 scp -r /data/mysql root@back ip:/root cp -r /data/mysql /本地新目录 1.2、恢复 将已经备份的数据</description>
+    </item>
+    
+    <item>
+      <title>Mysql基础命令02</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/</link>
+      <pubDate>Tue, 16 Feb 2021 19:38:23 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A402/</guid>
+      <description>一、Msql数据类型 1、整型 tinyint, 占 1字节 ,有符号： -128~127,无符号位 :0~255 smallint, 占 2字节 ,有符号： -32768~32767无符号位 :0~65535 mediumint 占 3字节</description>
+    </item>
+    
+    <item>
+      <title>Mysql基础命令01</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/</link>
+      <pubDate>Tue, 16 Feb 2021 19:38:19 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A401/</guid>
+      <description>一.Mysql简介 MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理</description>
+    </item>
+    
+    <item>
+      <title>Mysql二进制安装</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 16 Feb 2021 19:38:08 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/</guid>
+      <description>mysql linux环境下安装 一、创建mysql账户和数据目录 1 2 3 4 5 6 7 8 # 创建用户 groupadd mysql useradd -r -g mysql -s /bin/false mysql # 创建数据目录 mkdir -p /data/mysql3306/{mysql,binlog,slowlog,tmp,log,run} mkdir -p /usr/local/mysql chown -R mysql. /data/mysql3306 chown -R mysql. /usr/local/mysql</description>
+    </item>
+    
+    <item>
+      <title>Mysql事务详解</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Tue, 16 Feb 2021 19:37:47 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3/</guid>
+      <description>Mysql 事务说明 Mysql 事务特点 1、ACID Atomicity（原子性）：一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交</description>
+    </item>
+    
+    <item>
+      <title>Mysql主从复制</title>
+      <link>https://www.mikel.pan/technology/mysql/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</link>
+      <pubDate>Tue, 16 Feb 2021 19:37:30 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mysql/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</guid>
+      <description>一、mysql主从同步原理 Mysql主从复制也可以称为Mysql主从同步，它是构建数据库高可用集群架构的基础。它通过将一台主机的数据复制到其</description>
+    </item>
+    
     <item>
       <title>Prometheus_operator使用</title>
       <link>https://www.mikel.pan/technology/prometheus/prometheus_operator%E4%BD%BF%E7%94%A8/</link>

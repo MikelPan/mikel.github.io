@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Mysql执行过程 - 德国粗茶淡饭</title><meta name="Description" content="Mysql执行过程"><meta property="og:title" content="Mysql执行过程" />
+<meta property="og:description" content="Mysql执行过程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mikel.pan/technology/mysql/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" />
+<meta property="og:image" content="https://www.mikel.pan/logo.png"/>
+<meta property="article:published_time" content="2021-02-16T19:38:47+08:00" />
+<meta property="article:modified_time" content="2021-02-16T19:38:47+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.mikel.pan/logo.png"/>
+
+<meta name="twitter:title" content="Mysql执行过程"/>
+<meta name="twitter:description" content="Mysql执行过程"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.mikel.pan/technology/mysql/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" /><link rel="prev" href="https://www.mikel.pan/technology/mysql/mysql%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" /><link rel="next" href="https://www.mikel.pan/technology/mysql/mysql%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql执行过程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.mikel.pan\/technology\/mysql\/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/www.mikel.pan\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "technology","keywords": "Mysql","wordcount":  1682 ,
+        "url": "https:\/\/www.mikel.pan\/technology\/mysql\/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B\/","datePublished": "2021-02-16T19:38:47+08:00","dateModified": "2021-02-16T19:38:47+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/www.mikel.pan\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "MikelPan"
+            },"description": "Mysql执行过程"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 生活 </a><a class="menu-item" href="/technology/"> 技术 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/technology/mysql/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="德国粗茶淡饭"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>德国粗茶淡饭</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">生活</a><a class="menu-item" href="/technology/" title="">技术</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/MikelPan/Cnblog.git" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/technology/mysql/mysql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Mysql执行过程</h1><div class="content" id="content"><h3 id="mysql-执行流程">Mysql 执行流程</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/22/16910d7a35f569f9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/22/16910d7a35f569f9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/22/16910d7a35f569f9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/22/16910d7a35f569f9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/22/16910d7a35f569f9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/22/16910d7a35f569f9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>大致流程描述:</p>
+<ul>
+<li>MySQL客户端通过协议将SQL语句发送给MySQL服务器。</li>
+<li>服务器会先检查查询缓存中是否有执行过这条SQL，如果命中缓存，则将结果返回，否则进入下一个环节（查询缓存默认不开启）。</li>
+<li>服务器端进行SQL解析，预处理，然后由查询优化器生成对应的执行计划。</li>
+<li>服务器根据查询优化器给出的执行计划，再调用存储引擎的API执行查询。</li>
+<li>将结果返回给客户端，如果开启查询缓存，则会备份一份到查询缓存中。</li>
+</ul>
+<h3 id="流程图详解">流程图详解</h3>
+<h4 id="查询缓存">查询缓存</h4>
+<p>MySQL查询缓存会保存查询返回的完整结构。当查询命中该缓存时，MySQL会立刻返回结果，跳过了解析、优化和执行阶段。
+但查询缓存是默认不开启的，且要求SQL和参数都是一样，同时查询缓存系统会跟踪查询中涉及的每一个表，如果这些表发生变化，则该表相关的所有缓存数据均会失效。所以命中率一般较低，生产环境中也很少用到，具体流程就不描述了。如果感兴趣的可以查阅详细资料。</p>
+<h4 id="解析和预处理">解析和预处理</h4>
+<p>如果查询缓存未命中，则到解析器。解析器主要是对SQL语句进行解析，使用MySQLy语法规则进行验证和解析查询，并生成对应的解析树。
+得到解析数之后，还需要做预处理，预处理则进一步检查解释树是否合法，以及进行一些优化，比如检查数据表和列是否存在，如果有计算，会将计算的结果算出来等等。</p>
+<h4 id="查询优化器">查询优化器</h4>
+<p>查询优化器是整个流程中重要的一环。查询优化器会将预处理之后的解析树转化成执行计划。一条查询可以有多种执行方法，最后均会返回相同结果。查询优化器的作用就是找到这其中最好的执行计划。
+  生成执行计划的过程会消耗较多的时间，特别是存在许多可选的执行计划时。如果在一条SQL语句执行的过程中将该语句对应的最终执行计划进行缓存，当相似的语句再次被输入服务器时，就可以直接使用已缓存的执行计划，从而跳过SQL语句生成执行计划的整个过程，进而可以提高语句的执行速度。
+通常所讲的优化SQL，其实就是想让查询优化器，按照我们的思路,帮我们选择最优的执行方案。</p>
+<h4 id="查询执行计划">查询执行计划</h4>
+<p>查询执行计划，就是MySQL查询中的执行计划，比如是执行where语句还是from语句，下面有一张执行顺序的图。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://user-gold-cdn.xitu.io/2019/2/22/16910d99a254bbde?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        data-srcset="https://user-gold-cdn.xitu.io/2019/2/22/16910d99a254bbde?imageView2/0/w/1280/h/960/format/webp/ignore-error/1, https://user-gold-cdn.xitu.io/2019/2/22/16910d99a254bbde?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 1.5x, https://user-gold-cdn.xitu.io/2019/2/22/16910d99a254bbde?imageView2/0/w/1280/h/960/format/webp/ignore-error/1 2x"
+        data-sizes="auto"
+        alt="https://user-gold-cdn.xitu.io/2019/2/22/16910d99a254bbde?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+        title="https://user-gold-cdn.xitu.io/2019/2/22/16910d99a254bbde?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" /></p>
+<p>最先执行的总是FROM操作，最后执行的是LIMIT操作。其中每一个操作都会产生一张虚拟的表，这个虚拟的表作为一个处理的输入，只是这些虚拟的表对用户来说是透明的，但是只有最后一个虚拟的表才会被作为结果返回。如果没有在语句中指定某一个子句，那么将会跳过相应的步骤。</p>
+<ul>
+<li>FORM: 对FROM的左边的表和右边的表计算笛卡尔积。产生虚表VT1</li>
+<li>ON: 对虚表VT1进行ON筛选，只有那些符合的行才会被记录在虚表VT2中。</li>
+<li>JOIN： 如果指定了OUTER JOIN（比如left join、 right join），那么保留表中未匹配的行就会作为外部行添加到虚拟表VT2中，产生虚拟表VT3， 如果 from子句中包含两个以上的表的话，那么就会对上一个join连接产生的结果VT3和下一个表重复执行步骤1~3这三个步骤，一直到处理完所有的表为止。</li>
+<li>WHERE： 对虚拟表VT3进行WHERE条件过滤。只有符合的记录才会被插入到虚拟表VT4中。</li>
+<li>GROUP BY: 根据group by子句中的列，对VT4中的记录进行分组操作，产生VT5.</li>
+<li>CUBE | ROLLUP: 对表VT5进行cube或者rollup操作，产生表VT6.</li>
+<li>HAVING： 对虚拟表VT6应用having过滤，只有符合的记录才会被 插入到虚拟表VT7中。</li>
+<li>SELECT： 执行select操作，选择指定的列，插入到虚拟表VT8中。</li>
+<li>DISTINCT： 对VT8中的记录进行去重。产生虚拟表VT9.</li>
+<li>ORDER BY: 将虚拟表VT9中的记录按照&lt;order_by_list&gt;进行排序操作，产生虚拟表VT10.</li>
+<li>LIMIT：取出指定行的记录，产生虚拟表VT11, 并将结果返回。</li>
+</ul>
+<h4 id="查询执行引擎">查询执行引擎</h4>
+<p>执行计划会传给查询执行引擎，执行引擎选择存储引擎来执行计划，到磁盘中的文件中去查询。
+影响这个查询性能最根本的原因是什么? 其实是硬盘的机械运动，也就是我们平时熟悉的IO，所以一条查询语句是快还是慢，就是根据这个时间的IO来确定的。那怎么执行IO又是什么来确定的?就是传过来的这一份执行计划.</p>
+</div><div id="comments"></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">mikel pan</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">daadda</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"REQJX89W85","algoliaIndex":"index.zh-cn","algoliaSearchKey":"63fa048de9b35627f46672e95abc14df","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
