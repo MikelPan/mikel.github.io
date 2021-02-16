@@ -9,7 +9,43 @@
     <managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
     <webMaster>plyx_46204@126.com (mikel pan)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 16 Feb 2021 19:05:31 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Feb 2021 19:10:19 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Systemd管理服务</title>
+      <link>https://www.mikel.pan/technology/linux/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Tue, 16 Feb 2021 19:10:19 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/linux/systemd%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/</guid>
+      <description>Systemd 服务管理 简介 Systemd 是一系列工具的集合，其作用也远远不仅是启动操作系统，它还接管了后台服务、结束、状态查询，以及日志归档、设备管理、电源管理、定</description>
+    </item>
+    
+    <item>
+      <title>Ssl证书自动续签</title>
+      <link>https://www.mikel.pan/technology/linux/ssl%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE/</link>
+      <pubDate>Tue, 16 Feb 2021 19:10:03 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/linux/ssl%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE/</guid>
+      <description>自签证书 生成CA证书私钥 1 openssl genrsa -out ca.key 4096 生成CA证书 1 2 3 4 openssl req -x509 -new -nodes -sha512 -days 3650 \ -subj &amp;#34;/C=CN/ST=Beijing/L=Beijing/O=IT/OU=Docker/CN=domain.com&amp;#34; \ -key ca.key \ -out ca.crt 生成私钥 1 openssl genrsa -out domain.com.key 4096 生成证书签名请求 1 2 3 4 openssl req -sha512</description>
+    </item>
+    
+    <item>
+      <title>Shell编程基础03</title>
+      <link>https://www.mikel.pan/technology/linux/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8003/</link>
+      <pubDate>Tue, 16 Feb 2021 19:09:34 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/linux/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8003/</guid>
+      <description>for循环语句 在计算机科学中，for循环（英语：for loop）是一种编程语言的迭代陈述，能够让程式码反复的执行。它跟其他的循环，如whil</description>
+    </item>
+    
+    <item>
+      <title>Shell编程基础01</title>
+      <link>https://www.mikel.pan/technology/linux/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/</link>
+      <pubDate>Tue, 16 Feb 2021 19:09:22 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/linux/shell%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%8001/</guid>
+      <description>前言 为什么学Shell Shell脚本语言是实现Linux/UNIX系统管理及自动化运维所必备的重要工具， Linux/UNIX系统的底层及基础</description>
+    </item>
+    
     <item>
       <title>Keepalived_haproxy高可用</title>
       <link>https://www.mikel.pan/technology/linux/keepalived_haproxy%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
