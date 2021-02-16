@@ -9,7 +9,25 @@
     <managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
     <webMaster>plyx_46204@126.com (mikel pan)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 16 Feb 2021 19:39:09 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Feb 2021 19:55:35 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monogo副本集</title>
+      <link>https://www.mikel.pan/technology/mongo/monogo%E5%89%AF%E6%9C%AC%E9%9B%86/</link>
+      <pubDate>Tue, 16 Feb 2021 19:55:35 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mongo/monogo%E5%89%AF%E6%9C%AC%E9%9B%86/</guid>
+      <description>mongo 副本集搭建 MongoDB主备+仲裁的基本结构如下 主节点（Primary） 在复制集中，主节点是唯一能够接收写请求的节点。MongoDB在主节</description>
+    </item>
+    
+    <item>
+      <title>Monogo安装</title>
+      <link>https://www.mikel.pan/technology/mongo/monogo%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 16 Feb 2021 19:55:23 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/mongo/monogo%E5%AE%89%E8%A3%85/</guid>
+      <description>mongo简介及安装 mongo介绍 MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。 在高负载的情况下，添加更多的节点，可以保</description>
+    </item>
+    
     <item>
       <title>Mysql索引</title>
       <link>https://www.mikel.pan/technology/mysql/mysql%E7%B4%A2%E5%BC%95/</link>
