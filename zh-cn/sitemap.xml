@@ -15,7 +15,6 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/categories/"
                     /></url><url>
-            <loc>https://www.mikel.pan/lifes/</loc><lastmod>2021-02-16T14:47:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/lifes/</loc><lastmod>2021-02-16T14:47:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-16T14:47:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
@@ -44,6 +43,7 @@
                     href="https://www.mikel.pan/"
                     /></url><url>
             <loc>https://www.mikel.pan/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/</loc><lastmod>2021-02-16T14:47:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/lifes/</loc><lastmod>2021-02-16T14:47:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/keepalived_haproxy%E9%AB%98%E5%8F%AF%E7%94%A8/</loc><lastmod>2021-02-15T15:45:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-15T15:45:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-15T15:45:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
