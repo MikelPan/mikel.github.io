@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://www.mikel.pan/categories/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/categories/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/categories/"
@@ -15,9 +15,10 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/categories/"
                     /></url><url>
-            <loc>https://www.mikel.pan/tags/lifes/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/posts/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/technology/linux/git%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/tags/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/tags/"
@@ -30,7 +31,8 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/tags/"
                     /></url><url>
-            <loc>https://www.mikel.pan/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://www.mikel.pan/technology/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/</loc><lastmod>2021-02-16T18:53:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://www.mikel.pan/en/"
@@ -43,6 +45,8 @@
                     hreflang="zh-cn"
                     href="https://www.mikel.pan/"
                     /></url><url>
+            <loc>https://www.mikel.pan/tags/lifes/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://www.mikel.pan/posts/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/%E8%B6%8A%E5%8D%97%E4%B9%8B%E6%97%85/</loc><lastmod>2021-02-16T16:28:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/lifes/</loc><lastmod>2021-02-16T15:48:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -50,8 +54,6 @@
             <loc>https://www.mikel.pan/lifes/%E8%87%AA%E7%94%B1%E4%BA%BA%E9%A3%8E%E6%99%AF%E9%89%B4%E8%B5%8F/</loc><lastmod>2021-02-16T15:11:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/lifes/%E8%81%8C%E5%9C%BA%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A701/</loc><lastmod>2021-02-16T15:06:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/keepalived_haproxy%E9%AB%98%E5%8F%AF%E7%94%A8/</loc><lastmod>2021-02-15T15:45:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/tags/linux/</loc><lastmod>2021-02-15T15:45:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://www.mikel.pan/categories/linux/</loc><lastmod>2021-02-15T15:45:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/tags/docker/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/categories/docker/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://www.mikel.pan/docker_registry%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</loc><lastmod>2021-02-15T15:37:47&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

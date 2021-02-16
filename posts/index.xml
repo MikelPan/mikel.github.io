@@ -31,7 +31,7 @@
     <pubDate>Mon, 15 Feb 2021 15:20:30 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://www.mikel.pan/git%E4%BD%BF%E7%94%A8/</guid>
-    <description><![CDATA[git 介绍 git 安装 1 yum install -y git git 参数配置 1 2 3 4 5 6 7 8 9 10 # 配置全局参数 ## 配置用户名 git config --global http.postBuffer 1048576000 git config --global user.name &#34;&#34; git config --global user.email &#34;&#34; # 配置仓库参数 ## 配置用户名 git config --local]]></description>
+    <description><![CDATA[Git使用]]></description>
 </item><item>
     <title>Ssl证书自动续签</title>
     <link>https://www.mikel.pan/ssl%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE/</link>

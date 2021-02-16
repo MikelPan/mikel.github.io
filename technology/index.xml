@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technologies on 德国粗茶淡饭</title>
+    <link>https://www.mikel.pan/technology/</link>
+    <description>Recent content in Technologies on 德国粗茶淡饭</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
+    <webMaster>plyx_46204@126.com (mikel pan)</webMaster>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 16 Feb 2021 18:53:41 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git使用</title>
+      <link>https://www.mikel.pan/technology/linux/git%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 16 Feb 2021 18:53:41 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/linux/git%E4%BD%BF%E7%94%A8/</guid>
+      <description>git 介绍 git 安装 1 yum install -y git git 参数配置 1 2 3 4 5 6 7 8 9 10 # 配置全局参数 ## 配置用户名 git config --global http.postBuffer 1048576000 git config --global user.name &amp;#34;&amp;#34; git config --global user.email &amp;#34;&amp;#34; # 配置仓库参数 ## 配置用户名 git config --local</description>
+    </item>
+    
+  </channel>
+</rss>
