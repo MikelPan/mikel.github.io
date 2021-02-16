@@ -6,24 +6,30 @@
 主要抓拍的是接近太阳落山的那段时光和太阳留影，感受下落日的余晖和晚霞的韵味。
 
 第一副图，红云依稀飘落在不同的空角，看上去更像溶洞的红岩一层一层递进，飘落着，也像反转着的红山之地，厚重而清澈，能感受到别样不同的美，宁静的让人安心。
+![](https://upload-images.jianshu.io/upload_images/9415503-cba787134530ffae.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 
 第二幅图，使用的长镜头拍摄，给人由远及近的感觉，还有部分晚霞的余晖验照着别样的云彩，具有切割的美感。
+![](
+https://upload-images.jianshu.io/upload_images/9415503-c31d3c3672161a20.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/960/format/webp)
 
 就好似有无数个不同的世界相邻在一起，也要一个迟暮老人那蜿蜒的脊背样，一层一层布满老茧，显示的岁月的痕迹，又不失一些感动的东西。
 
 
 第三幅图，已经看不到晚霞的影子，却意外的发现了下山前的太阳的全貌，圆润而有光泽，就像在黑暗中永远存在的那片希望之光。
+![](https://upload-images.jianshu.io/upload_images/9415503-d00ce1929a954b81.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/818/format/webp)
 
 天也暗了，水也看不到它的韵动，还有一处蜿蜒的低山，在两山之间突然冒出的这点光亮给人一种光明之感，这就是太阳落山前的极景。
 
 
 第四幅图，描绘了一个小渔村的生活写照，竖起的桅杆表示一天的工作远还没有结束，远方美丽的晚霞好似带给这个小渔村难忘的礼物，不需要什么，就是一场美丽的晚霞，让人在工作之余不难体验下生活的丰富多资。
+![](https://upload-images.jianshu.io/upload_images/9415503-53cab7d50672c7d0.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/960/format/webp)
 
 不高的小山挡住了太阳的光芒，映照出了落日的余晖，引起半边天的余晖，橘红色给人安详和宁静的感觉。
 
 
 第五幅图，主要拍摄的海面和鸟结合的画面，最后以大桥为引，还有些山的脊背和天空的衬托，唯美的画面定格，让人忍不住多看几眼，美到心田。
+![](https://upload-images.jianshu.io/upload_images/9415503-705b8a8b59b92545.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/960/format/webp)
 
 小鸟奔袭，一只接着一只，绘制着天空的痕迹，朦朦的天空又增添一份美感，蜿蜒的大桥，精致的设计将海分割开来又连接在一起，还有着高高的塔吊仿佛是浮在水面上的，这是一个欢快的海面，给人传递幸福的信息。
 
@@ -31,6 +37,7 @@
 
 
 最后一副，拍摄的时间取得刚刚好，跳动的音符，别样的天空，特别的晚霞，这些组合在一起就形成了极景。
+![](https://upload-images.jianshu.io/upload_images/9415503-b3ed4db9f5a3ab96.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 最下层的云，浮而不散，就像火山喷发的那种爆发性的情景，定格在那一刻，有光亮也有阴影，交织在一起，接着是上层有点灰又有点散还有点飘的云，组合成一种天空背景图，来极好的验照着带有音符感的线杆，虽不是真正的铉，但比真正的铉更具有美感，宽广而绵长又带着一分细腻。
 
