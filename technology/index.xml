@@ -9,7 +9,16 @@
     <managingEditor>plyx_46204@126.com (mikel pan)</managingEditor>
     <webMaster>plyx_46204@126.com (mikel pan)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 16 Feb 2021 19:55:35 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Feb 2021 20:03:06 +0800</lastBuildDate><atom:link href="https://www.mikel.pan/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EFK日志平台部署</title>
+      <link>https://www.mikel.pan/technology/logging/efk%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 16 Feb 2021 20:03:06 +0800</pubDate>
+      <author>plyx_46204@126.com (mikel pan)</author>
+      <guid>https://www.mikel.pan/technology/logging/efk%E6%97%A5%E5%BF%97%E5%B9%B3%E5%8F%B0%E9%83%A8%E7%BD%B2/</guid>
+      <description>EFK 架构说明 日志收集方案是采用 Elasticsearch、Fluentd、Filebeat 和 Kibana（EFK）技术栈。 Fluented主要</description>
+    </item>
+    
     <item>
       <title>Monogo副本集</title>
       <link>https://www.mikel.pan/technology/mongo/monogo%E5%89%AF%E6%9C%AC%E9%9B%86/</link>
