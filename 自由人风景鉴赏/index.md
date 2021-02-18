@@ -24,13 +24,15 @@
 
 
 第四幅图，描绘了一个小渔村的生活写照，竖起的桅杆表示一天的工作远还没有结束，远方美丽的晚霞好似带给这个小渔村难忘的礼物，不需要什么，就是一场美丽的晚霞，让人在工作之余不难体验下生活的丰富多资。
-![](https://upload-images.jianshu.io/upload_images/9415503-53cab7d50672c7d0.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/960/format/webp)
+
+![](https://github.com/MikelPan/tuchuang/raw/main/04.png)
 
 不高的小山挡住了太阳的光芒，映照出了落日的余晖，引起半边天的余晖，橘红色给人安详和宁静的感觉。
 
 
 第五幅图，主要拍摄的海面和鸟结合的画面，最后以大桥为引，还有些山的脊背和天空的衬托，唯美的画面定格，让人忍不住多看几眼，美到心田。
-![](https://upload-images.jianshu.io/upload_images/9415503-705b8a8b59b92545.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/960/format/webp)
+
+![](https://github.com/MikelPan/tuchuang/raw/main/05.png)
 
 小鸟奔袭，一只接着一只，绘制着天空的痕迹，朦朦的天空又增添一份美感，蜿蜒的大桥，精致的设计将海分割开来又连接在一起，还有着高高的塔吊仿佛是浮在水面上的，这是一个欢快的海面，给人传递幸福的信息。
 
@@ -38,7 +40,8 @@
 
 
 最后一副，拍摄的时间取得刚刚好，跳动的音符，别样的天空，特别的晚霞，这些组合在一起就形成了极景。
-![](https://upload-images.jianshu.io/upload_images/9415503-b3ed4db9f5a3ab96.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+![](https://github.com/MikelPan/tuchuang/raw/main/06.png)
 
 最下层的云，浮而不散，就像火山喷发的那种爆发性的情景，定格在那一刻，有光亮也有阴影，交织在一起，接着是上层有点灰又有点散还有点飘的云，组合成一种天空背景图，来极好的验照着带有音符感的线杆，虽不是真正的铉，但比真正的铉更具有美感，宽广而绵长又带着一分细腻。
 
