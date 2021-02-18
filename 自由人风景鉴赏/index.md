@@ -10,6 +10,7 @@
 ![](https://github.com/MikelPan/tuchuang/raw/main/01.jpg)
 
 第二幅图，使用的长镜头拍摄，给人由远及近的感觉，还有部分晚霞的余晖验照着别样的云彩，具有切割的美感。
+
 ![](https://github.com/MikelPan/tuchuang/raw/main/02.png)
 
 就好似有无数个不同的世界相邻在一起，也要一个迟暮老人那蜿蜒的脊背样，一层一层布满老茧，显示的岁月的痕迹，又不失一些感动的东西。
