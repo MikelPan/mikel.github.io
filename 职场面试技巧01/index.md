@@ -1,7 +1,7 @@
 # 职场面试技巧01
 
 
-![](https://github.com/MikelPan/tuchuang/raw/main/11.png)
+![](/images/职场面试技巧01/11.png)
 
 ## 跳槽前的婉转回旋
 ### 毕业五年可以改变什么？
