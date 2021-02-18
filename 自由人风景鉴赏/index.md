@@ -17,7 +17,8 @@
 
 
 第三幅图，已经看不到晚霞的影子，却意外的发现了下山前的太阳的全貌，圆润而有光泽，就像在黑暗中永远存在的那片希望之光。
-![](https://upload-images.jianshu.io/upload_images/9415503-d00ce1929a954b81.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/818/format/webp)
+
+![](https://github.com/MikelPan/tuchuang/raw/main/03.png)
 
 天也暗了，水也看不到它的韵动，还有一处蜿蜒的低山，在两山之间突然冒出的这点光亮给人一种光明之感，这就是太阳落山前的极景。
 
