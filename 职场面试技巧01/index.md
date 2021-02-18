@@ -199,7 +199,7 @@
 
 ##### 引用时间象限管理
 
-![](https://github.com/MikelPan/tuchuang/raw/main/12.png)
+![](/images/职场面试技巧01/12.png)
 
 第一象限：紧急重要，灾难型事件，出现这类事故影响很严重，需要立即做。
 
