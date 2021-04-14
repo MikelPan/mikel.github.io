@@ -61,4 +61,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://www.mikel.pan/en/sitemap.xml
+Sitemap: https://www.ctq6.cn/en/sitemap.xml
