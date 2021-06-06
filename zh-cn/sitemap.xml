@@ -2,6 +2,21 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://www.ctq6.cn/about/%E5%85%B3%E4%BA%8E.zh-ch/</loc><lastmod>2021-04-14T22:02:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://www.ctq6.cn/about/</loc><lastmod>2021-04-14T22:02:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://www.ctq6.cn/</loc><lastmod>2021-04-14T22:02:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://www.ctq6.cn/en/"
+                        /><xhtml:link
+                        rel="alternate"
+                        hreflang="fr"
+                        href="https://www.ctq6.cn/fr/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="https://www.ctq6.cn/"
+                    /></url><url>
             <loc>https://www.ctq6.cn/categories/</loc><lastmod>2021-02-16T20:23:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -29,19 +44,6 @@
                     rel="alternate"
                     hreflang="zh-cn"
                     href="https://www.ctq6.cn/tags/"
-                    /></url><url>
-            <loc>https://www.ctq6.cn/</loc><lastmod>2021-02-16T20:23:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://www.ctq6.cn/en/"
-                        /><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://www.ctq6.cn/fr/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://www.ctq6.cn/"
                     /></url><url>
             <loc>https://www.ctq6.cn/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/</loc><lastmod>2021-02-16T20:23:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://www.ctq6.cn/%E8%81%8C%E5%9C%BA%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A701/</loc><lastmod>2021-02-16T20:23:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
